@@ -6,7 +6,7 @@ import TravelLog from "../components/TravelLog";
 const Home = () => {
   return (
     <div>
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-[1400px] mx-auto px-4">
         <PlaceList />
         <TravelLog />
       </div>
