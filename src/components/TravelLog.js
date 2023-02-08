@@ -12,7 +12,12 @@ const TravelLog = () => {
         slidesPerView={2}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
-      >
+        pagination={{ clickable: true }}
+        navigation={{
+          prevEl: '.prev',
+          nextEl: '.next',
+        }}
+     >
         <SwiperSlide>
           <h3 className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-5xl text-center">
             영월 봄에 가볼 만한 곳 <br /> 모아 모아
