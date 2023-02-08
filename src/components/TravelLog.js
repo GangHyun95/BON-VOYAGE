@@ -1,5 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper"
 // Import Swiper React components
 
 // Import Swiper styles
@@ -7,22 +8,23 @@ import "swiper/css";
 const TravelLog = () => {
   return (
     <div className="p-11 my-7">
+      <p className="text-center my-6 font-semibold text-2xl">여행기<br></br> <span className="font-semibold opacity-70 text-xs">TravelLog</span></p>
+     
+    
       <Swiper
+   pagination={true} modules={[Pagination]} className="mySwiper"
         spaceBetween={100}
         slidesPerView={2}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
-        pagination={{ clickable: true }}
-        navigation={{
-          prevEl: '.prev',
-          nextEl: '.next',
-        }}
+    
      >
         <SwiperSlide>
           <h3 className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-5xl text-center">
             영월 봄에 가볼 만한 곳 <br /> 모아 모아
           </h3>
           <img className="" src="/photo/travellog1.jpg" alt="트레블로그"></img>
+        
         </SwiperSlide>
         <SwiperSlide>
           <h3 className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-5xl text-center">
