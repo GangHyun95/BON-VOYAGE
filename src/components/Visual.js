@@ -1,21 +1,13 @@
-import React from 'react'
-
-
-
+import React from "react";
 
 const Visual = () => {
   return (
     <>
-   <video 
-   onPlaying={true}
-   autoplay={true}
-playsInline={true}
-muted={true}
-loop={true}>
-<source  src="/vedio/MainMovie2.mp4" type="video/mp4"/>
-</video>
+      <video autoPlay muted loop className="w-full h-full mx-auto mb-16">
+        <source src="/vedio/MainMovie2.mp4" type="video/mp4" />
+      </video>
     </>
-  )
-}
+  );
+};
 
-export default Visual
+export default Visual;
