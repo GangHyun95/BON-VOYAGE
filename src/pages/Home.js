@@ -7,7 +7,8 @@ import Visual from "../components/Visual";
 const Home = () => {
   return (
     <div>
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-[1400px] mx-auto px-4">
+
        <Visual/>
         <PlaceList />
         <TravelLog />
