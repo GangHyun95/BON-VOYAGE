@@ -8,8 +8,7 @@ const Home = () => {
   return (
     <div>
       <div className="max-w-[1400px] mx-auto px-4">
-
-       <Visual/>
+        <Visual />
         <PlaceList />
         <TravelLog />
       </div>
