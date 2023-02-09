@@ -1,36 +1,36 @@
 import React from "react";
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Map = () => {
- // public 폴더 참조
- const path = process.env.PUBLIC_URL;
+  // public 폴더 참조
+  const path = process.env.PUBLIC_URL;
 
- // React 에서 kakao 인스턴스 활용하기
- // window 객체를 구조 분해 할당해서 원하는 것을 뽑아 사용.
- const { kakao } = window;
- const infoArr = [
-  {
-    title: "대구 그린 컴퓨터",
-    latLng: new kakao.maps.LatLng(35.868376, 128.594065), //지도의 중심좌표.
-    imgSrc: `${path}/images/starbucks.png`,
-    imgSize: new kakao.maps.Size(64, 69),
-    imgPos: { offset: new kakao.maps.Point(116, 99) },
-  },
-  {
-    title: "한강",
-    latLng: new kakao.maps.LatLng(37.511507, 126.997067),
-    imgSrc: `${path}/images/starbucks.png`,
-    imgSize: new kakao.maps.Size(50, 50),
-    imgPos: { offset: new kakao.maps.Point(116, 99) },
-  },
-  {
-    title: "남산",
-    latLng: new kakao.maps.LatLng(37.551776, 126.988169),
-    imgSrc: `${path}/images/starbucks.png`,
-    imgSize: new kakao.maps.Size(50, 50),
-    imgPos: { offset: new kakao.maps.Point(116, 99) },
-  },
-];
+  // React 에서 kakao 인스턴스 활용하기
+  // window 객체를 구조 분해 할당해서 원하는 것을 뽑아 사용.
+  const { kakao } = window;
+  const infoArr = [
+    {
+      title: "대구 그린 컴퓨터",
+      latLng: new kakao.maps.LatLng(35.868376, 128.594065), //지도의 중심좌표.
+      imgSrc: `${path}/images/starbucks.png`,
+      imgSize: new kakao.maps.Size(64, 69),
+      imgPos: { offset: new kakao.maps.Point(116, 99) },
+    },
+    {
+      title: "한강",
+      latLng: new kakao.maps.LatLng(37.511507, 126.997067),
+      imgSrc: `${path}/images/starbucks.png`,
+      imgSize: new kakao.maps.Size(50, 50),
+      imgPos: { offset: new kakao.maps.Point(116, 99) },
+    },
+    {
+      title: "남산",
+      latLng: new kakao.maps.LatLng(37.551776, 126.988169),
+      imgSrc: `${path}/images/starbucks.png`,
+      imgSize: new kakao.maps.Size(50, 50),
+      imgPos: { offset: new kakao.maps.Point(116, 99) },
+    },
+  ];
   const [info, setInfo] = useState(infoArr);
   const [pos, setPos] = useState(null);
   // 좌표의 배열 요소의 인덱스 번호 : 최초 0번으로 보여주기
@@ -121,11 +121,10 @@ const Map = () => {
       window.removeEventListener("resize", mapCenter);
     };
   }, [idx]);
-    
- 
-  return <div className="w-[1200px]">
-    
-    <div id="map" ref={container}></div>
+
+  return (
+    <div className="w-[1200px]">
+      <div id="map" className="w-full h-screen" ref={container}></div>
       <div className="btnSet">
         <ul ref={btns}>
           {
@@ -149,7 +148,8 @@ const Map = () => {
           }
         </ul>
       </div>
-  </div>;
+    </div>
+  );
 };
 
 export default Map;

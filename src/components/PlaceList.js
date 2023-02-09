@@ -70,7 +70,7 @@ const PlaceList = () => {
       </div>
       <div className="grid grid-cols-4 gap-16 mt-4">
         {/* 카드 */}
-        <div className="shadow-xl rounded overflow-hidden" onClick={openModal}>
+        <div className="shadow rounded overflow-hidden" onClick={openModal}>
           <div className="overflow-hidden">
             <img
               src="/photo/jeju.jpg"
@@ -85,21 +85,16 @@ const PlaceList = () => {
           </div>
         </div>
         {modalVisible && (
-          <Modal
-            visible={modalVisible}
-            onClose={closeModal}
-            width={1400}
-            height={500}
-          >
+          <Modal visible={modalVisible} onClose={closeModal} width={1200}>
             <div className="flex items-center p-12 gap-12">
               <GrClose
                 className="absolute top-12 right-12 text-2xl cursor-pointer"
                 onClick={closeModal}
               />
-              <section className="overflow-hidden rounded">
+              <section className="w-4/12 max-w-[380px] overflow-hidden rounded">
                 <img src="/photo/jeju.jpg" alt="ㅇㅇ" className="w-full" />
               </section>
-              <section className="max-w-[800px] flex flex-col gap-12 items-start text-start">
+              <section className="w-8/12 flex flex-col gap-12 items-start text-start">
                 <h2>
                   <b className="text-4xl font-bold">JEJU</b>
                   <br />
