@@ -7,7 +7,7 @@ const Detail = () => {
   return (
     <div className="flex ">
       <Calendar />
-      <Map />
+      {/* <Map /> */}
       <Recommendation />
     </div>
   );
