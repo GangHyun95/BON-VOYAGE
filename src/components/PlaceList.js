@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 const PlaceList = () => {
-  const cateRef = useRef();
-  useEffect(() => {}, []);
+  const cateRef = useRef([]);
+  const [cateNum, setCateNum] = useState(0);
+  console.log(cateRef.current);
+
   return (
     <section className="text-center">
       <b className="text-3xl font-bold ">어디로 여행을 떠나시나요?</b>
@@ -19,14 +21,51 @@ const PlaceList = () => {
           <CiSearch className="absolute top-2/4 right-3 translate-y-[-50%] text-main" />
         </form>
         {/* 카테 */}
-        <ul className="flex justify-center mt-4 text-sm" ref={cateRef}>
-          <li className="bg-main text-white px-6 py-3">전체</li>
-          <li className="px-6 py-3">서울/경기</li>
-          <li className="px-6 py-3">강원</li>
-          <li className="px-6 py-3">충청</li>
-          <li className="px-6 py-3">전라</li>
-          <li className="px-6 py-3">경상</li>
-          <li className="px-6 py-3">제주</li>
+        <ul className="flex justify-center mt-4 text-sm">
+          <li
+            className={`${cateNum === 0 ? "bg-main text-white" : ""} px-6 py-3`}
+            ref={(el) => (cateRef.current[0] = el)}
+
+          >
+            전체
+          </li>
+          <li
+            className={`${cateNum === 1 ? "bg-main text-white" : ""} px-6 py-3`}
+            ref={(el) => (cateRef.current[1] = el)}
+            
+          >
+            서울/경기
+          </li>
+          <li
+            className={`${cateNum === 2 ? "bg-main text-white" : ""} px-6 py-3`}
+            ref={(el) => (cateRef.current[2] = el)}
+          >
+            강원
+          </li>
+          <li
+            className={`${cateNum === 3 ? "bg-main text-white" : ""} px-6 py-3`}
+            ref={(el) => (cateRef.current[3] = el)}
+          >
+            충청
+          </li>
+          <li
+            className={`${cateNum === 4 ? "bg-main text-white" : ""} px-6 py-3`}
+            ref={(el) => (cateRef.current[4] = el)}
+          >
+            전라
+          </li>
+          <li
+            className={`${cateNum === 5 ? "bg-main text-white" : ""} px-6 py-3`}
+            ref={(el) => (cateRef.current[5] = el)}
+          >
+            경상
+          </li>
+          <li
+            className={`${cateNum === 6 ? "bg-main text-white" : ""} px-6 py-3`}
+            ref={(el) => (cateRef.current[6] = el)}
+          >
+            제주
+          </li>
         </ul>
       </div>
       {/* select */}
