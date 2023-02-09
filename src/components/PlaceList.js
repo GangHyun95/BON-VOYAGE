@@ -1,10 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
-const PlaceList = () => {
-  const cateRef = useRef([]);
-  const [cateNum, setCateNum] = useState(0);
-  console.log(cateRef.current);
+import { GrClose } from "react-icons/gr";
+import { useNavigate } from "react-router";
+import Modal from "../Layout/Modal";
 
+const PlaceList = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+  const navigate = useNavigate();
   return (
     <section className="text-center">
       <b className="text-3xl font-bold ">어디로 여행을 떠나시나요?</b>
@@ -22,50 +30,13 @@ const PlaceList = () => {
         </form>
         {/* 카테 */}
         <ul className="flex justify-center mt-4 text-sm">
-          <li
-            className={`${cateNum === 0 ? "bg-main text-white" : ""} px-6 py-3`}
-            ref={(el) => (cateRef.current[0] = el)}
-
-          >
-            전체
-          </li>
-          <li
-            className={`${cateNum === 1 ? "bg-main text-white" : ""} px-6 py-3`}
-            ref={(el) => (cateRef.current[1] = el)}
-            
-          >
-            서울/경기
-          </li>
-          <li
-            className={`${cateNum === 2 ? "bg-main text-white" : ""} px-6 py-3`}
-            ref={(el) => (cateRef.current[2] = el)}
-          >
-            강원
-          </li>
-          <li
-            className={`${cateNum === 3 ? "bg-main text-white" : ""} px-6 py-3`}
-            ref={(el) => (cateRef.current[3] = el)}
-          >
-            충청
-          </li>
-          <li
-            className={`${cateNum === 4 ? "bg-main text-white" : ""} px-6 py-3`}
-            ref={(el) => (cateRef.current[4] = el)}
-          >
-            전라
-          </li>
-          <li
-            className={`${cateNum === 5 ? "bg-main text-white" : ""} px-6 py-3`}
-            ref={(el) => (cateRef.current[5] = el)}
-          >
-            경상
-          </li>
-          <li
-            className={`${cateNum === 6 ? "bg-main text-white" : ""} px-6 py-3`}
-            ref={(el) => (cateRef.current[6] = el)}
-          >
-            제주
-          </li>
+          <li className="bg-main text-white px-6 py-3">전체</li>
+          <li className="px-6 py-3">서울/경기</li>
+          <li className="px-6 py-3">강원</li>
+          <li className="px-6 py-3">충청</li>
+          <li className="px-6 py-3">전라</li>
+          <li className="px-6 py-3">경상</li>
+          <li className="px-6 py-3">제주</li>
         </ul>
       </div>
       {/* select */}
@@ -97,9 +68,9 @@ const PlaceList = () => {
           </div>
         </div>
       </div>
-      {/* 카드 */}
-      <div className="grid grid-cols-4 gap-20">
-        <div className="shadow rounded overflow-hidden">
+      <div className="grid grid-cols-4 gap-16 mt-4">
+        {/* 카드 */}
+        <div className="shadow-xl rounded overflow-hidden" onClick={openModal}>
           <div className="overflow-hidden">
             <img
               src="/photo/jeju.jpg"
@@ -113,6 +84,47 @@ const PlaceList = () => {
             <p className="text-sm my-2">대한민국 제주도</p>
           </div>
         </div>
+        {modalVisible && (
+          <Modal
+            visible={modalVisible}
+            onClose={closeModal}
+            width={1400}
+            height={500}
+          >
+            <div className="flex items-center p-12 gap-12">
+              <GrClose
+                className="absolute top-12 right-12 text-2xl cursor-pointer"
+                onClick={closeModal}
+              />
+              <section className="overflow-hidden rounded">
+                <img src="/photo/jeju.jpg" alt="ㅇㅇ" className="w-full" />
+              </section>
+              <section className="max-w-[800px] flex flex-col gap-12 items-start text-start">
+                <h2>
+                  <b className="text-4xl font-bold">JEJU</b>
+                  <br />
+                  <b>제주도</b>
+                </h2>
+                <p>
+                  섬 전체가 하나의 거대한 관광자원인 제주도. 에메랄드빛 물빛이
+                  인상적인 협재 해수욕장은 제주 대표 여행지며, 파도가 넘보는
+                  주상절리와 바다 위 산책로인 용머리 해안은 제주에서만 볼 수
+                  있는 천혜의 자연경관으로 손꼽힌다. 드라마 촬영지로 알려진
+                  섭지코스는 꾸준한 사랑을 받고 있으며 한라봉과 흑돼지, 은갈치
+                  등은 제주를 대표하는 음식이다.
+                </p>
+                <button
+                  className="bg-main text-white justify-self-end py-3 px-7 rounded"
+                  onClick={() => {
+                    navigate("/detail");
+                  }}
+                >
+                  일정 만들기
+                </button>
+              </section>
+            </div>
+          </Modal>
+        )}
       </div>
     </section>
   );
