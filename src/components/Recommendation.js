@@ -3,6 +3,7 @@ import { CiSearch } from "react-icons/ci";
 import { MdOutlinePlace } from "react-icons/md";
 import { RiRestaurant2Line } from "react-icons/ri";
 import { MdOutlineLocalHotel } from "react-icons/md";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const Recommendation = () => {
   return (
@@ -97,10 +98,11 @@ const Recommendation = () => {
               src="/photo/jeju.jpg"
               alt="이미지"
             />
-            <div className="p-6 flex flex-col justify-start">
+            <div className="relative p-6 flex flex-col justify-start">
               <p className="text-gray-900 text-sm font-medium mb-2">
                 감천문화마을{" "}
               </p>
+              <AiOutlinePlus className="absolute right-2 bottom-3"/>
             </div>
           </div>
         </li>
