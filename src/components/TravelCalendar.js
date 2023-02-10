@@ -40,7 +40,7 @@ function TravelCalendar() {
         </button>
         <input
           type="text"
-          className="w-[120px] p-2 text-xl border-b-2 border-green1 outline-none opacity-70 my-5 bg-transparent"
+          className="w-[120px]  p-2 text-xl border-b-2 border-green1 outline-none opacity-70 my-5 bg-transparent"
           placeholder="출발하는 날"
           value={startDate || ""}
           disabled
@@ -48,14 +48,14 @@ function TravelCalendar() {
         <span className="text-xl my-auto">~</span>
         <input
           type="text"
-          className="w-[120px] p-2 text-xl border-b-2 border-green1 outline-none opacity-70 bg-transparent"
+          className="w-[120px]  p-2 text-xl border-b-2 border-green1 outline-none opacity-70 bg-transparent"
           placeholder="돌아오는 날"
           value={endDate || ""}
           disabled
         />
       </div>
       {Visible && (
-        <div className="flex ">
+        <div className="flex relative ">
           <Calendar
             className="font-semibold"
             onChange={changeDate}
@@ -63,14 +63,16 @@ function TravelCalendar() {
             formatDay={(locale, date) => moment(date).format("DD")}
           />{" "}
           <button
-            className="border-1 absolute px-3 border-black"
+            className="border-1 absolute right-0 top-[-25px] border-2 px-3 border-black"
             onClick={closeCalendar}
           >
-            X
+            적용하기
           </button>
         </div>
       )}
+      <p className="text-center my-8">선택목록</p>
       <div className="flex items-center justify-center">
+        
         <div className="inline-flex" role="group">
           <button
             type="button"
