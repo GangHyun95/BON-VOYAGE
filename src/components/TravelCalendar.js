@@ -7,6 +7,7 @@ import { MdOutlinePlace } from "react-icons/md";
 import { RiRestaurant2Line } from "react-icons/ri";
 import { MdOutlineLocalHotel } from "react-icons/md";
 import { BsCalendarDay } from "react-icons/bs";
+
 function TravelCalendar() {
   const [value, onChange] = useState(new Date());
   const [startDate, setStartDate] = useState();

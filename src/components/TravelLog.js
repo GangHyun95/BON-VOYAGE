@@ -59,7 +59,7 @@ const TravelLog = () => {
         <SwiperSlide>
           <img className="" src="/photo/travellog5.jpg" alt="트레블로그"></img>{" "}
         </SwiperSlide>
-        <BsChevronLeft className=" bg-white text-white text-[30px] rounded-lg bg-opacity-20 absolute z-20 top-[50%]" />{" "}
+        <BsChevronLeft className=" bg-white text-white text-[30px] rounded-lg bg-opacity-20 absolute right-0 z-20 top-[50%]" />{" "}
         <BsChevronRight className=" bg-white text-white text-[30px] rounded-lg bg-opacity-20 absolute right-0 z-20 top-[50%]  " />
       </Swiper>
     </div>

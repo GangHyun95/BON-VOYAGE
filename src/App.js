@@ -11,7 +11,6 @@ function App() {
     <div>
       <Router>
         <Header />
-        {/* <div className="pt-[80px]"> */}
         <Routes>
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -19,7 +18,6 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {/* </div> */}
       </Router>
     </div>
   );
