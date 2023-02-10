@@ -19,7 +19,7 @@ const Header = () => {
     if (pathname !== "/") {
       headerRef.current.classList.add("bg-main");
     }
-    if (window.scrollY === 0) {
+    if (window.scrollY === 0 && pathname === "/") {
       headerRef.current.classList.remove("bg-main");
     }
     return () => {
@@ -33,13 +33,9 @@ const Header = () => {
     >
       <div className="flex items-center justify-between h-[80px] max-w-[1368px] mx-auto">
         <Link to="/">로고</Link>
-        <ul className="flex gap-6">
-          <li>일정 만들기</li>
-          <li>이용 방법</li>
-          <Link to="/login" className="ml-8">
-            Login
-          </Link>
-        </ul>
+        <Link to="/login" className="ml-8">
+          Login
+        </Link>
       </div>
     </header>
   );
