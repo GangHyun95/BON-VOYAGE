@@ -19,6 +19,9 @@ const Header = () => {
     if (pathname !== "/") {
       headerRef.current.classList.add("bg-main");
     }
+    if (window.scrollY === 0) {
+      headerRef.current.classList.remove("bg-main");
+    }
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
