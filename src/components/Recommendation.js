@@ -6,7 +6,7 @@ import { MdOutlineLocalHotel } from "react-icons/md";
 
 const Recommendation = () => {
   return (
-    <div className="w-[360px]">
+    <div className="w-[360px] border-l">
       {/* 검색폼 */}
 
       <form className="relative text-xl text-[#999]">
@@ -40,8 +40,7 @@ const Recommendation = () => {
       "
           >
             음식점
-            <RiRestaurant2Line  className=" my-auto" />
-           
+            <RiRestaurant2Line className=" my-auto" />
           </button>
           <button
             type="button"
@@ -85,22 +84,27 @@ const Recommendation = () => {
         ease-in-out
       "
           >
-            숙박시설 <MdOutlineLocalHotel  className=" my-auto " />
+            숙박시설 <MdOutlineLocalHotel className=" my-auto " />
           </button>
         </div>
       </div>
       <h2 className="text-center my-2">추천장소</h2>
-<ul>
-      <li className="flex justify-center m-5">
-  <div className="flex h-[130px] flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
-    <img className=" w-20 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src="/photo/jeju.jpg" alt="이미지" />
-    <div className="p-6 flex flex-col justify-start">
-      <p className="text-gray-900 text-sm font-medium mb-2">감천문화마을 </p>
-   
-    </div>
-  </div>
-</li>
-</ul>
+      <ul>
+        <li className="flex justify-center m-5">
+          <div className="flex h-[130px] flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
+            <img
+              className=" w-20 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg"
+              src="/photo/jeju.jpg"
+              alt="이미지"
+            />
+            <div className="p-6 flex flex-col justify-start">
+              <p className="text-gray-900 text-sm font-medium mb-2">
+                감천문화마을{" "}
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   );
 };

@@ -7,13 +7,12 @@ const Visual = () => {
         autoPlay
         muted
         loop
-        className="relative w-full h-full mx-auto mb-16"
+        className="relative mx-auto mb-16 w-screen h-screen object-cover"
       >
         <source src="/video/MainMovie2.mp4" type="video/mp4" />
       </video>
       <div className="absolute justify-between fll top-[50%] flex right-[50%]">
         <c className=" text-white text-5xl ">Make Your Best Trip Schedule</c>
-        <GiSouthKorea />
       </div>
     </>
   );

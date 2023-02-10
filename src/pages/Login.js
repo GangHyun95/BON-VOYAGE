@@ -1,17 +1,15 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 const Login = () => {
-  return <div>
-     <div className=" block p-6 rounded-lg shadow-lg bg-white max-w-2xl mx-auto">
+  return (
+    <div className="pt-[80px]">
+      <div className=" block p-6 rounded-lg shadow-lg bg-white max-w-2xl mx-auto">
         <section className=" h-screen">
           <div className="px-3 mx-auto text-gray-800">
             <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap g-6">
               <div>
-              
-                <form >
+                <form>
                   {/* <!-- Id input --> */}
                   <div className="mb-6">
                     <input
@@ -20,7 +18,6 @@ const Login = () => {
                       id="exampleFormControlInput2"
                       placeholder="아이디"
                       value="id"
-                   
                     />
                   </div>
 
@@ -32,7 +29,6 @@ const Login = () => {
                       id="exampleFormControlInput2"
                       placeholder="비밀번호"
                       value="{pwd}"
-                    
                     />
                   </div>
 
@@ -42,7 +38,6 @@ const Login = () => {
                         type="checkbox"
                         className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-gray-600 checked:border-gray-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                         id="exampleCheck2"
-                       
                       />
                       <label
                         className="form-check-label inline-block text-gray-800"
@@ -55,7 +50,6 @@ const Login = () => {
 
                   <div className="text-center relative ">
                     <button
-                     
                       className="inline-block w-full py-3 mb-12  bg-main
                       text-white
                        font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
@@ -101,7 +95,8 @@ const Login = () => {
           </div>
         </section>
       </div>
-  </div>;
+    </div>
+  );
 };
 
 export default Login;

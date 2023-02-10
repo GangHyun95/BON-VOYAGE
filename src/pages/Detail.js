@@ -5,10 +5,10 @@ import TravelCalendar from "../components/TravelCalendar";
 
 const Detail = () => {
   return (
-    <div className="flex ">
+    <div className="flex pt-[80px]">
       <TravelCalendar />
-      <Map />
       <Recommendation />
+      <Map />
     </div>
   );
 };
