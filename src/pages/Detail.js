@@ -1,12 +1,12 @@
 import React from "react";
-import Calendar from "../components/Calendar";
 import Map from "../components/Map";
 import Recommendation from "../components/Recommendation";
+import TravelCalendar from "../components/TravelCalendar";
 
 const Detail = () => {
   return (
     <div className="flex ">
-      <Calendar />
+      <TravelCalendar />
       <Map />
       <Recommendation />
     </div>

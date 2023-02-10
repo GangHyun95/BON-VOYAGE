@@ -1,13 +1,21 @@
 import React from "react";
-
+import { GiSouthKorea } from "react-icons/gi";
 const Visual = () => {
   return (
     <>
-      <video autoPlay muted loop className="w-full h-full mx-auto mb-16">
-        <source src="/vedio/MainMovie2.mp4" type="video/mp4" />
+      <video
+        autoPlay
+        muted
+        loop
+        className="relative w-full h-full mx-auto mb-16"
+      >
+        <source src="/video/MainMovie2.mp4" type="video/mp4" />
       </video>
+      <div className="absolute justify-between fll top-[50%] flex right-[50%]">
+        <c className=" text-white text-5xl ">Make Your Best Trip Schedule</c>
+        <GiSouthKorea />
+      </div>
     </>
   );
 };
-
 export default Visual;

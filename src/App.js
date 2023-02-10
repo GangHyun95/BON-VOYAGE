@@ -6,24 +6,22 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Detail from "./pages/Detail";
 import MyPage from "./pages/MyPage";
-
 function App() {
   return (
     <div>
       <Router>
         <Header />
-        <div className="pt-[80px]">
-          <Routes>
-            <Route index element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/detail" element={<Detail />} />
-            <Route path="/mypage" element={<MyPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
+        {/* <div className="pt-[80px]"> */}
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/detail" element={<Detail />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        {/* </div> */}
       </Router>
     </div>
   );
 }
-
 export default App;

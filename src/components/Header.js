@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 const Header = () => {
   return (
-    <header className="bg-main fixed top-0 w-full z-50 text-white">
+    <header className="  fixed top-0 w-full bg-opacity-0 border-b-2 border-opacity- bg-black z-50 text-white">
       <div className="flex items-center justify-between h-[80px] max-w-[1368px] mx-auto">
         <Link to="/">로고</Link>
         <ul className="flex gap-6">
@@ -17,5 +16,4 @@ const Header = () => {
     </header>
   );
 };
-
 export default Header;
