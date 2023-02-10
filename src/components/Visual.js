@@ -12,7 +12,7 @@ const Visual = () => {
         <source src="/video/MainMovie2.mp4" type="video/mp4" />
       </video>
       <div className="absolute justify-between fll top-[50%] flex right-[50%]">
-        <c className=" text-white text-5xl ">Make Your Best Trip Schedule</c>
+        <b className=" text-white text-5xl ">Make Your Best Trip Schedule</b>
       </div>
     </>
   );
