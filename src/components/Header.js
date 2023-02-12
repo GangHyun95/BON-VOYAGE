@@ -4,7 +4,6 @@ const Header = () => {
   const headerRef = useRef();
   const { pathname } = useLocation();
 
-  console.log(pathname);
   const handleScroll = () => {
     if (pathname === "/") {
       if (window.scrollY > 0) {
@@ -28,14 +27,12 @@ const Header = () => {
   }, [pathname]);
   return (
     <header
-      className="fixed top-0 w-full  z-50 text-white transition-all duration-500"
+      className="fixed top-0 w-full z-50 text-white transition-all duration-500"
       ref={headerRef}
     >
-      <div className="flex items-center justify-between h-[80px] max-w-[1368px] mx-auto">
+      <div className="flex items-center justify-between h-20 max-w-[1400px] mx-auto">
         <Link to="/">로고</Link>
-        <Link to="/login" className="ml-8">
-          Login
-        </Link>
+        <Link to="/login">Login</Link>
       </div>
     </header>
   );

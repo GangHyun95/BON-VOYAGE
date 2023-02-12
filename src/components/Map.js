@@ -123,8 +123,12 @@ const Map = () => {
   }, [idx]);
 
   return (
-    <div className="w-[1200px]">
-      <div id="map" className="w-full h-screen" ref={container}></div>
+    <div className="flex-1">
+      <div
+        id="map"
+        className="w-full h-[calc(100vh-80px)]"
+        ref={container}
+      ></div>
       <div className="btnSet">
         <ul ref={btns}>
           {

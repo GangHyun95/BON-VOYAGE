@@ -102,7 +102,7 @@ const Recommendation = () => {
               <p className="text-gray-900 text-sm font-medium mb-2">
                 감천문화마을{" "}
               </p>
-              <AiOutlinePlus className="absolute right-2 bottom-3"/>
+              <AiOutlinePlus className="absolute right-2 bottom-3" />
             </div>
           </div>
         </li>

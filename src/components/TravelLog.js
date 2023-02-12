@@ -19,26 +19,26 @@ const TravelLog = () => {
         slidesPerView={2}
       >
         <SwiperSlide>
-          <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-3xl text-center Nm">
+          <p className="right-3 left-3 text-white font-semibold leading-tight absolute top-20 text-3xl text-center font-NM">
             영월 봄에 가볼 만한 곳 <br /> 모아 모아
           </p>
           <img className="" src="/photo/travellog1.jpg" alt="트레블로그"></img>
         </SwiperSlide>
         <SwiperSlide>
-          <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-3xl text-center Nm">
+          <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-3xl text-center font-NM">
             강릉 아르떼뮤지엄
             <br /> 1박2일
           </p>
           <img className="" src="/photo/travellog2.jpg" alt="트레블로그"></img>
         </SwiperSlide>
         <SwiperSlide>
-          <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-3xl text-center Nm">
+          <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-3xl text-center font-NM">
             남원 가볼 만한 곳
           </p>
           <img className="" src="/photo/travellog3.jpg" alt="트레블로그"></img>
         </SwiperSlide>
         <SwiperSlide>
-          <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-3xl text-center Nm">
+          <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-3xl text-center font-NM">
             홍천&춘천 여행을 위한
             <br /> 애견동반 리조트
           </p>

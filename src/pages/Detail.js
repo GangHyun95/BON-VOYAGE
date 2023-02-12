@@ -8,7 +8,7 @@ const Detail = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="flex pt-[80px]">
+    <div className="flex pt-20 max-h-screen overflow-hidden">
       <TravelCalendar />
       <Recommendation />
       <Map />
