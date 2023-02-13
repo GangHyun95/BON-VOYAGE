@@ -1,10 +1,10 @@
 import React from "react";
 import { MdOutlineEventNote } from "react-icons/md";
-
+import { FiHeart } from "react-icons/fi";
 const MyPage = () => {
   return (
     <section className="max-w-7xl mx-auto flex rounded-lg shadow mt-24">
-      <section className="basis-1/4  py-24 my-8 border-r">
+      <section className="w-1/4  py-24 my-8 border-r">
         <div className="flex flex-col items-center gap-4">
           <img
             src="/photo/good.png"
@@ -23,11 +23,13 @@ const MyPage = () => {
           <button className="border px-16 py-3 rounded-2xl">회원탈퇴</button>
         </div>
       </section>
-      <section className="basis-3/4 pt-20 pl-12 pr-20">
+      <section className="w-3/4 pt-20 px-16">
+        {/* 나의 일정 */}
         <div className="flex items-center gap-2 text-xl mb-[30px]">
           <MdOutlineEventNote size={24} />
           <h3 className="font-bold">나의 일정</h3>
         </div>
+        {/* 일정 카드 */}
         <div className="flex border p-6 rounded-xl">
           <div className="relative w-40 h-40">
             <img src="/photo/jeju.jpg" alt="d" className="w-full h-full" />
@@ -58,6 +60,22 @@ const MyPage = () => {
                 일정수정
               </button>
               <button className="border px-6 py-2 rounded-xl">일정삭제</button>
+            </div>
+          </div>
+        </div>
+        {/* 찜목록 */}
+        <div className="flex items-center gap-1 text-xl mt-20 mb-8">
+          <FiHeart size={24} />
+          <h3 className="font-bold">내가 좋아하는 여행지</h3>
+        </div>
+        {/* 카드리스트 */}
+        <div className="grid grid-cols-4 gap-4 mb-16">
+          {/* 찜 카드 */}
+          <div className="shadow rounded overflow-hidden text-end">
+            <img src="/photo/jeju.jpg" alt="찜" className="w-full" />
+            <div className="px-2">
+              <p className="font-bold text-lg">부산</p>
+              <p className="font-Mont">Busan</p>
             </div>
           </div>
         </div>
