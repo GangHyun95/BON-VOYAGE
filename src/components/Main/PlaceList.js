@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { useNavigate } from "react-router";
-import Modal from "../Layout/Modal";
 import CateList from "./CateList";
 import SearchForm from "./SearchForm";
-import { BsHeart } from "react-icons/bs";
 import { FiHeart } from "react-icons/fi";
+import Modal from "../../Layout/Modal";
 
 const filters = ["전체", "서울/경기", "강원", "충청", "전라", "경상", "제주"];
 

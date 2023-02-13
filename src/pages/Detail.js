@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Map from "../components/Map";
-import Recommendation from "../components/Recommendation";
-import TravelCalendar from "../components/TravelCalendar";
+import Map from "../components/Detail/Map";
+import Recommendation from "../components/Detail/Recommendation";
+import TravelCalendar from "../components/Detail/TravelCalendar";
 
 const Detail = () => {
   useEffect(() => {

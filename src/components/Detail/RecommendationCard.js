@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { TbAlertCircle } from "react-icons/tb";
 import { AiOutlineCheck } from "react-icons/ai";
-import Modal from "../Layout/Modal";
+import Modal from "../../Layout/Modal";
 
 const RecommendationCard = ({
   modalVisible,

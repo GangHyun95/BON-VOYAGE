@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-
 import { MdOutlinePlace } from "react-icons/md";
 import { RiRestaurant2Line } from "react-icons/ri";
 import { MdOutlineLocalHotel } from "react-icons/md";
-import { AiOutlinePlus } from "react-icons/ai";
-import { TbAlertCircle } from "react-icons/tb";
-import SearchForm from "./SearchForm";
 import ButtonGroup from "./ButtonGroup";
 import RecommendationCard from "./RecommendationCard";
+import SearchForm from "../Main/SearchForm";
 
 const Recommendation = () => {
   const [Visible, setVisible] = useState(false);
@@ -38,7 +35,6 @@ const Recommendation = () => {
       {/* 검색폼 */}
 
       <div className="m-3">
-        {" "}
         <SearchForm />
       </div>
       <div className="flex items-center justify-center">
@@ -47,13 +43,13 @@ const Recommendation = () => {
 
       <h2 className="text-center my-2">추천장소</h2>
       <ul>
-       <RecommendationCard
-        openNotice={openNotice} 
-        modalVisible={modalVisible}
-         openModal={openModal} 
-         closeModal={closeModal}
-         Visible={Visible}/>
-      
+        <RecommendationCard
+          openNotice={openNotice}
+          modalVisible={modalVisible}
+          openModal={openModal}
+          closeModal={closeModal}
+          Visible={Visible}
+        />
       </ul>
     </div>
   );

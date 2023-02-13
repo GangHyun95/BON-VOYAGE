@@ -1,8 +1,8 @@
 import React from "react";
-import Footer from "../components/Footer";
-import PlaceList from "../components/PlaceList";
-import TravelLog from "../components/TravelLog";
-import Visual from "../components/Visual";
+import Footer from "../components/common/Footer";
+import PlaceList from "../components/Main/PlaceList";
+import TravelLog from "../components/Main/TravelLog";
+import Visual from "../components/Main/Visual";
 const Home = () => {
   return (
     <>
