@@ -4,7 +4,7 @@ import { RiRestaurant2Line } from "react-icons/ri";
 import { MdOutlineLocalHotel } from "react-icons/md";
 import ButtonGroup from "./ButtonGroup";
 import RecommendationCard from "./RecommendationCard";
-import SearchForm from "../Main/SearchForm";
+import { CiSearch } from "react-icons/ci";
 
 const Recommendation = () => {
   const [Visible, setVisible] = useState(false);
@@ -33,9 +33,14 @@ const Recommendation = () => {
   return (
     <div className="w-[360px] border-l">
       {/* 검색폼 */}
-
       <div className="m-3">
-        <SearchForm />
+        <form className="relative text-lg text-gray-400">
+          <input
+            type="text"
+            className="w-full h-12 outline-none border rounded-3xl py-4 px-6"
+          />
+          <CiSearch className="text-2xl absolute top-1/2 right-3 translate-y-[-50%] text-main" />
+        </form>
       </div>
       <div className="flex items-center justify-center">
         <ButtonGroup filters={filters} arr={arr} setFilter={setFilter} />
