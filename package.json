@@ -19,6 +19,7 @@
     "react-icons": "^4.7.1",
     "react-material-ui-carousel": "^3.4.2",
     "react-player": "^2.11.0",
+    "react-redux": "^8.0.5",
     "react-responsive-carousel": "^3.2.23",
     "react-router": "^6.8.1",
     "react-router-dom": "^6.8.1",

@@ -41,7 +41,7 @@ function TravelCalendar() {
   return (
     <div className="w-[360px]">
       <h2 className="text-center my-8 text-6xl">부산</h2>{" "}
-      <b className="opacity-75 text-center block">Busan</b>
+      <p className="opacity-75 text-center block font-Mont">Busan</p>
       <div className="mx-7 my-5">
         <button onClick={openCalendar} className="border">
           <BsCalendarDay />

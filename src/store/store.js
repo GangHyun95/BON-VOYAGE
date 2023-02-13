@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
-const store = () => {
-  
-}
+const store = () => {};
 
-export default store
+export default store;

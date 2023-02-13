@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div className="pt-[80px]">
+    <div className="pt-20">
       <div className=" block p-6 rounded-lg shadow-lg bg-white max-w-2xl mx-auto">
         <section className=" h-screen">
           <div className="px-3 mx-auto text-gray-800">

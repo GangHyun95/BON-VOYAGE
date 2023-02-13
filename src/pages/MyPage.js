@@ -36,7 +36,7 @@ const MyPage = () => {
             </div>
           </div>
           <div className="w-52 flex flex-col justify-center items-center">
-            <b className="font-bold text-2xl">YEOSU</b>
+            <p className="font-Mont font-bold text-2xl">YEOSU</p>
             <p>여수</p>
           </div>
           <div className="flex-1 flex flex-col justify-center gap-2">

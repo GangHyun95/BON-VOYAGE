@@ -24,8 +24,8 @@ const PlaceList = () => {
 
   return (
     <section className="text-center">
-      <b className="text-3xl font-bold ">어디로 여행을 떠나시나요?</b>
-      <p className="text-[#999] text-sm my-5">
+      <p className="text-3xl font-bold font-Mont">어디로 여행을 떠나시나요?</p>
+      <p className="text-gray-400 text-sm mt-4 mb-6">
         여행지를 검색하거나 목록에서 직접 선택해주세요.
       </p>
       {/* 검색폼 */}
@@ -60,8 +60,7 @@ const PlaceList = () => {
             />
           </div>
           <div className="p-6 text-start">
-            <b className="text-2xl font-bold">JEJU</b>
-            <br />
+            <p className="text-2xl font-Mont font-bold">JEJU</p>
             <p className="text-sm my-2">대한민국 제주도</p>
           </div>
           {modalVisible && (
@@ -71,15 +70,14 @@ const PlaceList = () => {
                   className="absolute top-12 right-12 text-2xl cursor-pointer"
                   onClick={closeModal}
                 />
-                <section className="relative w-4/12 max-w-[380px] overflow-hidden rounded">
+                <section className="relative basis-1/3 overflow-hidden rounded">
                   <img src="/photo/jeju.jpg" alt="ㅇㅇ" className="w-full" />
                   <FiHeart className="absolute top-4 left-4 text-2xl text-white" />
                 </section>
-                <section className="w-8/12 flex flex-col gap-12 items-start text-start">
-                  <h2>
-                    <b className="text-4xl font-bold">JEJU</b>
-                    <br />
-                    <b>제주도</b>
+                <section className="basis-2/3 flex flex-col gap-12 items-start text-start">
+                  <h2 className="font-Mont">
+                    <p className="text-4xl font-bold pb-2">JEJU</p>
+                    <span>제주도</span>
                   </h2>
                   <p>
                     섬 전체가 하나의 거대한 관광자원인 제주도. 에메랄드빛 물빛이
