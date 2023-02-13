@@ -33,6 +33,8 @@ const Header = () => {
       <div className="flex items-center justify-between h-20 max-w-[1400px] mx-auto">
         <Link to="/">로고</Link>
         <Link to="/login">Login</Link>
+        {/* 임시 */}
+       <Link to="/mypage">mypage</Link>
       </div>
     </header>
   );
