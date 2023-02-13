@@ -1,5 +1,6 @@
 import React from "react";
-import { GiSouthKorea } from "react-icons/gi";
+
+
 const Visual = () => {
   return (
     <section className="relative">
@@ -14,8 +15,9 @@ const Visual = () => {
           type="video/mp4"
         />
       </video>
-      <div className="absolute top-1/2 right-1/2">
-        <p className="text-white text-5xl font-NM font-bold ">
+    
+      <div className="absolute top-1/2 right-1/2 flex ">
+        <p className="text-white text-5xl inline-block font-NM font-bold ">
           Make Your Best Trip Schedule
         </p>
       </div>
