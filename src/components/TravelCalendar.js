@@ -7,9 +7,10 @@ import { MdOutlinePlace } from "react-icons/md";
 import { RiRestaurant2Line } from "react-icons/ri";
 import { MdOutlineLocalHotel } from "react-icons/md";
 import { BsCalendarDay } from "react-icons/bs";
+import ButtonGroup from "./ButtonGroup";
 
 function TravelCalendar() {
-  const [value, onChange] = useState(new Date());
+
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   // 달력 안보였다가 보이게
@@ -30,6 +31,13 @@ function TravelCalendar() {
     setStartDate(startDateFormat);
     setEndDate(endDateFormat);
   };
+  // 버튼
+  const arr = [
+    { title: "음식점", icon: <RiRestaurant2Line /> },
+    { title: "관광명소", icon: <MdOutlinePlace /> },
+    { title: "숙박시설", icon: <MdOutlineLocalHotel /> },
+  ];
+  const [filters, setFilter] = useState(arr[0].title);
   return (
     <div className="w-[360px]">
       <h2 className="text-center my-8 text-6xl">부산</h2>{" "}
@@ -63,7 +71,7 @@ function TravelCalendar() {
             formatDay={(locale, date) => moment(date).format("DD")}
           />{" "}
           <button
-            className="border-1 absolute right-0 top-[-25px] border-2 px-3 border-black"
+            className="absolute rounded-lg right-0 top-[-25px]  px-3 bg-red-200 border-black"
             onClick={closeCalendar}
           >
             적용하기
@@ -72,74 +80,10 @@ function TravelCalendar() {
       )}
       <p className="text-center my-8">선택목록</p>
       <div className="flex items-center justify-center">
-        <div className="inline-flex" role="group">
-          <button
-            type="button"
-            className="
-            flex
-        rounded-l
-        px-6
-        py-2
-        shadow-md
-        text-blue-600
-        font-medium
-        text-xs
-        leading-tight
-        uppercase
-        hover:bg-black hover:bg-opacity-5
-        focus:outline-none focus:ring-0
-        transition
-        duration-150
-        ease-in-out
-      "
-          >
-            음식점
-            <RiRestaurant2Line className=" my-auto" />
-          </button>
-          <button
-            type="button"
-            className="
-        px-6
-        py-2
-        flex
-        shadow-md
-        text-blue-600
-        font-medium
-        text-xs
-        leading-tight
-        uppercase
-        hover:bg-black hover:bg-opacity-5
-        focus:outline-none focus:ring-0
-        transition
-        duration-150
-        ease-in-out
-      "
-          >
-            관광명소 <MdOutlinePlace className=" my-auto" />
-          </button>
-          <button
-            type="button"
-            className="
-        rounded-r
-        px-6
-        flex
-        py-2
-        shadow-md
-        text-blue-600
-        font-medium
-        text-xs
-        leading-tight
-        uppercase
-        hover:bg-black hover:bg-opacity-5
-        focus:outline-none focus:ring-0
-        transition
-        duration-150
-        ease-in-out
-      "
-          >
-            숙박시설 <MdOutlineLocalHotel className=" my-auto " />
-          </button>
-        </div>
+        
+      <ButtonGroup filters={filters}
+      arr={arr}
+      setFilter={setFilter}/>
       </div>
     </div>
   );
