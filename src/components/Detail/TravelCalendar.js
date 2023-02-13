@@ -3,7 +3,7 @@ import ButtonGroup from "./ButtonGroup";
 import RecommendationCard from "./RecommendationCard";
 import Calendar from "react-calendar";
 import moment from "moment";
-import "react-calendar/dist/Calendar.css";
+import "../../Calendar.css";
 import { MdOutlinePlace, MdStorefront } from "react-icons/md";
 import { RiDeleteBin6Line, RiHotelLine } from "react-icons/ri";
 import { BiCalendarHeart } from "react-icons/bi";
@@ -19,6 +19,8 @@ function TravelCalendar() {
   };
   const closeCalendar = () => {
     setVisible(false);
+    setStartDate();
+    setEndDate();
   };
   const changeDate = (e) => {
     // event를 받아서 yyyy/mm/dd 형식으로 일자를 포맷팅해줌
@@ -64,19 +66,27 @@ function TravelCalendar() {
         />
       </div>
       {visible && (
-        <div className="flex relative justify-center">
+        <div className="flex flex-col relative items-center border mx-1.5 rounded">
           <Calendar
             className="font-semibold"
             onChange={changeDate}
             selectRange={true}
             formatDay={(locale, date) => moment(date).format("DD")}
           />
-          <button
-            className="absolute rounded-lg right-0 top-[-25px]  px-3 bg-blue-200 border-black"
-            onClick={closeCalendar}
-          >
-            적용하기
-          </button>
+          <div className="flex self-end gap-1 mr-1 text-sm py-1">
+            <button
+              className="border p-1 rounded bg-main text-white"
+              onClick={closeCalendar}
+            >
+              닫기
+            </button>
+            <button
+              className="border p-1 rounded bg-main text-white"
+              onClick={() => setVisible(false)}
+            >
+              적용하기
+            </button>
+          </div>
         </div>
       )}
       <p className="text-center  my-8">선택목록</p>
