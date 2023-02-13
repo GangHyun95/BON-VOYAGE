@@ -1,24 +1,21 @@
-import React from "react";
-import { useState } from "react";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-import moment from "moment";
-import { MdOutlinePlace } from "react-icons/md";
-import { RiRestaurant2Line } from "react-icons/ri";
-import { MdOutlineLocalHotel } from "react-icons/md";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { BiCalendarHeart } from "react-icons/bi";
+import React, { useState } from "react";
 import ButtonGroup from "./ButtonGroup";
 import RecommendationCard from "./RecommendationCard";
+import Calendar from "react-calendar";
+import moment from "moment";
+import "react-calendar/dist/Calendar.css";
+import { MdOutlinePlace, MdStorefront } from "react-icons/md";
+import { RiDeleteBin6Line, RiHotelLine } from "react-icons/ri";
+import { BiCalendarHeart } from "react-icons/bi";
 
 function TravelCalendar() {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   // 달력 안보였다가 보이게
-  const [Visible, setVisible] = useState(false);
- 
+  const [visible, setVisible] = useState(false);
+
   const openCalendar = () => {
-    setVisible(true);
+    setVisible(!visible);
   };
   const closeCalendar = () => {
     setVisible(false);
@@ -35,17 +32,17 @@ function TravelCalendar() {
   };
   // 버튼
   const arr = [
-    { title: "음식점", icon: <RiRestaurant2Line /> },
+    { title: "음식점", icon: <MdStorefront /> },
     { title: "관광명소", icon: <MdOutlinePlace /> },
-    { title: "숙박시설", icon: <MdOutlineLocalHotel /> },
+    { title: "숙박시설", icon: <RiHotelLine /> },
   ];
   const [filters, setFilter] = useState(arr[0].title);
   // + 버튼을 x 로 바꾸기
-  
+
   return (
     <div className="w-[360px]">
-      <h2 className="text-center my-10 text-6xl">부산</h2>{" "}
-      <p className="opacity-75 text-center block font-Mont">Busan</p>
+      <h2 className="text-center my-8 mt-12 text-4xl font-bold">부산</h2>
+      <p className="text-center mt-4 text-stone-400 text-lg font-Mont">BUSAN</p>
       <div className="mx-7 my-5">
         <button onClick={openCalendar} className="p-2">
           <BiCalendarHeart />
@@ -66,14 +63,14 @@ function TravelCalendar() {
           disabled
         />
       </div>
-      {Visible && (
-        <div className="flex relative ">
+      {visible && (
+        <div className="flex relative justify-center">
           <Calendar
             className="font-semibold"
             onChange={changeDate}
             selectRange={true}
             formatDay={(locale, date) => moment(date).format("DD")}
-          />{" "}
+          />
           <button
             className="absolute rounded-lg right-0 top-[-25px]  px-3 bg-blue-200 border-black"
             onClick={closeCalendar}
@@ -82,15 +79,15 @@ function TravelCalendar() {
           </button>
         </div>
       )}
-     
-        <p className="text-center  my-8">선택목록</p>
-   
+      <p className="text-center  my-8">선택목록</p>
       <div className="flex relative items-center justify-center">
         <ButtonGroup filters={filters} arr={arr} setFilter={setFilter} />
-        
       </div>
-      <button className="flex p-5 text-xs"><RiDeleteBin6Line className="my-auto"  />전체삭제</button>
-   <RecommendationCard/>
+      <button className="flex p-5 text-xs">
+        <RiDeleteBin6Line className="my-auto" />
+        전체삭제
+      </button>
+      <RecommendationCard />
     </div>
   );
 }

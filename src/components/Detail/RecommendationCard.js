@@ -1,7 +1,6 @@
 import React from "react";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineCheck } from "react-icons/ai";
 import { TbAlertCircle } from "react-icons/tb";
-import { AiOutlineCheck } from "react-icons/ai";
 import Modal from "../../Layout/Modal";
 
 const RecommendationCard = ({
@@ -9,21 +8,20 @@ const RecommendationCard = ({
   openNotice,
   openModal,
   closeModal,
-  Visible,
+  visible,
 }) => {
   return (
-    <div>
-      {" "}
-      <li className="flex justify-center m-5">
+    <>
+      <li className="flex justify-center m-3">
         <div className="flex h-[130px] flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
           <img
-            className=" w-20 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg"
+            className="w-20 md:h-auto object-cover md:w-36 rounded-t-lg md:rounded-none md:rounded-l-lg"
             src="/photo/jeju.jpg"
             alt="이미지"
           />
           <div className="relative p-6 flex flex-col justify-start">
             <p className="text-gray-900 text-sm font-medium mb-2">
-              감천문화마을{" "}
+              감천문화마을
             </p>
             <p className="text-xs text-gray-400">Gamcheon Culture Village</p>
             <button className="absolute right-8 bottom-3">
@@ -59,17 +57,17 @@ const RecommendationCard = ({
           </div>
         </div>
       </li>
-      {Visible && (
-        <Modal visible={Visible} width={300} height={70}>
-          <div className="bg-white text-center m-6 flex">
-            <div>
+      {visible && (
+        <Modal visible={visible}>
+          <div className="flex flex-col items-center justify-center p-12">
+            <div className="border text-2xl p-1 bg-black text-white rounded mb-4">
               <AiOutlineCheck />
             </div>
-            <p>선택 목록에 추가되었습니다.</p>
+            <p className="text-xl">선택 목록에 추가되었습니다.</p>
           </div>
         </Modal>
-      )}{" "}
-    </div>
+      )}
+    </>
   );
 };
 

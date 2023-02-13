@@ -2,7 +2,7 @@ import React from "react";
 
 const ButtonGroup = ({ filters, arr, setFilter }) => {
   return (
-    <div className="inline-flex" role="group">
+    <div className="flex items-center justify-center">
       {arr.map((item, index) => (
         <button
           type="button"
@@ -16,7 +16,7 @@ const ButtonGroup = ({ filters, arr, setFilter }) => {
         >
           <div className="relative flex items-center gap-1">
             <p className="text-xs">{item.title}</p>
-            <div>{item.icon}</div>
+            <div className="text-base">{item.icon}</div>
           </div>
         </button>
       ))}

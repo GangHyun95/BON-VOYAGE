@@ -16,7 +16,7 @@ const Modal = ({ visible, onClose, children, width, height }) => {
   }, []);
 
   const onMaskClick = (e) => {
-    if (e.target === e.currentTarget) {
+    if (e.target === e.currentTarget && onClose) {
       onClose(e);
       e.stopPropagation();
     }
