@@ -6,15 +6,17 @@ import moment from "moment";
 import { MdOutlinePlace } from "react-icons/md";
 import { RiRestaurant2Line } from "react-icons/ri";
 import { MdOutlineLocalHotel } from "react-icons/md";
-import { BsCalendarDay } from "react-icons/bs";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { BiCalendarHeart } from "react-icons/bi";
 import ButtonGroup from "./ButtonGroup";
+import RecommendationCard from "./RecommendationCard";
 
 function TravelCalendar() {
-
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   // 달력 안보였다가 보이게
   const [Visible, setVisible] = useState(false);
+ 
   const openCalendar = () => {
     setVisible(true);
   };
@@ -38,13 +40,15 @@ function TravelCalendar() {
     { title: "숙박시설", icon: <MdOutlineLocalHotel /> },
   ];
   const [filters, setFilter] = useState(arr[0].title);
+  // + 버튼을 x 로 바꾸기
+  
   return (
     <div className="w-[360px]">
-      <h2 className="text-center my-8 text-6xl">부산</h2>{" "}
+      <h2 className="text-center my-10 text-6xl">부산</h2>{" "}
       <p className="opacity-75 text-center block font-Mont">Busan</p>
       <div className="mx-7 my-5">
-        <button onClick={openCalendar} className="border">
-          <BsCalendarDay />
+        <button onClick={openCalendar} className="p-2">
+          <BiCalendarHeart />
         </button>
         <input
           type="text"
@@ -71,20 +75,22 @@ function TravelCalendar() {
             formatDay={(locale, date) => moment(date).format("DD")}
           />{" "}
           <button
-            className="absolute rounded-lg right-0 top-[-25px]  px-3 bg-red-200 border-black"
+            className="absolute rounded-lg right-0 top-[-25px]  px-3 bg-blue-200 border-black"
             onClick={closeCalendar}
           >
             적용하기
           </button>
         </div>
       )}
-      <p className="text-center my-8">선택목록</p>
-      <div className="flex items-center justify-center">
+     
+        <p className="text-center  my-8">선택목록</p>
+   
+      <div className="flex relative items-center justify-center">
+        <ButtonGroup filters={filters} arr={arr} setFilter={setFilter} />
         
-      <ButtonGroup filters={filters}
-      arr={arr}
-      setFilter={setFilter}/>
       </div>
+      <button className="flex p-5 text-xs"><RiDeleteBin6Line className="my-auto"  />전체삭제</button>
+   <RecommendationCard/>
     </div>
   );
 }
