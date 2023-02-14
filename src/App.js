@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound";
 import Detail from "./pages/Detail";
 import MyPage from "./pages/MyPage";
 import Header from "./components/common/Header";
+import SignUp from "./pages/SignUp";
 function App() {
   return (
     <Router>
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/detail" element={<Detail />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

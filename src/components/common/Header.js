@@ -1,6 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 const Header = () => {
+  // 프로필 클릭
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleCircleClick = () => {
+    setIsClicked(!isClicked);
+  
+  };
+  
+
   const headerRef = useRef();
   const { pathname } = useLocation();
 
@@ -35,6 +44,27 @@ const Header = () => {
         <Link to="/login">Login</Link>
         {/* 임시 */}
        <Link to="/mypage">mypage</Link>
+       <div>
+      <div
+     
+        className="mb-3 cursor-pointer rounded-3xl  bg-gray-400 text-center w-[50px] h-[50px]"
+        onClick={handleCircleClick}
+      >
+        사진
+        {isClicked && (
+        <div className="m-6 text-black bg-white w-[100px] h-[100px]">
+          <ul className="text-center">
+            <li className="py-3 hover:bg-gray-200"><Link to="/mypage">마이페이지</Link></li>
+            <li className="py-3 hover:bg-gray-200">로그아웃</li>
+        
+          </ul>
+         
+          
+        </div>
+      )}
+      </div>
+     
+    </div>
       </div>
     </header>
   );
