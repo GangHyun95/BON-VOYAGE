@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { GrClose } from "react-icons/gr";
-import { FiHeart } from "react-icons/fi";
 import { MdArrowDropDown } from "react-icons/md";
 import { useNavigate } from "react-router";
 import CateList from "./CateList";
 import SearchForm from "./SearchForm";
 import Modal from "../../Layout/Modal";
+import { BsSuitHeartFill } from "react-icons/bs";
 
 const filters = ["전체", "서울/경기", "강원", "충청", "전라", "경상", "제주"];
-
 const PlaceList = () => {
   const navigate = useNavigate();
   const [filter, setFilter] = useState(filters[0]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [sortText, setSortText] = useState("추천 순");
   const openModal = () => {
     setModalVisible(true);
   };
@@ -20,6 +20,18 @@ const PlaceList = () => {
   const closeModal = (e) => {
     e.stopPropagation();
     setModalVisible(false);
+  };
+
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleListClick = () => {
+    setIsClicked(!isClicked);
+  };
+
+  // 하트 누르면 빨간색
+  const [HeartClicked, setHeartClicked] = useState(false);
+  const handleClick = () => {
+    setHeartClicked(!HeartClicked);
   };
 
   return (
@@ -39,15 +51,38 @@ const PlaceList = () => {
       </div>
       {/* select */}
       <div className="flex flex-col items-end text-sm ">
-        <div className="flex items-center justify-center mr-14">
-          <button>추천 순</button>
+        <div
+          className="flex items-center justify-center mr-14 cursor-pointer"
+          onClick={handleListClick}
+        >
+          <button>{sortText}</button>
           <MdArrowDropDown className="text-2xl" />
+          {isClicked && (
+            <ul
+              className="shadow-lg absolute right-[300px] -bottom-[500px] text-start w-52 p-6 text-gray-400"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <li
+                className="py-1.5 hover:text-gray-500"
+                onClick={() => setSortText("추천순")}
+              >
+                추천순
+              </li>
+              <li
+                className="py-1.5 hover:text-gray-500"
+                onClick={() => setSortText("오름차순")}
+              >
+                오름차순
+              </li>
+              <li
+                className="py-1.5 hover:text-gray-500"
+                onClick={() => setSortText("내림차순")}
+              >
+                내림차순
+              </li>
+            </ul>
+          )}
         </div>
-        <ul className="shadow-lg text-start w-52 p-6">
-          <li className="py-1.5">인기순</li>
-          <li className="py-1.5">오름차순</li>
-          <li className="py-1.5">내름차순</li>
-        </ul>
       </div>
       <div className="grid grid-cols-4 gap-16 mt-4">
         {/* 카드 */}
@@ -72,14 +107,19 @@ const PlaceList = () => {
                 />
                 <section className="relative basis-1/3 overflow-hidden rounded">
                   <img src="/photo/jeju.jpg" alt="ㅇㅇ" className="w-full" />
-                  <FiHeart className="absolute top-4 left-4 text-2xl text-white" />
+                  <BsSuitHeartFill
+                    onClick={handleClick}
+                    className={`absolute top-4 left-4 text-2xl ${
+                      HeartClicked ? "text-red-500" : "text-white"
+                    }`}
+                  />
                 </section>
                 <section className="basis-2/3 flex flex-col gap-12 items-start text-start">
                   <h2 className="font-Mont">
                     <p className="text-4xl font-bold pb-2">JEJU</p>
                     <span>제주도</span>
                   </h2>
-                  <p>
+                  <p className="text-justify">
                     섬 전체가 하나의 거대한 관광자원인 제주도. 에메랄드빛 물빛이
                     인상적인 협재 해수욕장은 제주 대표 여행지며, 파도가 넘보는
                     주상절리와 바다 위 산책로인 용머리 해안은 제주에서만 볼 수
