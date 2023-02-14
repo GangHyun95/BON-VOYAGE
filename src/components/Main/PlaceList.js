@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { GrClose } from "react-icons/gr";
+import { FiHeart } from "react-icons/fi";
+import { MdArrowDropDown } from "react-icons/md";
 import { useNavigate } from "react-router";
 import CateList from "./CateList";
 import SearchForm from "./SearchForm";
-import { FiHeart } from "react-icons/fi";
 import Modal from "../../Layout/Modal";
 
 const filters = ["전체", "서울/경기", "강원", "충청", "전라", "경상", "제주"];
@@ -37,16 +38,16 @@ const PlaceList = () => {
         />
       </div>
       {/* select */}
-      <div>
-        <div className="flex justify-end">
-          <div className="ml-30">
-            <select className="px-3 py-1.5 text-gray-700 border border-gray-300 rounded outline-none">
-              <option value="0">추천순</option>
-              <option value="1">오름차순</option>
-              <option value="2">내림차순</option>
-            </select>
-          </div>
+      <div className="flex flex-col items-end text-sm ">
+        <div className="flex items-center justify-center mr-14">
+          <button>추천 순</button>
+          <MdArrowDropDown className="text-2xl" />
         </div>
+        <ul className="shadow-lg text-start w-52 p-6">
+          <li className="py-1.5">인기순</li>
+          <li className="py-1.5">오름차순</li>
+          <li className="py-1.5">내름차순</li>
+        </ul>
       </div>
       <div className="grid grid-cols-4 gap-16 mt-4">
         {/* 카드 */}

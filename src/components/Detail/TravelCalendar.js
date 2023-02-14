@@ -66,12 +66,13 @@ function TravelCalendar() {
         />
       </div>
       {visible && (
-        <div className="flex flex-col relative items-center border mx-1.5 rounded">
+        <div className="px-10">
           <Calendar
+            calendarType="US"
             className="font-semibold"
             onChange={changeDate}
             selectRange={true}
-            formatDay={(locale, date) => moment(date).format("DD")}
+            formatDay={(locale, date) => moment(date).format("D")}
           />
           <div className="flex self-end gap-1 mr-1 text-sm py-1">
             <button
