@@ -4,6 +4,8 @@ import { FiHeart } from "react-icons/fi";
 import { MdCardTravel } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 import Modal from "../Layout/Modal";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const MyPage = () => {
   // 모달 만들기
@@ -21,7 +23,7 @@ const MyPage = () => {
     { id: 1, name: '신분증', checked: false },
     { id: 2, name: '신용카드/현금', checked: false },
     { id: 3, name: '핸드폰 충전기', checked: false },
-    { id: 4, name: '보조배터리 adapter', checked: false },
+    { id: 4, name: '보조배터리 ', checked: false },
     { id: 5, name: '마스크', checked: false },
     { id: 6, name: '우산', checked: false },
   
@@ -45,6 +47,7 @@ const MyPage = () => {
     <section className="max-w-7xl mx-auto flex rounded-lg shadow mt-24">
       <section className="w-1/4  py-24 my-8 border-r">
         <div className="flex flex-col items-center gap-4">
+         
           <img
             src="/photo/good.png"
             alt="프로필"
