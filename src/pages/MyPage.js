@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MdOutlineEventNote } from "react-icons/md";
 import { FiHeart } from "react-icons/fi";
+import { MdCardTravel } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 import Modal from "../Layout/Modal";
 
@@ -15,6 +16,31 @@ const MyPage = () => {
     e.stopPropagation();
     setModalVisible(false);
   };
+
+  const [items, setItems] = useState([
+    { id: 1, name: '신분증', checked: false },
+    { id: 2, name: '신용카드/현금', checked: false },
+    { id: 3, name: '핸드폰 충전기', checked: false },
+    { id: 4, name: '보조배터리 adapter', checked: false },
+    { id: 5, name: '마스크', checked: false },
+    { id: 6, name: '우산', checked: false },
+  
+  ]);
+
+  // 체크박스
+  const handleItemChecked = (id) => {
+    const newItems = items.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          checked: !item.checked,
+        };
+      }
+      return item;
+    });
+    setItems(newItems);
+  };
+
   return (
     <section className="max-w-7xl mx-auto flex rounded-lg shadow mt-24">
       <section className="w-1/4  py-24 my-8 border-r">
@@ -67,7 +93,7 @@ const MyPage = () => {
             </p>
             {/* 모달 */}
             <div className="mt-4 text-xs">
-             
+             {/* 체크박스 */}
               <button
                 className="border px-4 py-2 mr-8 rounded-xl"
                 onClick={openModal}
@@ -82,126 +108,29 @@ const MyPage = () => {
                   visible={modalVisible}
                 ><button onClick={closeModal}><AiOutlineClose  className="absolute right-2 top-2 text-xl"/></button>
                   <div className="p-[100px]">
-                  
-                    <div className="flex justify-between">
-                      <div>
-                        <h2 className="mb-7 text-lg ">필수준비물</h2>
-                        <div className="flex mb-3 items-center">
-                          <input
-                            className=" h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 align-top  float-left mr-2 cursor-pointer"
-                            type="checkbox"
-                            value=""
-                            id="신분증"
-                          />
-                          <label
-                            className=" inline-block  text-sm text-gray-800"
-                            htmlfor="신분증"
-                          >
-                            신분증
-                          </label>
-                          
-                        </div>
-                       
-                        <div className="flex mb-3 items-center">
-                          <input
-                            className=" h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 align-top  float-left mr-2 cursor-pointer"
-                            type="checkbox"
-                            value=""
-                            id="신용카드/현금"
-                          />
-                          <label
-                            className=" inline-block  text-sm text-gray-800"
-                            htmlfor="신용카드/현금"
-                          >
-                            신용카드/현금
-                          </label>
-                          
-                        </div>
-                        <div className="flex mb-3 items-center">
-                          <input
-                            className=" h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 align-top  float-left mr-2 cursor-pointer"
-                            type="checkbox"
-                            value=""
-                            id="핸드폰 충전기"
-                          />
-                          <label
-                            className=" inline-block  text-sm text-gray-800"
-                            htmlfor="핸드폰 충전기"
-                          >
-                            핸드폰 충전기
-                          </label>
-                          
-                        </div>
-                        <div className="flex mb-3 items-center">
-                          <input
-                            className=" h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 align-top  float-left mr-2 cursor-pointer"
-                            type="checkbox"
-                            value=""
-                            id="보조배터리"
-                          />
-                          <label
-                            className=" inline-block  text-sm text-gray-800"
-                            htmlfor="보조배터리"
-                          >
-                            보조배터리
-                          </label>
-                          
-                        </div>
-                        <div className="flex mb-3 items-center">
-                          <input
-                            className=" h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 align-top  float-left mr-2 cursor-pointer"
-                            type="checkbox"
-                            value=""
-                            id="신분증"
-                          />
-                          <label
-                            className=" inline-block  text-sm text-gray-800"
-                            htmlfor="신분증"
-                          >
-                            신분증
-                          </label>
-                          
-                        </div>
-                        <div className="flex mb-3 items-center">
-                          <input
-                            className=" h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 align-top  float-left mr-2 cursor-pointer"
-                            type="checkbox"
-                            value=""
-                            id="신분증"
-                          />
-                          <label
-                            className=" inline-block  text-sm text-gray-800"
-                            htmlfor="신분증"
-                          >
-                            신분증
-                          </label>
-                          
-                        </div>
+<MdCardTravel className="text-2xl absolute left-[40%] bottom-[80%]" />
+        <h2 className="text-2xl my-8 text-center ">여행 준비물</h2>
+        <h2 className="text-xl my-4 ">필수 준비물</h2>
+        <ul>
+          {items.map((item) => (
+            <li key={item.id}>
+              <input
+              className="m-3 "
+                type="checkbox"
+                id={`item-${item.id}`}
+                checked={item.checked}
+                onChange={() => handleItemChecked(item.id)}
+              />
+              <label htmlFor={`item-${item.id}`}>{item.name}</label>
+         
+            </li>
+           
+          ))}
+          
+        </ul>
+        <button className="px-9 my-5 bg-blue-300 rounded-sm py-2">아이템 추가하기</button>
+      </div>
 
-                        <button className="bg-blue-200 rounded-lg text-center mb-[100px] px-7 py-2">
-                          아이템 추가하기
-                        </button>
-                      </div>
-
-                      <div>
-                        <h2 className="mb-7 text-lg ">의류</h2>
-                      </div>
-                      <div>
-                        <h2 className="mb-7 text-lg ">세면, 화장품</h2>
-                      </div>
-                    </div>
-                    <div className="flex justify-between">
-                      <div>
-                        <h2 className="mb-7 text-lg ">비상약</h2>
-                      </div>
-                      <div>
-                        <h2 className="mb-7 text-lg ">생활</h2>
-                      </div>
-                      <div>
-                        <h2 className="mb-7 text-lg ">기타</h2>
-                      </div>
-                    </div>
-                  </div>
                 </Modal>
               )}
               <button className="border px-6 py-2 mr-8 rounded-xl">
