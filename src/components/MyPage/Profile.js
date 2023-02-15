@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Modal from "../../Layout/Modal";
 import EditProfile from "./EditProfile";
+import { BsFillCameraFill } from "react-icons/bs";
 
 const Profile = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -10,14 +11,65 @@ const Profile = () => {
   const closeModal = () => {
     setModalVisible(false);
   };
+  // 이미지 미리보기 기능
+  // 이미지 업로드 및 미리보기
+  const [imgFile, setImgFile] = useState("");
+  const imgRef = useRef(null);
+  const onChangeImg = async (e) => {
+    e.preventDefault();
+
+    // 미리보기 기능
+    if (e.target.files) {
+      // files는 배열에 담긴다.
+      // file 이 1개 이므로 e.taret.files[0]
+      const uploadFile = e.target.files[0];
+      console.log(uploadFile);
+
+      // 이미지를 읽어들이는 바닐라 함수
+      const reader = new FileReader();
+      reader.readAsDataURL(uploadFile);
+      reader.onloadend = () => {
+        // 임시 이미지주소가 만들어진다.
+        // useState 입니다.
+        setImgFile(reader.result);
+      };
+
+      // 서버로 이미지를 임시로 보내고 URL 글자를 받아오는 코드
+      // 일반적 방법
+
+      // const formData = new FormData();
+      // formData.append("files", uploadFile);
+      // await axios({
+      //   method: "post",
+      //   url: "/api/files/images",
+      //   data: formData,
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
+    }
+  };
   return (
     <section className="w-1/4  py-24 my-8 border-r">
       <div className="flex flex-col items-center gap-4">
-        <img
-          src="/photo/good.png"
-          alt="프로필"
-          className="w-24 rounded-[50%] border"
-        />
+        <div className="flex relative rounded-lg">
+          <label
+            className=" absolute bottom-1 right-1/2 translate-x-1/2 w-[100px] "
+            forhtml="filebutton"
+          >
+            {" "}
+            <img src={imgFile} alt="프로필" className=" rounded-[50%] border" />
+            <input
+              id="filebutton"
+              multiple="multiple"
+              type="file"
+              accept="image/*"
+              onInput={onChangeImg}
+              className="hidden"
+              ref={imgRef}
+            ></input>
+          </label>
+        </div>
         <div className="text-center">
           <p className="font-bold">
             허강현<span className="font-normal">님</span>
