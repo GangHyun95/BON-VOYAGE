@@ -4,7 +4,7 @@ import { FiHeart } from "react-icons/fi";
 import { MdCardTravel } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 import Modal from "../Layout/Modal";
-import ReactQuill from 'react-quill';
+
 import 'react-quill/dist/quill.snow.css';
 
 const MyPage = () => {
