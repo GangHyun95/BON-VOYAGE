@@ -28,10 +28,10 @@ const SignUp = () => {
     const handleSubmit = (event) => {
       event.preventDefault();
       if (password !== passwordVerify) {
-        alert('Passwords do not match');
+        alert('비밀번호 확인이 일치하지않습니다.');
         return;
       }
-      alert(`Name: ${name}\nEmail: ${email}\nPassword: ${password}`);
+      alert(`이메일: ${email}\비밀번호: ${password} 회원가입 되었습니다. 로그인해주세요.`);
     };
       const [isChecked, setIsChecked] = useState(false);
       const [isChecked2, setIsChecked2] = useState(false);
@@ -100,7 +100,7 @@ const SignUp = () => {
           onChange={handleCheckboxChange}
           
         />
-       본인은 만 14세 이상입니다. (필수)
+       본인은 만 14세 이상입니다.<span className="text-main"> (필수)</span>
       </label>
     </div>
     <div>
@@ -110,7 +110,7 @@ const SignUp = () => {
           checked={isChecked2}
           onChange={handleCheckboxChange2}
         />
-       개인정보수집에 동의합니다. (필수) 
+       개인정보수집에 동의합니다. <span className="text-main"> (필수)</span>
       </label>
     </div>
     <div>
@@ -120,7 +120,7 @@ const SignUp = () => {
           checked={isChecked3}
           onChange={handleCheckboxChange3}
         />
-      이용약관에 동의합니다. (필수)
+      이용약관에 동의합니다. <span className="text-main"> (필수)</span>
       </label>
     </div>
       <button type="submit" className="bg-main block rounded-lg px-[195px] my-4 text-white py-3">회원가입</button>

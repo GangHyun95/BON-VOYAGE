@@ -136,7 +136,7 @@ const Header = () => {
       >
         사진
         {isClicked && (
-        <div className="m-6 text-black bg-white w-[100px] h-[100px]">
+        <div className="m-6 text-black bg-white w-[100px] h-[96px]">
           <ul className="text-center">
             <li className="py-3 hover:bg-gray-200"><Link to="/mypage">마이페이지</Link></li>
             <li className="py-3 hover:bg-gray-200">로그아웃</li>
