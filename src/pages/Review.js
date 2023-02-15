@@ -2,14 +2,10 @@ import axios from "axios";
 import React, { useRef, useState } from "react";
 import { BsFillCameraFill } from "react-icons/bs";
 
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import MyPageLayOut from "../Layout/MyPageLayOut";
+import PlaceCard from "../components/Main/PlaceCard";
 // 02. form 요소의 항목별 에러 체크 정의
-const schema = yup.object({
-  title: yup.string().trim().required("제목을 입력해주세요."),
-  content: yup.string().trim().required("내용을 입력해주세요."),
-  timestamp: yup.string().required("날짜를 선택해 주세요"),
-});
+
 const Review = () => {
   const [visible, setVisible] = useState(false);
   const openReview = () => {
@@ -56,48 +52,185 @@ const Review = () => {
       // });
     }
   };
+  // input 리뷰 텍스트
+  // 사용자 입력 저장
+  const [checkItemContent, setCheckItemContent] = useState("");
+  // 줄바꿈 위치를 저장하는 Dictionary
+  const [lineBreakIndexDict, setLineBreakIndexDict] = useState({});
+  // 줄 수 (높이)
+  const [lineHeight, setLineHeight] = useState(0);
 
+  // 사용자 입력 업데이트 및 줄바꿈 감지
+  const checkItemChangeHandler = (event) => {
+    setCheckItemContent(event.target.value);
+
+    // Scroll이 생기면 line break
+    if (event.target.scrollHeight !== event.target.clientHeight) {
+      setLineHeight((prev) => prev + 1); // textarea 높이 늘리고
+      setLineBreakIndexDict({
+        ...lineBreakIndexDict,
+        [event.target.value.length - 1]: 1,
+      }); // 줄바꿈 위치 저장
+    } else {
+      // 다시 줄바꿈 지점으로 오면 line break 취소
+      if (lineBreakIndexDict[event.target.value.length]) {
+        setLineHeight((prev) => prev - 1); // textarea 높이 줄이고
+        setLineBreakIndexDict({
+          ...lineBreakIndexDict,
+          [event.target.value.length]: 0,
+        }); // Dictionary에서 삭제
+      }
+    }
+  };
+
+  // 너비 초과로 인한 줄바꿈 말고 사용자가 엔터를 입력했을 때의 줄바꿈 처리
+  const checkItemEnterHandler = (event) => {
+    if (event.key === "Enter") {
+      // textarea 높이는 checkItemChangeHandler에서 변경됨
+      setLineBreakIndexDict({
+        ...lineBreakIndexDict,
+        [event.target.value.length]: 1,
+      }); // 줄바꿈 위치 저장
+    }
+  };
   return (
-    <div>
-      <div className="">
-        <button
-          className="border-2 m-[200px] block rounded-lg p-2"
-          onClick={openReview}
-        >
-          리뷰쓰기
-        </button>
-        {visible && (
-          <div className="flex border-blue-200 border-4 w-[1000px] rounded-lg">
-             <img
-              className="max-w-[200px] m-11 max-h-[200px]"
-              src={imgFile}
-              alt="리뷰이미지"
-            ></img>{" "}
-            <label
-              className="border-2 h-[40px] text-center absolute bottom-[300px] left-0 p-1  bg-blue-200 rounded-lg"
-              forhtml="filebutton"
-            >
-            <BsFillCameraFill className="inline-block mx-1"/><span className=""> +사진 추가</span>
-             
-              <input
-                id="filebutton"
-                multiple="multiple"
-                type="file"
-                accept="image/*"
-                onInput={onChangeImg}
-                className="hidden"
-                ref={imgRef}
-              ></input>
-            </label>
-            <input
-              type="text"
-              className="w-[600px] h-[300px] px-11 py-11 "
-              placeholder="리뷰를 적여주세요."
-            ></input>
+    <MyPageLayOut title="리뷰게시판">
+      <div className="relative">
+        {/* 리뷰 카드 */}
+        <div className="flex justify-around mb-[100px]">
+          <div className="overflow-hidden border-2  border-gray-200  rounded-lg w-[180px] h-[300px]">
+            <img
+              src="/photo/travellog1.jpg"
+              alt="임시"
+              className="transition-transform h-[180px] duration-200 ease-in-out"
+            />
+            <p className="text-[8px]  p-2 font-Mont border-b-2 border-gray-200 ">
+              너무너무 즐거운 여행이였습니다. 너무 예뻤어요 추천합니다!!!!
+              다음에 또 가고싶어요
+            </p>
+            <div className="text-start py-2 px-2">
+              <p className="text-[8px] text-main font-Mont ">★★★★★</p>
+              <p className="text-[7px] font-Mont">
+                허산현<span className="text-[4px] px-1 ">2023.01.24</span>
+              </p>
+            </div>
           </div>
-        )}
+          <div className="overflow-hidden border-2  border-gray-200  rounded-lg w-[180px] h-[300px]">
+            <img
+              src="/photo/travellog2.jpg"
+              alt="임시"
+              className="h-[180px] transition-transform duration-200 ease-in-out"
+            />
+            <p className="text-[8px] p-2 font-Mont border-b-2 border-gray-200 ">
+              너무너무 즐거운 여행이였습니다. 너무 예뻤어요 추천합니다!!!!
+              다음에 또 가고싶어요
+            </p>
+            <div className="text-start py-2 px-2">
+              <p className="text-[8px] text-main font-Mont ">★★★★★</p>
+              <p className="text-[7px] font-Mont">
+                허산현<span className="text-[4px] px-1 ">2023.01.24</span>
+              </p>
+            </div>
+          </div>
+          <div className="overflow-hidden border-2  border-gray-200  rounded-lg w-[180px] h-[300px]">
+            <img
+              src="/photo/travellog3.jpg"
+              alt="임시"
+              className=" h-[180px] transition-transform duration-200 ease-in-out"
+            />
+            <p className="text-[8px] p-2 font-Mont border-b-2  border-gray-200 ">
+              너무너무 즐거운 여행이였습니다. 너무 예뻤어요 추천합니다!!!!
+              다음에 또 가고싶어요
+            </p>
+            <div className="text-start py-2 px-2">
+              <p className="text-[8px] text-main font-Mont ">★★★★★</p>
+              <p className="text-[7px] font-Mont">
+                허산현<span className="text-[4px] px-1 ">2023.01.24</span>
+              </p>
+            </div>
+          </div>
+          <div className="overflow-hidden border-2  border-gray-200  rounded-lg w-[180px] h-[300px]">
+            <img
+              src="/photo/travellog4.jpg"
+              alt="임시"
+              className=" transition-transform duration-200 h-[180px] ease-in-out"
+            />
+            <p className="text-[8px] p-2 font-Mont border-b-2 border-gray-200 ">
+              너무너무 즐거운 여행이였습니다. 너무 예뻤어요 추천합니다!!!!
+              다음에 또 가고싶어요
+            </p>
+            <div className="text-start py-2 px-2">
+              <p className="text-[8px] text-main font-Mont ">★★★★★</p>
+              <p className="text-[7px] font-Mont">
+                허산현<span className="text-[4px] px-1 ">2023.01.24</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex border-blue-200 border-4 w-[800px] max-h-[240px] rounded-lg">
+          <img
+            className="max-w-[240px] m-11 max-h-[240px]"
+            src={imgFile}
+            alt="리뷰이미지"
+          ></img>{" "}
+          <label
+            className="border-2 text-center absolute bottom-[-50px] left-0 p-[10px]  rounded-sm"
+            forhtml="filebutton"
+          >
+            <BsFillCameraFill className="inline-block mx-1" />
+            <span className=""> +사진 추가</span>
+
+            <input
+              id="filebutton"
+              multiple="multiple"
+              type="file"
+              accept="image/*"
+              onInput={onChangeImg}
+              className="hidden"
+              ref={imgRef}
+            ></input>
+          </label>
+          <textarea
+            value={checkItemContent}
+            onChange={checkItemChangeHandler}
+            onKeyDown={checkItemEnterHandler}
+            type="text"
+            className="w-[600px] text-lg leading-6 px-11 py-11"
+            placeholder="리뷰를 적여주세요."
+          ></textarea>
+        </div>
+        <div>
+          {" "}
+          <select
+            className="form-select form-select-sm
+    
+    inline-block
+    w-[400px]
+    px-2
+    py-1
+    text-sm
+    font-normal
+    text-gray-700
+    bg-white bg-clip-padding bg-no-repeat
+    border border-solid border-gray-300
+    rounded
+    transition
+    ease-in-out
+    m-0
+    absolute
+    left-[150px]
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            aria-label=".form-select-sm example"
+          >
+            <option selected>★★★★★ 아주 좋아요 </option>
+            <option value="1">★★★★  좋아요</option>
+            <option value="2">★★★ 보통이에요</option>
+            <option value="3">★★ 별로에요</option>
+          </select>
+        </div>
       </div>
-    </div>
+    </MyPageLayOut>
   );
 };
 export default Review;
