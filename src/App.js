@@ -8,6 +8,8 @@ import MyPage from "./pages/MyPage";
 import Header from "./components/common/Header";
 import SignUp from "./pages/SignUp";
 import Review from "./pages/Review";
+import MySchedule from "./components/MyPage/MySchedule";
+
 function App() {
   return (
     <Router>
@@ -16,9 +18,11 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/detail" element={<Detail />} />
-        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage" element={<MyPage />}>
+          <Route index element={<MySchedule />} />
+          <Route path="review" element={<Review />} />
+        </Route>
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/review" element={<Review />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

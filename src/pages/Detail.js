@@ -4,9 +4,6 @@ import Recommendation from "../components/Detail/Recommendation";
 import TravelCalendar from "../components/Detail/TravelCalendar";
 
 const Detail = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <div className="flex pt-20 max-h-screen overflow-hidden">
       <TravelCalendar />
