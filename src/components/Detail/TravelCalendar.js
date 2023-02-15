@@ -66,25 +66,25 @@ function TravelCalendar() {
         <div className="px-11 absolute z-20">
           <Calendar
             calendarType="US"
-            className="font-semibold"
+            className="font-semibold relative"
             onChange={changeDate}
             selectRange={true}
             formatDay={(locale, date) => moment(date).format("D")}
           ></Calendar>
-          <div className="bg-white ">
+          {/* <div className="text-end">
             <button
-              className=" border p-1 rounded bg-main text-white"
+              className="px-3 py-1 rounded-lg bg-main text-white"
               onClick={closeCalendar}
             >
               닫기
             </button>
             <button
-              className="border p-1 rounded bg-main text-white"
+              className="p-1 m-2 rounded-lg bg-main text-white"
               onClick={() => setVisible(false)}
             >
               적용하기
             </button>
-          </div>
+          </div> */}
         </div>
       )}
       <p className="text-center  my-8 ">선택목록</p>
