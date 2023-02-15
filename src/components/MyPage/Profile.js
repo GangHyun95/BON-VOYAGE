@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "../../Layout/Modal";
+import EditProfile from "./EditProfile";
 
 const Profile = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
   return (
     <section className="w-1/4  py-24 my-8 border-r">
       <div className="flex flex-col items-center gap-4">
@@ -15,11 +24,19 @@ const Profile = () => {
           </p>
           <span className="text-sm text-gray-400">개인회원</span>
         </div>
-        <button className="border px-12 py-3 rounded-2xl mt-8">
+        <button
+          className="border px-12 py-3 rounded-2xl mt-8"
+          onClick={openModal}
+        >
           회원정보수정
         </button>
         <button className="border px-16 py-3 rounded-2xl">회원탈퇴</button>
       </div>
+      {modalVisible && (
+        <Modal visible={modalVisible} onClose={closeModal}>
+          <EditProfile closeModal={closeModal} />
+        </Modal>
+      )}
     </section>
   );
 };

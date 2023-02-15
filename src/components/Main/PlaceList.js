@@ -15,8 +15,6 @@ const PlaceList = () => {
     setIsClicked(!isClicked);
   };
 
-  
-
   return (
     <section className="text-center">
       <p className="text-3xl font-bold font-Mont">어디로 여행을 떠나시나요?</p>
@@ -35,14 +33,14 @@ const PlaceList = () => {
       {/* select */}
       <div className="flex flex-col items-end text-sm ">
         <div
-          className="flex items-center justify-center mr-14 cursor-pointer"
+          className="flex items-center justify-center mr-14 cursor-pointer relative"
           onClick={handleListClick}
         >
           <button>{sortText}</button>
           <MdArrowDropDown className="text-2xl" />
           {isClicked && (
             <ul
-              className="shadow-lg absolute right-[300px] -bottom-[500px] text-start w-52 p-6 text-gray-400"
+              className="shadow-lg absolute top-8 right-2 text-start w-52 p-6 text-gray-400"
               onClick={(e) => e.stopPropagation()}
             >
               <li
