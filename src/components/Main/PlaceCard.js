@@ -23,6 +23,7 @@ const PlaceCard = ({ place, type }) => {
 
   const isWishList = type === "wishList";
 
+  console.log(place);
   return (
     <div className="shadow rounded overflow-hidden" onClick={openModal}>
       <div className="overflow-hidden">
@@ -36,7 +37,7 @@ const PlaceCard = ({ place, type }) => {
         <p
           className={isWishList ? "font-Mont" : "font-Mont text-2xl font-bold"}
         >
-          JEJU
+          {place?.child?.engname}
         </p>
         <p className={isWishList ? "font-bold" : "text-sm my-2"}>
           {place?.child?.name}
@@ -64,7 +65,7 @@ const PlaceCard = ({ place, type }) => {
             </section>
             <section className="basis-2/3 flex flex-col gap-12 items-start text-start">
               <h2 className="font-Mont">
-                <p className="text-4xl font-bold pb-2">JEJU</p>
+                <p className="text-4xl font-bold pb-2">{place.child.engname}</p>
                 <span> {place.child.name}</span>
               </h2>
               <p className="text-justify">{place.child.explanation}</p>

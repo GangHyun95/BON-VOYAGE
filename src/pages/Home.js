@@ -9,7 +9,7 @@ const Home = () => {
   const fetchDate = async () => {
     try {
       const result = await instance.get("/api/zone/allcate");
-      setPlaceList(result.data);
+      setPlaceList(result.data.list);
     } catch (error) {
       console.log(error);
     }
