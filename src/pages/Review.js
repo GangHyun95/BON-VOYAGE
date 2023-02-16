@@ -1,17 +1,13 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { BsFillCameraFill } from "react-icons/bs";
+import { BiCheckCircle } from "react-icons/bi";
 import MyPageLayOut from "../Layout/MyPageLayOut";
 import PlaceCard from "../components/Main/PlaceCard";
 // 02. form 요소의 항목별 에러 체크 정의
 const Review = () => {
-  const [visible, setVisible] = useState(false);
-  const openReview = () => {
-    setVisible(!visible);
-  };
-  const closeReview = () => {
-    setVisible(false);
-  };
+
+ 
   // 이미지 미리보기 기능
   // 이미지 업로드 및 미리보기
   const [imgFile, setImgFile] = useState([]);
@@ -90,6 +86,9 @@ const Review = () => {
       }); // 줄바꿈 위치 저장
     }
   };
+
+  // 리뷰 내용 저장하기 
+
   return (
     <MyPageLayOut title="리뷰게시판">
       <div className="relative">
@@ -166,7 +165,7 @@ const Review = () => {
         </div>
         <div className="flex max-w-[100%]">
           {imgFile.map((image, id) => (
-            <div key={id} className="max-h-[240px] relative flex max-w-[240px]">
+            <div key={id} className="max-h-[240px]  relative flex max-w-[240px]">
               <button
                 className="absolute right-[-40px] top-5"
                 onClick={() => handleDeleteImage(id)}
@@ -181,7 +180,7 @@ const Review = () => {
             </div>
           ))}{" "}
         </div>
-        <div className="flex border-blue-200 border-4 w-[800px] max-h-[240px] rounded-lg">
+        <div className="flex border-blue-200 border-4 w-full max-h-[240px] rounded-lg">
           <label
             className="border-2 text-center absolute bottom-[-50px] left-0 p-[10px]  rounded-sm"
             forhtml="filebutton"
@@ -203,7 +202,7 @@ const Review = () => {
             onChange={checkItemChangeHandler}
             onKeyDown={checkItemEnterHandler}
             type="text"
-            className="w-[600px] text-lg leading-6 px-11 py-11"
+            className="w-full text-lg leading-6 px-11 py-11"
             placeholder="리뷰를 적여주세요."
           ></textarea>
         </div>
@@ -234,7 +233,7 @@ const Review = () => {
             <option value="2">★★★ 보통이에요</option>
             <option value="3">★★ 별로에요</option>
           </select>
-          <button className="bg-main px-4 py-1 rounded-sm text-white">리뷰 등록하기</button>
+          <button className="bg-main flex px-6 py-1 text-sm rounded-sm text-white"><BiCheckCircle className="my-1"/>리뷰 등록하기</button>
         </div>
       </div>
     </MyPageLayOut>
