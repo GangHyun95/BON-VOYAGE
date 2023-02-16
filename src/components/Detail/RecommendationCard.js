@@ -9,21 +9,24 @@ const RecommendationCard = ({
   openModal,
   closeModal,
   visible,
+  recommendation
+  
 }) => {
+ console.log(recommendation)
   return (
     <>
       <li className="flex justify-center m-3">
         <div className="flex h-[130px] flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
           <img
             className="w-20 md:h-auto object-cover md:w-36 rounded-t-lg md:rounded-none md:rounded-l-lg"
-            src="/photo/jeju.jpg"
+            src={recommendation?.tpImage}
             alt="이미지"
           />
           <div className="relative p-6 flex flex-col justify-start">
             <p className="text-gray-900 text-sm font-medium mb-2">
-              감천문화마을
+              {recommendation?.tpName}
             </p>
-            <p className="text-xs text-gray-400">Gamcheon Culture Village</p>
+            <p className="text-xs text-gray-400">{recommendation?.tpAdress}</p>
             <button className="absolute right-8 bottom-3">
               <TbAlertCircle onClick={openModal} />
             </button>
