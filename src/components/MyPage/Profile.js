@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Modal from "../../Layout/Modal";
 import EditProfile from "./EditProfile";
-import { BsFillCameraFill } from "react-icons/bs";
+import { FcOldTimeCamera } from "react-icons/fc";
 
 const Profile = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -58,7 +58,8 @@ const Profile = () => {
             forhtml="filebutton"
           >
             {" "}
-            <img src={imgFile} alt="프로필" className=" rounded-[50%] border" />
+         
+            <img src={imgFile || "/photo/good.png"}  alt="<FcOldTimeCamera/>" className="h-[100px] w-[100px] rounded-[50%] border" />
             <input
               id="filebutton"
               multiple="multiple"

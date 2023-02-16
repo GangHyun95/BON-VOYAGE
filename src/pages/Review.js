@@ -1,11 +1,9 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { BsFillCameraFill } from "react-icons/bs";
-
 import MyPageLayOut from "../Layout/MyPageLayOut";
 import PlaceCard from "../components/Main/PlaceCard";
 // 02. form 요소의 항목별 에러 체크 정의
-
 const Review = () => {
   const [visible, setVisible] = useState(false);
   const openReview = () => {
@@ -16,42 +14,44 @@ const Review = () => {
   };
   // 이미지 미리보기 기능
   // 이미지 업로드 및 미리보기
-  const [imgFile, setImgFile] = useState("");
+  const [imgFile, setImgFile] = useState([]);
   const imgRef = useRef(null);
   const onChangeImg = async (e) => {
     e.preventDefault();
-
     // 미리보기 기능
-    if (e.target.files) {
-      // files는 배열에 담긴다.
-      // file 이 1개 이므로 e.taret.files[0]
-      const uploadFile = e.target.files[0];
-      console.log(uploadFile);
 
-      // 이미지를 읽어들이는 바닐라 함수
-      const reader = new FileReader();
-      reader.readAsDataURL(uploadFile);
-      reader.onloadend = () => {
-        // 임시 이미지주소가 만들어진다.
-        // useState 입니다.
-        setImgFile(reader.result);
-      };
+    // files는 배열에 담긴다.
 
-      // 서버로 이미지를 임시로 보내고 URL 글자를 받아오는 코드
-      // 일반적 방법
-
-      // const formData = new FormData();
-      // formData.append("files", uploadFile);
-      // await axios({
-      //   method: "post",
-      //   url: "/api/files/images",
-      //   data: formData,
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // });
+    const uploadFile = e.target.files;
+    // 이미지 여러개 업로드 기능
+    let imageUrlLists = [...imgFile];
+    for (let i = 0; i < uploadFile.length; i++) {
+      const currentImageUrl = URL.createObjectURL(uploadFile[i]);
+      imageUrlLists.push(currentImageUrl);
     }
+    if (imageUrlLists.length > 10) {
+      imageUrlLists = imageUrlLists.slice(0, 10);
+    }
+    setImgFile(imageUrlLists);
+
+    // 서버로 이미지를 임시로 보내고 URL 글자를 받아오는 코드
+    // 일반적 방법
+    // const formData = new FormData();
+    // formData.append("files", uploadFile);
+    // await axios({
+    //   method: "post",
+    //   url: "/api/files/images",
+    //   data: formData,
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    // });
   };
+  // X버튼 클릭 시 이미지 삭제
+  const handleDeleteImage = (id) => {
+    setImgFile(imgFile.filter((_, index) => index !== id));
+  };
+
   // input 리뷰 텍스트
   // 사용자 입력 저장
   const [checkItemContent, setCheckItemContent] = useState("");
@@ -59,11 +59,9 @@ const Review = () => {
   const [lineBreakIndexDict, setLineBreakIndexDict] = useState({});
   // 줄 수 (높이)
   const [lineHeight, setLineHeight] = useState(0);
-
   // 사용자 입력 업데이트 및 줄바꿈 감지
   const checkItemChangeHandler = (event) => {
     setCheckItemContent(event.target.value);
-
     // Scroll이 생기면 line break
     if (event.target.scrollHeight !== event.target.clientHeight) {
       setLineHeight((prev) => prev + 1); // textarea 높이 늘리고
@@ -82,7 +80,6 @@ const Review = () => {
       }
     }
   };
-
   // 너비 초과로 인한 줄바꿈 말고 사용자가 엔터를 입력했을 때의 줄바꿈 처리
   const checkItemEnterHandler = (event) => {
     if (event.key === "Enter") {
@@ -167,23 +164,33 @@ const Review = () => {
             </div>
           </div>
         </div>
-
+        <div className="flex max-w-[100%]">
+          {imgFile.map((image, id) => (
+            <div key={id} className="max-h-[240px] relative flex max-w-[240px]">
+              <button
+                className="absolute right-[-40px] top-5"
+                onClick={() => handleDeleteImage(id)}
+              >
+                X
+              </button>
+              <img
+                className="max-w-[240px] m-11 max-h-[240px]"
+                src={image}
+                alt={`${image}-${id}`}
+              ></img>
+            </div>
+          ))}{" "}
+        </div>
         <div className="flex border-blue-200 border-4 w-[800px] max-h-[240px] rounded-lg">
-          <img
-            className="max-w-[240px] m-11 max-h-[240px]"
-            src={imgFile}
-            alt="리뷰이미지"
-          ></img>{" "}
           <label
             className="border-2 text-center absolute bottom-[-50px] left-0 p-[10px]  rounded-sm"
             forhtml="filebutton"
           >
             <BsFillCameraFill className="inline-block mx-1" />
             <span className=""> +사진 추가</span>
-
             <input
               id="filebutton"
-              multiple="multiple"
+              multiple="true"
               type="file"
               accept="image/*"
               onInput={onChangeImg}
@@ -200,11 +207,10 @@ const Review = () => {
             placeholder="리뷰를 적여주세요."
           ></textarea>
         </div>
-        <div>
+        <div className="flex justify-end">
           {" "}
           <select
             className="form-select form-select-sm
-    
     inline-block
     w-[400px]
     px-2
@@ -224,10 +230,11 @@ const Review = () => {
             aria-label=".form-select-sm example"
           >
             <option selected>★★★★★ 아주 좋아요 </option>
-            <option value="1">★★★★  좋아요</option>
+            <option value="1">★★★★ 좋아요</option>
             <option value="2">★★★ 보통이에요</option>
             <option value="3">★★ 별로에요</option>
           </select>
+          <button className="bg-main px-4 py-1 rounded-sm text-white">리뷰 등록하기</button>
         </div>
       </div>
     </MyPageLayOut>
