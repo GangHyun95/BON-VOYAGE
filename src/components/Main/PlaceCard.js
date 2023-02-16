@@ -71,7 +71,7 @@ const PlaceCard = ({ place, type }) => {
               <button
                 className="bg-main text-white justify-self-end py-3 px-7 rounded hover:brightness-110"
                 onClick={() => {
-                  navigate("/detail");
+                  navigate(`/detail/${place.child.seq}`);
                 }}
               >
                 일정 만들기
