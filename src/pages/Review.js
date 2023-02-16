@@ -6,8 +6,6 @@ import MyPageLayOut from "../Layout/MyPageLayOut";
 import PlaceCard from "../components/Main/PlaceCard";
 // 02. form 요소의 항목별 에러 체크 정의
 const Review = () => {
-
- 
   // 이미지 미리보기 기능
   // 이미지 업로드 및 미리보기
   const [imgFile, setImgFile] = useState([]);
@@ -51,6 +49,7 @@ const Review = () => {
   // input 리뷰 텍스트
   // 사용자 입력 저장
   const [checkItemContent, setCheckItemContent] = useState("");
+
   // 줄바꿈 위치를 저장하는 Dictionary
   const [lineBreakIndexDict, setLineBreakIndexDict] = useState({});
   // 줄 수 (높이)
@@ -87,7 +86,14 @@ const Review = () => {
     }
   };
 
-  // 리뷰 내용 저장하기 
+  // 리뷰 내용 저장하기
+  const [reviews, setReviews] = useState([]);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setReviews([...reviews, checkItemContent]);
+    setImgFile([...imgFile]);
+    setCheckItemContent("");
+  };
 
   return (
     <MyPageLayOut title="리뷰게시판">
@@ -163,26 +169,17 @@ const Review = () => {
             </div>
           </div>
         </div>
-        <div className="flex max-w-[100%]">
-          {imgFile.map((image, id) => (
-            <div key={id} className="max-h-[240px]  relative flex max-w-[240px]">
-              <button
-                className="absolute right-[-40px] top-5"
-                onClick={() => handleDeleteImage(id)}
-              >
-                X
-              </button>
-              <img
-                className="max-w-[240px] m-11 max-h-[240px]"
-                src={image}
-                alt={`${image}-${id}`}
-              ></img>
-            </div>
-          ))}{" "}
-        </div>
-        <div className="flex border-blue-200 border-4 w-full max-h-[240px] rounded-lg">
+        <textarea
+          value={checkItemContent}
+          onChange={checkItemChangeHandler}
+          onKeyDown={checkItemEnterHandler}
+          type="text"
+          className="w-full text-lg leading-6  border-blue-200 border-4 px-11 py-11"
+          placeholder="리뷰를 적여주세요."
+        ></textarea>
+        <div className="flex w-full max-h-[240px] my-[-25px] rounded-lg">
           <label
-            className="border-2 text-center absolute bottom-[-50px] left-0 p-[10px]  rounded-sm"
+            className="border-2 text-center h-[70px] bottom-[-20px] bg-main text-white left-0 p-[10px] relative  rounded-sm"
             forhtml="filebutton"
           >
             <BsFillCameraFill className="inline-block mx-1" />
@@ -196,15 +193,7 @@ const Review = () => {
               className="hidden"
               ref={imgRef}
             ></input>
-          </label>
-          <textarea
-            value={checkItemContent}
-            onChange={checkItemChangeHandler}
-            onKeyDown={checkItemEnterHandler}
-            type="text"
-            className="w-full text-lg leading-6 px-11 py-11"
-            placeholder="리뷰를 적여주세요."
-          ></textarea>
+          </label>{" "}
         </div>
         <div className="flex justify-end">
           {" "}
@@ -233,7 +222,52 @@ const Review = () => {
             <option value="2">★★★ 보통이에요</option>
             <option value="3">★★ 별로에요</option>
           </select>
-          <button className="bg-main flex px-6 py-1 text-sm rounded-sm text-white"><BiCheckCircle className="my-1"/>리뷰 등록하기</button>
+          <button
+            onClick={handleSubmit}
+            className="bg-main flex px-6 py-1 text-sm rounded-sm text-white"
+          >
+            <BiCheckCircle className="my-1" />
+            리뷰 등록하기
+          </button>
+        </div>
+        <div className="flex max-w-[100%]">
+          {imgFile.map((image, id) => (
+            <div
+              key={id}
+              className="max-h-[240px]  relative flex max-w-[240px]"
+            >
+              <button
+                className="absolute right-[-40px] bg-black rounded-xl text-white px-2 top-12"
+                onClick={() => handleDeleteImage(id)}
+              >
+                X
+              </button>
+              <img
+                className="max-w-[240px] m-11 max-h-[240px]"
+                src={image}
+                alt={`${image}-${id}`}
+              ></img>
+            </div>
+          ))}{" "}
+        </div>
+        {/* 리뷰 생성  */}
+        <div>
+          {" "}
+          <ul>
+            {reviews.map((review, index) => (
+              <div className="">
+               
+                <li className="w-full p-20 mt-3 bg-gray-200" key={index}>
+                {" "} <div className="flex justify-start" key={index}>
+                  <p>닉네임 | 허산현</p>
+                  <p>리뷰평점 |<span className="text-main">★★★★★</span></p>
+                  <p>날짜 | 2023.01.01</p>
+                </div> 
+                <div>{review}</div> 
+                </li>
+              </div>
+            ))}
+          </ul>
         </div>
       </div>
     </MyPageLayOut>

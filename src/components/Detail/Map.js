@@ -5,6 +5,10 @@ const { kakao } = window;
 
 const Map = () => {
 
+
+// 데이터 넣기 
+
+
   // const path = process.env.PUBLIC_URL;
   useEffect(() => {
     const container = document.getElementById("map");
