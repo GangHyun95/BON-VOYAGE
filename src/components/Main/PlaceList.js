@@ -5,7 +5,7 @@ import SearchForm from "./SearchForm";
 import PlaceCard from "./PlaceCard";
 
 const filters = ["전체", "서울/경기", "강원", "충청", "전라", "경상", "제주"];
-const PlaceList = ({ placeData }) => {
+const PlaceList = ({ placeList }) => {
   const [filter, setFilter] = useState(filters[0]);
   const [sortText, setSortText] = useState("추천 순");
 
@@ -14,6 +14,7 @@ const PlaceList = ({ placeData }) => {
   const handleListClick = () => {
     setIsClicked(!isClicked);
   };
+  const filtered = getFilteredItems(placeList, filter);
 
   return (
     <section className="text-center">
@@ -40,11 +41,11 @@ const PlaceList = ({ placeData }) => {
           <MdArrowDropDown className="text-2xl" />
           {isClicked && (
             <ul
-              className="shadow-lg absolute top-8 right-2 text-start w-52 p-6 text-gray-400"
+              className="shadow-lg absolute top-8 right-2 text-start w-52 p-6 text-gray-400 bg-white z-10 "
               onClick={(e) => e.stopPropagation()}
             >
               <li
-                className="py-1.5 hover:text-gray-500"
+                className="py-1.5 hover:text-gray-500 z-10"
                 onClick={() => setSortText("추천순")}
               >
                 추천순
@@ -67,7 +68,7 @@ const PlaceList = ({ placeData }) => {
       </div>
       <div className="grid grid-cols-4 gap-16 mt-4">
         {/* 카드 */}
-        {placeData.map((place) => (
+        {filtered.map((place) => (
           <PlaceCard key={place.seq} place={place} />
         ))}
       </div>
@@ -75,4 +76,11 @@ const PlaceList = ({ placeData }) => {
   );
 };
 
+function getFilteredItems(placeList, filter) {
+  if (filter === "전체") {
+    return placeList;
+  }
+
+  return placeList.filter((place) => place.parent.name === filter);
+}
 export default PlaceList;

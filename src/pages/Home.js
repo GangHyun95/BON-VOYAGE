@@ -5,17 +5,15 @@ import PlaceList from "../components/Main/PlaceList";
 import TravelLog from "../components/Main/TravelLog";
 import Visual from "../components/Main/Visual";
 const Home = () => {
-  const [placeData, setPlaceData] = useState([]);
+  const [placeList, setPlaceList] = useState([]);
   const fetchDate = async () => {
     try {
       const result = await instance.get("/api/zone/allcate");
-      setPlaceData(result.data);
+      setPlaceList(result.data);
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(placeData);
 
   useEffect(() => {
     fetchDate();
@@ -24,7 +22,7 @@ const Home = () => {
     <>
       <Visual />
       <div className="max-w-[1400px] mx-auto px-4">
-        <PlaceList placeData={placeData} />
+        <PlaceList placeList={placeList} />
         <TravelLog />
       </div>
       <Footer />

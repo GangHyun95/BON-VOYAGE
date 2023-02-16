@@ -39,7 +39,7 @@ const PlaceCard = ({ place, type }) => {
           JEJU
         </p>
         <p className={isWishList ? "font-bold" : "text-sm my-2"}>
-          {place.child.name}
+          {place?.child?.name}
         </p>
       </div>
       {modalVisible && (
