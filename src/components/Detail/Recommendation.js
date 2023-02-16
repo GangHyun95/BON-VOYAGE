@@ -5,7 +5,7 @@ import ButtonGroup from "./ButtonGroup";
 import RecommendationCard from "./RecommendationCard";
 import { CiSearch } from "react-icons/ci";
 
-const Recommendation = () => {
+const Recommendation = ({ MapData }) => {
   const [visible, setVisible] = useState(false);
   const openNotice = () => {
     setVisible(true);
@@ -45,13 +45,17 @@ const Recommendation = () => {
 
       <h2 className="text-center my-2">추천장소</h2>
       <ul>
-        <RecommendationCard
-          openNotice={openNotice}
-          modalVisible={modalVisible}
-          openModal={openModal}
-          closeModal={closeModal}
-          visible={visible}
-        />
+        {MapData.map((recommendation) => (
+          <RecommendationCard
+            openNotice={openNotice}
+            modalVisible={modalVisible}
+            openModal={openModal}
+            closeModal={closeModal}
+            visible={visible}
+            recommendation={recommendation}
+            key={recommendation.tpSeq}
+          />
+        ))}
       </ul>
     </div>
   );
