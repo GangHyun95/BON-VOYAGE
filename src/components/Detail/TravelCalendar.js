@@ -7,7 +7,7 @@ import "../../Calendar.css";
 import { MdOutlinePlace, MdStorefront } from "react-icons/md";
 import { RiDeleteBin6Line, RiHotelLine } from "react-icons/ri";
 import { BiCalendarHeart } from "react-icons/bi";
-function TravelCalendar() {
+function TravelCalendar({ place }) {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   // 달력 안보였다가 보이게
@@ -40,8 +40,12 @@ function TravelCalendar() {
   // + 버튼을 x 로 바꾸기
   return (
     <div className="w-[360px]">
-      <h2 className="text-center my-8 mt-12 text-4xl font-bold">부산</h2>
-      <p className="text-center mt-4 text-stone-400 text-lg font-Mont">BUSAN</p>
+      <h2 className="text-center my-8 mt-12 text-4xl font-bold">
+        {place.name}
+      </h2>
+      <p className="text-center mt-4 text-stone-400 text-lg font-Mont">
+        {place.engname}
+      </p>
       <div className="mx-7 my-5">
         <button onClick={openCalendar} className="p-2">
           <BiCalendarHeart />

@@ -18,11 +18,12 @@ const Home = () => {
   useEffect(() => {
     fetchDate();
   }, []);
+
   return (
     <>
       <Visual />
       <div className="max-w-[1400px] mx-auto px-4">
-        <PlaceList placeList={placeList} />
+        <PlaceList placeList={placeList} setPlaceList={setPlaceList} />
         <TravelLog />
       </div>
       <Footer />

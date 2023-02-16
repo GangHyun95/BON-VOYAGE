@@ -31,7 +31,6 @@ const Header = () => {
       },
     });
   };
-  console.log(profile);
   // 카카오 로그 아웃
   const kakaoLogOut = () => {
     if (!window.Kakao.Auth.getAccessToken()) {

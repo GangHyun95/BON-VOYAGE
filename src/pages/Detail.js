@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import instance from "../api/axios";
 import Map from "../components/Detail/Map";
 import Recommendation from "../components/Detail/Recommendation";
 import TravelCalendar from "../components/Detail/TravelCalendar";
 
 const Detail = () => {
-  // 데이터 넣기
+  const {
+    state: { place },
+  } = useLocation();
 
-  const [MapData, setMapData] = useState([]);
+  const [pos, setPos] = useState();
+  // 데이터 넣기
+  const [mapData, setMapData] = useState([]);
   const fetchDate = async () => {
     try {
       const result = await instance.get("/api/travle/place");
@@ -17,16 +22,15 @@ const Detail = () => {
     }
   };
 
-  console.log(MapData);
-
   useEffect(() => {
     fetchDate();
   }, []);
+
   return (
     <div className="flex pt-20 max-h-screen overflow-hidden">
-      <TravelCalendar />
-      <Recommendation MapData={MapData} />
-      <Map />
+      <TravelCalendar place={place} />
+      <Recommendation mapData={mapData} pos={pos} setPos={setPos} />
+      <Map place={place} />
     </div>
   );
 };

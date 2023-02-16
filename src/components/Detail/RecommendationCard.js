@@ -9,10 +9,8 @@ const RecommendationCard = ({
   openModal,
   closeModal,
   visible,
-  recommendation
-  
+  recommendation,
 }) => {
- console.log(recommendation)
   return (
     <>
       <li className="flex justify-center m-3">

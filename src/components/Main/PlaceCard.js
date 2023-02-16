@@ -23,7 +23,6 @@ const PlaceCard = ({ place, type }) => {
 
   const isWishList = type === "wishList";
 
-  console.log(place);
   return (
     <div className="shadow rounded overflow-hidden" onClick={openModal}>
       <div className="overflow-hidden">
@@ -72,7 +71,9 @@ const PlaceCard = ({ place, type }) => {
               <button
                 className="bg-main text-white justify-self-end py-3 px-7 rounded hover:brightness-110"
                 onClick={() => {
-                  navigate(`/detail/${place.child.seq}`);
+                  navigate(`/detail/${place.child.seq}`, {
+                    state: { place: place.child },
+                  });
                 }}
               >
                 일정 만들기
