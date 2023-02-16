@@ -5,7 +5,7 @@ import SearchForm from "./SearchForm";
 import PlaceCard from "./PlaceCard";
 
 const filters = ["전체", "서울/경기", "강원", "충청", "전라", "경상", "제주"];
-const PlaceList = () => {
+const PlaceList = ({ placeData }) => {
   const [filter, setFilter] = useState(filters[0]);
   const [sortText, setSortText] = useState("추천 순");
 
@@ -67,7 +67,9 @@ const PlaceList = () => {
       </div>
       <div className="grid grid-cols-4 gap-16 mt-4">
         {/* 카드 */}
-        <PlaceCard />
+        {placeData.map((place) => (
+          <PlaceCard key={place.seq} place={place} />
+        ))}
       </div>
     </section>
   );

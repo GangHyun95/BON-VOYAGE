@@ -2,31 +2,31 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-   // 화면이동
-   const history = useNavigate();
-   // 카카오 로그인
-   const kakaoLogin = () => {
-     window.Kakao.Auth.login({
-       scope: "profile_nickname, profile_image, account_email", //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
-       success: function (response) {
-         console.log(response); // 로그인 성공하면 받아오는 데이터
-         window.Kakao.API.request({
-           // 사용자 정보 가져오기
-           url: "/v2/user/me",
-           success: (res) => {
-             const kakao_account = res.kakao_account;
-             console.log("사용자 정보", kakao_account);
-             // 사용자 정보를 받은 경우
-             // localStorage 저장 또는 redux 저장
-             history.push("/logout");
-           },
-         });
-       },
-       fail: function (error) {
-         console.log(error);
-       },
-     });
-   };
+  // 화면이동
+  const navigate = useNavigate();
+  // 카카오 로그인
+  const kakaoLogin = () => {
+    window.Kakao.Auth.login({
+      scope: "profile_nickname, profile_image, account_email", //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+      success: function (response) {
+        console.log(response); // 로그인 성공하면 받아오는 데이터
+        window.Kakao.API.request({
+          // 사용자 정보 가져오기
+          url: "/v2/user/me",
+          success: (res) => {
+            const kakao_account = res.kakao_account;
+            console.log("사용자 정보", kakao_account);
+            // 사용자 정보를 받은 경우
+            // localStorage 저장 또는 redux 저장
+            navigate("/");
+          },
+        });
+      },
+      fail: function (error) {
+        console.log(error);
+      },
+    });
+  };
   return (
     <section className="mt-40 flex flex-col justify-center items-center">
       <h3 className="mb-12 text-[25px] font-semibold text-center">
@@ -64,11 +64,14 @@ const Login = () => {
         <p className="text-gray-500">or</p>
         <p className="text-gray-500">SNS 간편 로그인</p>
         <div className="flex justify-center mt-4">
-        <button onClick={kakaoLogin}>  <img
-            className="h-20 w-20 mr-8"
-            src="/photo/kakaoicon.png"
-            alt="카카오톡"
-          /></button>
+          <button onClick={kakaoLogin}>
+            {" "}
+            <img
+              className="h-20 w-20 mr-8"
+              src="/photo/kakaoicon.png"
+              alt="카카오톡"
+            />
+          </button>
           <img className="h-20 w-20" src="/photo/googleicon.png" alt="구글" />
         </div>
       </div>

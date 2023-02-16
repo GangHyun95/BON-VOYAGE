@@ -11,7 +11,7 @@ const MySchedule = () => {
   const navigate = useNavigate();
   // 모달 만들기
   const [modalVisible, setModalVisible] = useState(false);
-  const openModal = () => {
+  const openModal = (e) => {
     setModalVisible(true);
   };
   const closeModal = (e) => {
@@ -45,82 +45,71 @@ const MySchedule = () => {
 
   return (
     <MyPageLayOut title={"나의 일정"}>
-      {/* 일정 카드 */}
-      <div className="flex border p-6 rounded-xl">
-        <div className="relative w-40 h-40">
-          <img src="/photo/jeju.jpg" alt="d" className="w-full h-full" />
-          <span className="w-12 h-8 bg-main text-white absolute top-0 leading-8 text-center text-xs tracking-wide">
-            D-5
-          </span>
-        </div>
-        <div className="w-52 flex flex-col justify-center items-center">
-          <p className="font-Mont font-bold text-2xl">YEOSU</p>
-          <p>여수</p>
-        </div>
-        <div className="flex-1 flex flex-col relative justify-center gap-2">
-          <button className=" absolute right-[-20px] top-[-30px] p-3">x</button>
-          <p className="font-bold">
-            여행이름
-            <span className="font-normal ml-4 text-sm">신나는 여수여행</span>
-          </p>
-          <p className="font-bold">
-            여행일자
-            <span className="font-normal ml-4 text-sm">
-              2023.02.19~2023.02.21
-            </span>
-          </p>
-          {/* 모달 */}
-          <div className="mt-4 text-xs">
-            {/* 체크박스 */}
-            <button
-              className="border px-4 py-2 mr-8 rounded-xl"
-              onClick={openModal}
-            >
-              여행준비물
-            </button>
-            {modalVisible && (
-              <Modal
-                width={900}
-                height={900}
-                onClose={closeModal}
-                visible={modalVisible}
-              >
-                <button onClick={closeModal}>
-                  <AiOutlineClose className="absolute right-2 top-2 text-xl" />
-                </button>
-                <div className="p-[100px]">
-                  <MdCardTravel className="text-2xl absolute left-[40%] bottom-[80%]" />
-                  <h2 className="text-2xl my-8 text-center ">여행 준비물</h2>
-                  <h2 className="text-xl my-4 ">필수 준비물</h2>
-                  <ul>
-                    {items.map((item) => (
-                      <li key={item.id}>
-                        <input
-                          className="m-3 "
-                          type="checkbox"
-                          id={`item-${item.id}`}
-                          checked={item.checked}
-                          onChange={() => handleItemChecked(item.id)}
-                        />
-                        <label htmlFor={`item-${item.id}`}>{item.name}</label>
-                      </li>
-                    ))}
-                  </ul>
-                  <button className="px-9 my-5 bg-blue-300 rounded-sm py-2">
-                    아이템 추가하기
-                  </button>
-                </div>
-              </Modal>
-            )}
-            <button className="border px-6 py-2 mr-8 rounded-xl">
-              일정수정
-            </button>
-            <button className="border px-6 py-2 rounded-xl" onClick={GoReview}>
-              리뷰쓰기
-            </button>
+      <section className="border rounded-xl p-9 accent-[#424242] flex-col">
+        <header className="flex items-center justify-between border-b pb-5">
+          <div className="flex items-center gap-6">
+            <input type="checkbox" className="w-4 h-4" id="all" />
+            <label htmlFor="all text-sm">전체선택(1/2)</label>
           </div>
+          <button className="bg-[#f3f3f3] rounded-lg py-2 px-3 text-sm ">
+            선택삭제
+          </button>
+        </header>
+        {/* 일정카드 */}
+        <div className="py-8 flex items-center gap-6 border-b">
+          <input type="checkbox" className="w-4 h-4 " />
+          <label className="flex">
+            <div className="relative w-40 h-40">
+              <img
+                src="/photo/jeju.jpg"
+                alt="d"
+                className="w-[150px] h-[150px]"
+              />
+              <span className="w-12 h-8 bg-main text-white absolute top-0 leading-8 text-center text-xs tracking-wide">
+                D-5
+              </span>
+            </div>
+            <div className=" px-12 flex flex-col justify-center items-center">
+              <p className="font-Mont font-bold text-2xl">YEOSU</p>
+              <p>여수</p>
+            </div>
+            <div className="flex-1 flex flex-col relative justify-center gap-2">
+              <p className="font-bold">
+                여행이름
+                <span className="font-normal ml-4 text-sm">
+                  신나는 여수여행
+                </span>
+              </p>
+              <p className="font-bold">
+                여행일자
+                <span className="font-normal ml-4 text-sm">
+                  2023.02.19~2023.02.21
+                </span>
+              </p>
+              {/* 모달 */}
+              <div className="flex gap-3 mt-4 text-xs">
+                {/* 체크박스 */}
+                <button
+                  className="border w-24 py-2.5 rounded-2xl border-[#dadada]"
+                  onClick={openModal}
+                >
+                  여행준비물
+                </button>
+
+                <button className="border w-24 py-2.5 rounded-2xl border-[#dadada]">
+                  일정수정
+                </button>
+                <button
+                  className="border w-24 py-2.5 rounded-2xl border-[#dadada]"
+                  onClick={GoReview}
+                >
+                  리뷰 작성하기
+                </button>
+              </div>
+            </div>
+          </label>
         </div>
-      </div>
+      </section>
       {/* 찜목록 */}
       <div className="flex items-center gap-1 text-xl mt-20 mb-8">
         <FiHeart size={24} />
@@ -131,6 +120,40 @@ const MySchedule = () => {
         {/* 찜 카드 */}
         <PlaceCard type="wishList" />
       </div>
+      {modalVisible && (
+        <Modal
+          width={900}
+          height={900}
+          onClose={closeModal}
+          visible={modalVisible}
+        >
+          <button onClick={closeModal}>
+            <AiOutlineClose className="absolute right-2 top-2 text-xl" />
+          </button>
+          <div className="p-[100px]">
+            <MdCardTravel className="text-2xl absolute left-[40%] bottom-[80%]" />
+            <h2 className="text-2xl my-8 text-center ">여행 준비물</h2>
+            <h2 className="text-xl my-4 ">필수 준비물</h2>
+            <ul>
+              {items.map((item) => (
+                <li key={item.id}>
+                  <input
+                    className="m-3 "
+                    type="checkbox"
+                    id={`item-${item.id}`}
+                    checked={item.checked}
+                    onChange={() => handleItemChecked(item.id)}
+                  />
+                  <label htmlFor={`item-${item.id}`}>{item.name}</label>
+                </li>
+              ))}
+            </ul>
+            <button className="px-9 my-5 bg-blue-300 rounded-sm py-2">
+              아이템 추가하기
+            </button>
+          </div>
+        </Modal>
+      )}
     </MyPageLayOut>
   );
 };

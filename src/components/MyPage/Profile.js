@@ -50,7 +50,7 @@ const Profile = () => {
     }
   };
   return (
-    <section className="w-1/4  py-24 my-8 border-r">
+    <section className="w-1/4  pt-52 my-8 border-r">
       <div className="flex flex-col items-center gap-4">
         <div className="flex relative rounded-lg">
           <label
@@ -58,8 +58,11 @@ const Profile = () => {
             forhtml="filebutton"
           >
             {" "}
-         
-            <img src={imgFile || "/photo/good.png"}  alt="<FcOldTimeCamera/>" className="h-[100px] w-[100px] rounded-[50%] border" />
+            <img
+              src={imgFile || "/photo/good.png"}
+              alt="<FcOldTimeCamera/>"
+              className="h-[100px] w-[100px] rounded-[50%] border"
+            />
             <input
               id="filebutton"
               multiple="multiple"

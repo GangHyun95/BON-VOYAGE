@@ -2,12 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import Modal from "../../Layout/Modal";
-const Header = () => {
 
-   // 화면이동
-   const history = useNavigate();
-   // 카카오 로그인
-   const kakaoLogin = () => {
+const Header = () => {
+  const [profile, setProfile] = useState();
+  // 화면이동
+  const navigate = useNavigate();
+  // 카카오 로그인
+  const kakaoLogin = () => {
     window.Kakao.Auth.login({
       scope: "profile_nickname, profile_image, account_email", //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
       success: function (response) {
@@ -17,14 +18,43 @@ const Header = () => {
           url: "/v2/user/me",
           success: (res) => {
             const kakao_account = res.kakao_account;
+            setProfile(kakao_account.profile);
             console.log("사용자 정보", kakao_account);
             // 사용자 정보를 받은 경우
             // localStorage 저장 또는 redux 저장
-            history.push("/logout");
+            setModalVisible(false);
           },
         });
       },
       fail: function (error) {
+        console.log(error);
+      },
+    });
+  };
+  console.log(profile);
+  // 카카오 로그 아웃
+  const kakaoLogOut = () => {
+    if (!window.Kakao.Auth.getAccessToken()) {
+      console.log("Not logged in.");
+      return;
+    }
+    window.Kakao.Auth.logout(function (response) {
+      alert(response + " logout");
+      // window.location.href='/'
+    });
+  };
+  // 카카오 회원 탈퇴
+  const memberOut = () => {
+    window.Kakao.API.request({
+      url: "/v1/user/unlink",
+      success: function (response) {
+        console.log(response);
+        setProfile();
+        //callback(); //연결끊기(탈퇴)성공시 서버에서 처리할 함수
+        // window.location.href='/'
+      },
+      fail: function (error) {
+        console.log("탈퇴 미완료");
         console.log(error);
       },
     });
@@ -78,19 +108,24 @@ const Header = () => {
           <button onClick={openModal}>Login</button>
 
           {/* 임시 */}
-
           <div
             className="mb-3 cursor-pointer rounded-3xl  bg-gray-400 text-center w-[50px] h-[50px]"
             onClick={handleCircleClick}
           >
-            사진
+            <div className="overflow-hidden rounded-full">
+              {profile && (
+                <img src={profile?.profile_image_url} alt="profile" />
+              )}
+            </div>
             {isClicked && (
               <div className="mx-[-68px] my-[30px] text-black bg-white w-[100px] h-[96px]">
                 <ul className="text-center">
                   <li className="py-3 hover:bg-gray-200">
                     <Link to="/mypage">마이페이지</Link>
                   </li>
-                  <li className="py-3 hover:bg-gray-200">로그아웃</li>
+                  <li className="py-3 hover:bg-gray-200" onClick={memberOut}>
+                    로그아웃
+                  </li>
                 </ul>
               </div>
             )}
@@ -143,11 +178,14 @@ const Header = () => {
                 <p className="text-gray-500">or</p>
                 <p className="text-gray-500">SNS 간편 로그인</p>
                 <div className="flex justify-center mt-4">
-                <button onClick={kakaoLogin}>  <img
-            className="h-20 w-20 mr-8"
-            src="/photo/kakaoicon.png"
-            alt="카카오톡"
-          /></button>
+                  <button onClick={kakaoLogin}>
+                    {" "}
+                    <img
+                      className="h-20 w-20 mr-8"
+                      src="/photo/kakaoicon.png"
+                      alt="카카오톡"
+                    />
+                  </button>
                   <img
                     className="h-20 w-20"
                     src="/photo/googleicon.png"
