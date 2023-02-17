@@ -8,7 +8,7 @@ const ButtonGroup = ({ filter, arr, setFilter }) => {
         <button
           type="button"
           className={`px-5 py-2 my-3 text-xs leading-tight ${
-            filter === item && "bg-main text-white"
+            filter?.title === item?.title && "bg-main text-white"
           }`}
           key={index}
           onClick={() => {

@@ -28,7 +28,7 @@ const Recommendation = ({ mapData, setLat, setLng, pos, setPos, place }) => {
     { title: "관광명소", icon: <MdOutlinePlace />, tpType: 1 },
     { title: "숙박시설", icon: <RiHotelLine />, tpType: 2 },
   ];
-  const [filter, setFilter] = useState(arr[0].title);
+  const [filter, setFilter] = useState(arr[0]);
 
   const filtered = getFilteredItems(mapData, filter);
 
