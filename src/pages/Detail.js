@@ -26,7 +26,7 @@ const Detail = () => {
     fetchDate();
   }, []);
 
-  console.log(latitude, longitude);
+  // console.log(latitude, longitude);
   return (
     <div className="flex pt-20 max-h-screen overflow-hidden">
       <TravelCalendar place={place} />
