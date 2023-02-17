@@ -25,12 +25,15 @@ const PlaceCard = ({ place, type }) => {
 
   console.log(place?.child?.image?.iiFileName);
   return (
-    <div className="shadow rounded overflow-hidden" onClick={openModal}>
-      <div className="overflow-hidden">
+    <div
+      className="flex  flex-col shadow rounded overflow-hidden"
+      onClick={openModal}
+    >
+      <div className="overflow-hidden flex-1">
         <img
           src={`http://192.168.0.112:8888/api/images/download/local?imgname=${place?.child?.image?.iiFileName}`}
           alt="임시"
-          className="hover:scale-[115%] transition-transform duration-200 ease-in-out object-cover"
+          className="hover:scale-[115%] transition-transform duration-200 ease-in-out h-full"
         />
       </div>
       <div className={isWishList ? "text-end px-2 py-1" : "text-start p-6"}>
