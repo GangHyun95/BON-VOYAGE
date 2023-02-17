@@ -16,7 +16,7 @@ const Detail = () => {
   const fetchDate = async () => {
     try {
       const result = await instance.get("/api/travle/place");
-      setMapData(result.data);
+      setMapData(result.data.list);
     } catch (error) {
       console.log(error);
     }

@@ -7,9 +7,14 @@ import { useEffect } from "react";
 
 const filters = ["전체", "서울/경기", "강원", "충청", "전라", "경상", "제주"];
 
-const PlaceList = ({ placeList }) => {
+const PlaceList = ({
+  placeList,
+  sortText,
+  setSortText,
+  assending,
+  descending,
+}) => {
   const [filter, setFilter] = useState(filters[0]);
-  const [sortText, setSortText] = useState("추천 순");
 
   const [isClicked, setIsClicked] = useState(false);
 
@@ -23,30 +28,6 @@ const PlaceList = ({ placeList }) => {
   // useEffect(() => {
   //   setFiltered(getFilteredItems(placeList, filter));
   // }, []);
-
-  const assending = () => {
-    filtered.sort(function (a, b) {
-      // 한글 오름차순
-      return a?.child?.name < b?.child?.name
-        ? -1
-        : a?.child?.name > b?.child?.name
-        ? 1
-        : 0;
-    });
-    setSortText("오름차순");
-  };
-
-  const descending = () => {
-    filtered.sort(function (a, b) {
-      // 한글 내림차순
-      return a?.child?.name > b?.child?.name
-        ? -1
-        : a?.child?.name < b?.child?.name
-        ? 1
-        : 0;
-    });
-    setSortText("내림차순");
-  };
 
   console.log(filtered);
 
