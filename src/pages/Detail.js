@@ -24,6 +24,7 @@ const Detail = () => {
     fetchDate();
   }, []);
 
+  console.log(mapData);
   return (
     <div className="flex pt-20 max-h-screen overflow-hidden">
       <TravelCalendar place={place} />
