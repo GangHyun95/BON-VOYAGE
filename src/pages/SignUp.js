@@ -43,7 +43,7 @@ const SignUp = () => {
           alert(res.data.message);
           navigate("/");
         } else {
-          alert("회원가입 실패");
+          alert(res.data.message);
         }
       });
     } catch (error) {
