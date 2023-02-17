@@ -17,8 +17,6 @@ const KaKaoMap = ({ place, lat, lng, setLat, setLng, mapData }) => {
     isPanto: false,
   });
 
-  console.log(pos.center);
-  console.log(mapData.map((item) => console.log(item)));
   return (
     <>
       <Recommendation
