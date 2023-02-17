@@ -9,8 +9,8 @@ const Detail = () => {
   const {
     state: { place },
   } = useLocation();
-
-  const [pos, setPos] = useState();
+  const [latitude, setLatitude] = useState(place.latitude);
+  const [longitude, setLongitude] = useState(place.longitude);
   // 데이터 넣기
   const [mapData, setMapData] = useState([]);
   const fetchDate = async () => {
@@ -21,16 +21,23 @@ const Detail = () => {
       console.log(error);
     }
   };
-
+  console.log(place);
   useEffect(() => {
     fetchDate();
   }, []);
 
+  console.log(latitude, longitude);
   return (
     <div className="flex pt-20 max-h-screen overflow-hidden">
       <TravelCalendar place={place} />
-      <Recommendation mapData={mapData} pos={pos} setPos={setPos} />
-      <Map place={place} />
+      <Recommendation
+        mapData={mapData}
+        latitude={latitude}
+        setLatitude={setLatitude}
+        longitude={longitude}
+        setLongitude={setLongitude}
+      />
+      <Map place={place} latitude={latitude} longitude={longitude} />
     </div>
   );
 };

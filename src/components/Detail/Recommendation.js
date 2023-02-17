@@ -5,7 +5,7 @@ import ButtonGroup from "./ButtonGroup";
 import RecommendationCard from "./RecommendationCard";
 import { CiSearch } from "react-icons/ci";
 
-const Recommendation = ({ mapData }) => {
+const Recommendation = ({ mapData, setLatitude, setLongitude }) => {
   const [visible, setVisible] = useState(false);
   const openNotice = () => {
     setVisible(true);
@@ -53,6 +53,8 @@ const Recommendation = ({ mapData }) => {
             closeModal={closeModal}
             visible={visible}
             recommendation={recommendation}
+            setLatitude={setLatitude}
+            setLongitude={setLongitude}
             key={recommendation.tpSeq}
           />
         ))}

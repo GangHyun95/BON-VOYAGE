@@ -10,10 +10,23 @@ const RecommendationCard = ({
   closeModal,
   visible,
   recommendation,
+  setLatitude,
+  setLongitude,
 }) => {
+  const posSetting = (latitude, longitude) => {
+    setLatitude(latitude);
+    setLongitude(longitude);
+  };
+
+  console.log(recommendation);
   return (
     <>
-      <li className="flex justify-center m-3">
+      <li
+        className="flex justify-center m-3"
+        onClick={() =>
+          posSetting(recommendation.tpLongitude, recommendation.tpLatitude)
+        }
+      >
         <div className="flex h-[130px] flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
           <img
             className="w-20 md:h-auto object-cover md:w-36 rounded-t-lg md:rounded-none md:rounded-l-lg"
