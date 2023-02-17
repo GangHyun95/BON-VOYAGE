@@ -46,7 +46,7 @@ const PlaceCard = ({ place, type }) => {
         <Modal visible={modalVisible} onClose={closeModal} width={1200}>
           <div className="flex items-center p-12 gap-12">
             <GrClose
-              className="absolute top-12 right-12 text-2xl cursor-pointer"
+              className="absolute top-12 right-10 text-2xl cursor-pointer"
               onClick={closeModal}
             />
             <section className="relative basis-1/3 overflow-hidden rounded max-w-[352px] max-h-[352px]">
@@ -62,12 +62,12 @@ const PlaceCard = ({ place, type }) => {
                 }`}
               />
             </section>
-            <section className="basis-2/3 flex flex-col gap-12 items-start text-start">
+            <section className="basis-2/3 flex flex-col gap-10 items-start text-start">
               <h2 className="font-Mont">
                 <p className="text-4xl font-bold pb-2">{place.child.engname}</p>
-                <span> {place.child.name}</span>
+                <span className="text-gray-400 font-bold"> {place.child.name}</span>
               </h2>
-              <p className="text-justify">{place.child.explanation}</p>
+              <p className="text-justify pr-14 text-gray-700">{place.child.explanation}</p>
               <button
                 className="bg-main text-white justify-self-end py-3 px-7 rounded hover:brightness-110"
                 onClick={() => {
