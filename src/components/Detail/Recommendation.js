@@ -29,7 +29,11 @@ const Recommendation = ({ mapData, setLat, setLng, pos, setPos, place }) => {
     { title: "숙박시설", icon: <RiHotelLine />, tpType: 2 },
   ];
   const [filter, setFilter] = useState(arr[0]);
-
+// 버튼 타입 필터 정의
+function getFilteredItems(mapData, filter) {
+  return mapData.filter((place) => place.tpType === filter.tpType);
+}
+// 버튼 타입 필터 호출
   const filtered = getFilteredItems(mapData, filter);
 
   return (
@@ -68,7 +72,4 @@ const Recommendation = ({ mapData, setLat, setLng, pos, setPos, place }) => {
   );
 };
 
-function getFilteredItems(mapData, filter) {
-  return mapData.filter((place) => place.tpType === filter.tpType);
-}
 export default Recommendation;
