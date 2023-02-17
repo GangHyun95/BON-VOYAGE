@@ -19,6 +19,7 @@ const Home = () => {
   useEffect(() => {
     fetchDate();
   }, []);
+  //
   const assending = () => {
     placeList.sort(function (a, b) {
       // 한글 오름차순

@@ -20,7 +20,7 @@ const RecommendationCard = ({
     <>
       <li
         className="flex justify-center m-3"
-        onMouseEnter={() =>
+        onClick={() =>
           setPos({
             center: {
               lat: recommendation.tpLatitude,
@@ -29,15 +29,7 @@ const RecommendationCard = ({
             isPanto: true,
           })
         }
-        onMouseLeave={() => {
-          setPos({
-            center: {
-              lat: place.latitude,
-              lng: place.longitude,
-            },
-            isPanto: true,
-          });
-        }}
+ 
       >
         <div className="flex h-[130px] flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
           <img
