@@ -24,9 +24,9 @@ const Recommendation = ({ MapData }) => {
     setModalVisible(false);
   };
   const arr = [
-    { title: "음식점", icon: <MdStorefront /> },
-    { title: "관광명소", icon: <MdOutlinePlace /> },
-    { title: "숙박시설", icon: <RiHotelLine /> },
+    { title: "음식점", icon: <MdStorefront /> ,type:1 },
+    { title: "관광명소", icon: <MdOutlinePlace /> ,type:2 },
+    { title: "숙박시설", icon: <RiHotelLine />  ,type:3},
   ];
   const [filters, setFilter] = useState(arr[0].title);
   return (

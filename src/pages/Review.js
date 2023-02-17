@@ -97,9 +97,9 @@ const Review = () => {
 
   return (
     <MyPageLayOut title="리뷰게시판">
-      <div className="relative">
+      <div className="relative ">
         {/* 리뷰 카드 */}
-        <div className="flex justify-around mb-[100px]">
+        <div className="flex justify-around  mb-[100px]">
           <div className="overflow-hidden border-2  border-gray-200  rounded-lg w-[180px] h-[300px]">
             <img
               src="/photo/travellog1.jpg"
@@ -179,7 +179,7 @@ const Review = () => {
         ></textarea>
         <div className="flex w-full max-h-[240px] my-[-25px] rounded-lg">
           <label
-            className="border-2 text-center h-[70px] bottom-[-20px] bg-main text-white left-0 p-[10px] relative  rounded-sm"
+            className="border-2  text-center h-[70px] bottom-[-20px] bg-main text-white left-0 p-[10px] relative  rounded-sm"
             forhtml="filebutton"
           >
             <BsFillCameraFill className="inline-block mx-1" />
@@ -234,7 +234,7 @@ const Review = () => {
           {imgFile.map((image, id) => (
             <div
               key={id}
-              className="max-h-[240px]  relative flex max-w-[240px]"
+              className="max-h-[240px] relative flex max-w-[240px]"
             >
               <button
                 className="absolute right-[-40px] bg-black rounded-xl text-white px-2 top-12"
