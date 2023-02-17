@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useRef, useState } from "react";
 import MapOverlay from "../style/MapOverlay.css";
 
-const Map = ({ place, latitude, longitude }) => {
+const KaKaoMap = ({ place, latitude, longitude }) => {
   // const path = process.env.PUBLIC_URL;
   const { kakao } = window;
   const container = useRef();
@@ -40,4 +40,4 @@ const Map = ({ place, latitude, longitude }) => {
   );
 };
 
-export default Map;
+export default KaKaoMap;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import instance from "../api/axios";
-import Map from "../components/Detail/Map";
+import KaKaoMap from "../components/Detail/KaKaoMap";
 import Recommendation from "../components/Detail/Recommendation";
 import TravelCalendar from "../components/Detail/TravelCalendar";
 
@@ -21,12 +21,11 @@ const Detail = () => {
       console.log(error);
     }
   };
-  console.log(place);
   useEffect(() => {
     fetchDate();
   }, []);
 
-  // console.log(latitude, longitude);
+  console.log(latitude, longitude);
   return (
     <div className="flex pt-20 max-h-screen overflow-hidden">
       <TravelCalendar place={place} />
@@ -37,7 +36,7 @@ const Detail = () => {
         longitude={longitude}
         setLongitude={setLongitude}
       />
-      <Map place={place} latitude={latitude} longitude={longitude} />
+      <KaKaoMap place={place} latitude={latitude} longitude={longitude} />
     </div>
   );
 };
