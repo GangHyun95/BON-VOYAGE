@@ -5,7 +5,7 @@ import ButtonGroup from "./ButtonGroup";
 import RecommendationCard from "./RecommendationCard";
 import { CiSearch } from "react-icons/ci";
 
-const Recommendation = ({ mapData, setLatitude, setLongitude }) => {
+const Recommendation = ({ mapData, setLat, setLng, pos, setPos, place }) => {
   const [visible, setVisible] = useState(false);
   const openNotice = () => {
     setVisible(true);
@@ -29,6 +29,7 @@ const Recommendation = ({ mapData, setLatitude, setLongitude }) => {
     { title: "숙박시설", icon: <RiHotelLine /> },
   ];
   const [filters, setFilter] = useState(arr[0].title);
+
   return (
     <div className="w-[360px] border-l">
       {/* 검색폼 */}
@@ -53,9 +54,11 @@ const Recommendation = ({ mapData, setLatitude, setLongitude }) => {
             closeModal={closeModal}
             visible={visible}
             recommendation={recommendation}
-            setLatitude={setLatitude}
-            setLongitude={setLongitude}
-            key={recommendation.tpSeq}
+            setLat={setLat}
+            setLng={setLng}
+            setPos={setPos}
+            place={place}
+            key={recommendation.tlSeq}
           />
         ))}
       </ul>

@@ -10,21 +10,34 @@ const RecommendationCard = ({
   closeModal,
   visible,
   recommendation,
-  setLatitude,
-  setLongitude,
+  setLat,
+  setLng,
+  pos,
+  setPos,
+  place,
 }) => {
-  const posSetting = (latitude, longitude) => {
-    setLatitude(latitude);
-    setLongitude(longitude);
-  };
-
   return (
     <>
       <li
         className="flex justify-center m-3"
-        onClick={() =>
-          posSetting(recommendation.tpLatitude, recommendation.tpIongitude)
+        onMouseEnter={() =>
+          setPos({
+            center: {
+              lat: recommendation.tpLatitude,
+              lng: recommendation.tpIongitude,
+            },
+            isPanto: true,
+          })
         }
+        onMouseLeave={() => {
+          setPos({
+            center: {
+              lat: place.latitude,
+              lng: place.longitude,
+            },
+            isPanto: true,
+          });
+        }}
       >
         <div className="flex h-[130px] flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
           <img

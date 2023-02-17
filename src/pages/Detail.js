@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import instance from "../api/axios";
 import KaKaoMap from "../components/Detail/KaKaoMap";
-import Recommendation from "../components/Detail/Recommendation";
 import TravelCalendar from "../components/Detail/TravelCalendar";
 
 const Detail = () => {
   const {
     state: { place },
   } = useLocation();
-  const [latitude, setLatitude] = useState(place.latitude);
-  const [longitude, setLongitude] = useState(place.longitude);
+  const [lat, setLat] = useState(place.latitude);
+  const [lng, setLng] = useState(place.longitude);
   // 데이터 넣기
   const [mapData, setMapData] = useState([]);
   const fetchDate = async () => {
@@ -25,18 +24,17 @@ const Detail = () => {
     fetchDate();
   }, []);
 
-  console.log(latitude, longitude);
   return (
     <div className="flex pt-20 max-h-screen overflow-hidden">
       <TravelCalendar place={place} />
-      <Recommendation
+      <KaKaoMap
+        place={place}
+        lat={lat}
+        lng={lng}
         mapData={mapData}
-        latitude={latitude}
-        setLatitude={setLatitude}
-        longitude={longitude}
-        setLongitude={setLongitude}
+        setLat={setLat}
+        setLng={setLng}
       />
-      <KaKaoMap place={place} latitude={latitude} longitude={longitude} />
     </div>
   );
 };

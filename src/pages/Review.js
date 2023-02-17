@@ -13,9 +13,7 @@ const Review = () => {
   const onChangeImg = async (e) => {
     e.preventDefault();
     // 미리보기 기능
-
     // files는 배열에 담긴다.
-
     const uploadFile = e.target.files;
     // 이미지 여러개 업로드 기능
     let imageUrlLists = [...imgFile];
@@ -27,7 +25,6 @@ const Review = () => {
       imageUrlLists = imageUrlLists.slice(0, 10);
     }
     setImgFile(imageUrlLists);
-
     // 서버로 이미지를 임시로 보내고 URL 글자를 받아오는 코드
     // 일반적 방법
     // const formData = new FormData();
@@ -45,11 +42,9 @@ const Review = () => {
   const handleDeleteImage = (id) => {
     setImgFile(imgFile.filter((_, index) => index !== id));
   };
-
   // input 리뷰 텍스트
   // 사용자 입력 저장
   const [checkItemContent, setCheckItemContent] = useState("");
-
   // 줄바꿈 위치를 저장하는 Dictionary
   const [lineBreakIndexDict, setLineBreakIndexDict] = useState({});
   // 줄 수 (높이)
@@ -85,7 +80,6 @@ const Review = () => {
       }); // 줄바꿈 위치 저장
     }
   };
-
   // 리뷰 내용 저장하기
   const [reviews, setReviews] = useState([]);
   const handleSubmit = (event) => {
@@ -94,12 +88,11 @@ const Review = () => {
     setImgFile([...imgFile]);
     setCheckItemContent("");
   };
-
   return (
     <MyPageLayOut title="리뷰게시판">
-      <div className="relative">
+      <div className="relative ">
         {/* 리뷰 카드 */}
-        <div className="flex justify-around mb-[100px]">
+        <div className="flex justify-around  mb-[100px]">
           <div className="overflow-hidden border-2  border-gray-200  rounded-lg w-[180px] h-[300px]">
             <img
               src="/photo/travellog1.jpg"
@@ -179,7 +172,7 @@ const Review = () => {
         ></textarea>
         <div className="flex w-full max-h-[240px] my-[-25px] rounded-lg">
           <label
-            className="border-2 text-center h-[70px] bottom-[-20px] bg-main text-white left-0 p-[10px] relative  rounded-sm"
+            className="border-2  text-center h-[70px] bottom-[-20px] bg-main text-white left-0 p-[10px] relative  rounded-sm"
             forhtml="filebutton"
           >
             <BsFillCameraFill className="inline-block mx-1" />
@@ -232,10 +225,7 @@ const Review = () => {
         </div>
         <div className="flex max-w-[100%]">
           {imgFile.map((image, id) => (
-            <div
-              key={id}
-              className="max-h-[240px]  relative flex max-w-[240px]"
-            >
+            <div key={id} className="max-h-[240px] relative flex max-w-[240px]">
               <button
                 className="absolute right-[-40px] bg-black rounded-xl text-white px-2 top-12"
                 onClick={() => handleDeleteImage(id)}
@@ -256,14 +246,16 @@ const Review = () => {
           <ul>
             {reviews.map((review, index) => (
               <div className="">
-               
                 <li className="w-full p-20 mt-3 bg-gray-200" key={index}>
-                {" "} <div className="flex justify-start" key={index}>
-                  <p>닉네임 | 허산현</p>
-                  <p>리뷰평점 |<span className="text-main">★★★★★</span></p>
-                  <p>날짜 | 2023.01.01</p>
-                </div> 
-                <div>{review}</div> 
+                  {" "}
+                  <div className="flex justify-start" key={index}>
+                    <p>닉네임 | 허산현</p>
+                    <p>
+                      리뷰평점 |<span className="text-main">★★★★★</span>
+                    </p>
+                    <p>날짜 | 2023.01.01</p>
+                  </div>
+                  <div>{review}</div>
                 </li>
               </div>
             ))}

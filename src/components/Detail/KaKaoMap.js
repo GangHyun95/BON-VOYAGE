@@ -1,42 +1,53 @@
 import React from "react";
-import { useEffect, useRef, useState } from "react";
-import MapOverlay from "../style/MapOverlay.css";
+import { useState } from "react";
+import {
+  CustomOverlayMap,
+  Map,
+  MapMarker,
+  MapTypeControl,
+  ZoomControl,
+} from "react-kakao-maps-sdk";
+// import MapOverlay from "../style/MapOverlay.css";
+import Recommendation from "./Recommendation";
 
-const KaKaoMap = ({ place, latitude, longitude }) => {
-  // const path = process.env.PUBLIC_URL;
-  const { kakao } = window;
-  const container = useRef();
+const { kakao } = window;
+const KaKaoMap = ({ place, lat, lng, setLat, setLng, mapData }) => {
+  const [pos, setPos] = useState({
+    center: { lat, lng },
+    isPanto: false,
+  });
 
-  useEffect(() => {
-    container.current.innerHTML = "";
-    const mapCenter = new kakao.maps.LatLng(latitude, longitude); // 지도의 중심좌표
-    const options = {
-      center: mapCenter,
-      level: 9,
-    };
-    const map = new kakao.maps.Map(container.current, options);
-
-    //스카이뷰 전환버튼 추가
-    const mapTypeControl = new kakao.maps.MapTypeControl();
-    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT);
-
-    // 확대 축소버튼 추가
-    const zoomControl = new kakao.maps.ZoomControl();
-    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-  }, [latitude, longitude]);
-
+  console.log(pos.center);
+  console.log(mapData.map((item) => console.log(item)));
   return (
-    <div className="flex-1 map-wrap">
-      <div
-        id="map"
-        className="relative w-full h-[calc(100vh-80px)]"
-        ref={container}
+    <>
+      <Recommendation
+        place={place}
+        mapData={mapData}
+        lat={lat}
+        setLat={setLat}
+        lng={lng}
+        setLng={setLng}
+        pos={pos}
+        setPos={setPos}
+      />
+      <Map // 지도를 표시할 Container
+        center={pos.center}
+        isPanto={pos.isPanto}
+        className="flex-1 h-[calc(100vh-80px)]"
+        level={9} // 지도의 확대 레벨
       >
-        <button className="absolute top-16 left-2 z-20 bg-white bg-opacity-40 shadow px-7 py-4 rounded-md">
-          일정 추가
-        </button>
-      </div>
-    </div>
+        <CustomOverlayMap // 커스텀 오버레이를 표시할 Container
+          // 커스텀 오버레이가 표시될 위치입니다
+          position={pos.center}
+        >
+          {/* 커스텀 오버레이에 표시할 내용입니다 */}
+          <div className="bg-white rounded"></div>
+        </CustomOverlayMap>
+        <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
+        <MapTypeControl position={kakao.maps.ControlPosition.TOPLEFT} />
+      </Map>
+    </>
   );
 };
 
