@@ -24,11 +24,13 @@ const Recommendation = ({ mapData, setLat, setLng, pos, setPos, place }) => {
     setModalVisible(false);
   };
   const arr = [
-    { title: "음식점", icon: <MdStorefront /> },
-    { title: "관광명소", icon: <MdOutlinePlace /> },
-    { title: "숙박시설", icon: <RiHotelLine /> },
+    { title: "음식점", icon: <MdStorefront />, tpType: 3 },
+    { title: "관광명소", icon: <MdOutlinePlace />, tpType: 1 },
+    { title: "숙박시설", icon: <RiHotelLine />, tpType: 2 },
   ];
-  const [filters, setFilter] = useState(arr[0].title);
+  const [filter, setFilter] = useState(arr[0].title);
+
+  const filtered = getFilteredItems(mapData, filter);
 
   return (
     <div className="w-[360px] border-l">
@@ -42,11 +44,11 @@ const Recommendation = ({ mapData, setLat, setLng, pos, setPos, place }) => {
           <CiSearch className="text-2xl absolute top-1/2 right-3 translate-y-[-50%] text-main" />
         </form>
       </div>
-      <ButtonGroup filters={filters} arr={arr} setFilter={setFilter} />
+      <ButtonGroup filter={filter} arr={arr} setFilter={setFilter} />
 
       <h2 className="text-center my-2">추천장소</h2>
       <ul>
-        {mapData.map((recommendation) => (
+        {filtered.map((recommendation) => (
           <RecommendationCard
             openNotice={openNotice}
             modalVisible={modalVisible}
@@ -66,4 +68,7 @@ const Recommendation = ({ mapData, setLat, setLng, pos, setPos, place }) => {
   );
 };
 
+function getFilteredItems(mapData, filter) {
+  return mapData.filter((place) => place.tpType === filter.tpType);
+}
 export default Recommendation;
