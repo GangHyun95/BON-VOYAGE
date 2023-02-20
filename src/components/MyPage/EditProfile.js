@@ -2,31 +2,50 @@ import React, { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { BsInfoCircleFill } from "react-icons/bs";
 const EditProfile = ({ closeModal }) => {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordVerify, setPasswordVerify] = useState("");
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
-  const handleNameChange = (event) => {
-    setName(event.target.value);
+
+  const handleNicknameChange = (e) => {
+    setNickname(e.target.value);
   };
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
-  const handlePasswordVerifyChange = (event) => {
-    setPasswordVerify(event.target.value);
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (password !== passwordVerify) {
-      alert("비밀번호 확인이 일치하지않습니다.");
-      return;
-    }
-    alert(
-      `이메일: ${email}\비밀번호: ${password} 회원가입 되었습니다. 로그인해주세요.`
-    );
+
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
+
+  const handleSave = () => {
+    // Save the user's data to a database or API
+  };
+
+  const handleUpdate = () => {
+    // Update the user's data in a database or API
+  };
+
+  const handleDelete = () => {
+    // Delete the user's data from a database or API
+  };
+
+  const handleReset = () => {
+    setName('');
+    setNickname('');
+    setEmail('');
+    setPassword('');
+    setPhone('');
   };
   return (
     <div className="w-[900px] h-[700px]   ">
@@ -44,26 +63,27 @@ const EditProfile = ({ closeModal }) => {
             </span>
             <span className="">프로필</span>
           </div>
-          <li className="border h-[50px] flex bg-slate-400 ">
-            <div className="w-[200px] bg-orange-200 text-end">이름</div>
-            <div className="">허강현</div>
-          </li>
-          <li className="border h-[50px] flex bg-slate-400 ">
-            <div className="w-[200px] bg-orange-200 text-end">닉네임</div>
-            <div className="">허강현</div>
-          </li>{" "}
-          <li className="border h-[50px] flex bg-slate-400 ">
-            <div className="w-[200px] bg-orange-200 text-end">이름</div>
-            <div className="">허강현</div>
-          </li>{" "}
-          <li className="border h-[50px] flex bg-slate-400 ">
-            <div className="w-[200px] bg-orange-200 text-end">비밀번호</div>
-            <div className="">허강현</div>
-          </li>
-          <li className="border h-[50px] flex bg-slate-400 ">
-            <div className="w-[200px] bg-orange-200 text-end">전화번호</div>
-            <div className="ㅅㄷㅌ">허강현</div>
-          </li>
+          <div>
+     <div className="flex"> <label htmlFor="name" >이름</label>
+      <input type="text" id="name" value={name} onChange={handleNameChange} />
+</div>
+ <div className="flex"><label htmlFor="nickname" className="block">닉네임</label>
+      <input type="text" id="nickname" value={nickname} onChange={handleNicknameChange} />
+ </div> 
+<div className="flex"><label htmlFor="email">이메일</label>
+      <input type="email" id="email" value={email} onChange={handleEmailChange} />
+ </div> 
+      <div className="flex"> <label htmlFor="password">비밀번호</label>
+      <input type="password" id="password" value={password} onChange={handlePasswordChange} />
+  </div>
+      <div className="flex"> <label htmlFor="phone">전화번호</label>
+      <input type="tel" id="phone" value={phone} onChange={handlePhoneChange} />
+ </div>
+     
+      
+ 
+    
+    </div>
         </div>
         <div className="flex justify-center mt-14 gap-5">
           <button className="w-[100px] h-[50px] bg-main text-white rounded-lg py-2 ">
