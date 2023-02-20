@@ -12,7 +12,7 @@ const SignUp = () => {
     email: yup.string().email().required(),
     name: yup.string().required(),
     nickname: yup.string().required(),
-    pw: yup.string().min(5).max(16).required(),
+    pw: yup.string().min(8).max(16).required(),
     tel: yup.string().min(10).required(),
     checkPw: yup
       .string()
@@ -133,7 +133,6 @@ const SignUp = () => {
         />
         <br />
         {/* 폰 */}
-
         <label htmlFor="tel" className="block font-bold text-slate-600">
           전화번호
           <span className="ml-4  text-red-500">

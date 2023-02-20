@@ -55,17 +55,15 @@ const Profile = () => {
         <div className="flex relative rounded-lg">
           <label
             className=" absolute bottom-1 right-1/2 translate-x-1/2 w-[100px] "
-            forhtml="filebutton"
+            htmlFor="filebutton"
           >
-            {" "}
             <img
               src={imgFile || "/photo/good.png"}
-              alt="<FcOldTimeCamera/>"
-              className="h-[100px] w-[100px] rounded-[50%] border"
+              alt="profile"
+              className="h-[100px] w-[100px] rounded-full border"
             />
             <input
               id="filebutton"
-              multiple="multiple"
               type="file"
               accept="image/*"
               onInput={onChangeImg}

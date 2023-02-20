@@ -116,10 +116,7 @@ const MySchedule = () => {
         <h3 className="font-bold">내가 좋아하는 여행지</h3>
       </div>
       {/* 카드리스트 */}
-      <div className="grid grid-cols-4 gap-4 mb-16">
-        {/* 찜 카드 */}
-        <PlaceCard type="wishList" />
-      </div>
+      <div className="grid grid-cols-4 gap-4 mb-16">{/* 찜 카드 */}</div>
       {modalVisible && (
         <Modal
           width={900}

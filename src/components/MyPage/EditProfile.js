@@ -1,51 +1,31 @@
 import React, { useState, useRef } from "react";
-import { GrClose } from "react-icons/gr";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { BsInfoCircleFill } from "react-icons/bs";
 const EditProfile = ({ closeModal }) => {
-  const [name, setName] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
+  const schema = yup.object().shape({
+    email: yup.string().email().required(),
+    name: yup.string().required(),
+    nickname: yup.string().required(),
+    pw: yup.string().min(8).max(16).required(),
+    tel: yup.string().min(10).required(),
+    checkPw: yup
+      .string()
+      .oneOf([yup.ref("pw"), null])
+      .required(),
+  });
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const handleNicknameChange = (e) => {
-    setNickname(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
-  };
-
-  const handleSave = () => {
-    // Save the user's data to a database or API
-  };
-
-  const handleUpdate = () => {
-    // Update the user's data in a database or API
-  };
-
-  const handleDelete = () => {
-    // Delete the user's data from a database or API
-  };
-
-  const handleReset = () => {
-    setName("");
-    setNickname("");
-    setEmail("");
-    setPassword("");
-    setPhone("");
+  const submitForm = async (data) => {
+    console.log(data);
   };
   // 이미지 미리보기 기능
   // 이미지 업로드 및 미리보기
@@ -86,106 +66,130 @@ const EditProfile = ({ closeModal }) => {
     }
   };
   return (
-    <div className="w-[900px] h-[700px]   ">
-      <div className=" w-[900px]  h-[70px] flex text-xl justify-self-stretch bg-main text-white">
-        <div className="flex items-center  ">
-          <BsInfoCircleFill className="ml-10" />
-          <span className=" ml-10"> 회원정보수정 </span>
+    <section className="w-[900px]">
+      <header className="flex items-center py-5 px-10 text-xl bg-main text-white">
+        <BsInfoCircleFill />
+        <span className="ml-8"> 회원정보수정 </span>
+      </header>
+      <section className="p-12">
+        {/* 프로필 사진 */}
+        <div className="flex justify-center rounded-lg pb-4">
+          <label htmlFor="filebutton">
+            <img
+              src={imgFile || "/photo/good.png"}
+              alt="profile"
+              className="h-32 w-32 rounded-full border"
+            />
+            <input
+              id="filebutton"
+              type="file"
+              accept="image/*"
+              onInput={onChangeImg}
+              className="hidden"
+              ref={imgRef}
+            ></input>
+          </label>
         </div>
-      </div>
-      <div className=" w-[900px] h-[630px]  px-[100px] py-12 ">
-        <div className="">
-          <div className="border h-[150px] flex  ">
-            <span className="">프로필 사진</span>{" "}
-            <div className="flex relative rounded-lg">
-              <label
-                className=" absolute bottom-1 right-1/2 translate-x-1/2 w-[100px] "
-                forhtml="filebutton"
-              >
-                {" "}
-                <img
-                  src={imgFile || "/photo/good.png"}
-                  alt="<FcOldTimeCamera/>"
-                  className="h-[100px] w-[100px] rounded-[50%] border"
-                />
-                <input
-                  id="filebutton"
-                  multiple="multiple"
-                  type="file"
-                  accept="image/*"
-                  onInput={onChangeImg}
-                  className="hidden"
-                  ref={imgRef}
-                ></input>
-              </label>
-            </div>
-          </div>
-          <div>
-            <div className="flex">
-              {" "}
-              <label htmlFor="name">이름</label>
+        {/* form */}
+        <section className="flex my-12">
+          {/* 왼쪽 */}
+          <ul className="flex flex-col gap-12 border-r px-24 mb-12">
+            <li>이름</li>
+            <li>닉네임</li>
+            <li>이메일</li>
+            <li>비밀번호</li>
+            <li>비밀번호확인</li>
+            <li>전화번호</li>
+          </ul>
+          {/* 오른쪽 */}
+          <form
+            className="flex flex-col gap-12 pl-20"
+            onSubmit={handleSubmit(submitForm)}
+          >
+            <div className="relative">
               <input
                 type="text"
-                id="name"
-                value={name}
-                onChange={handleNameChange}
+                placeholder="이름 입력"
+                className="w-80"
+                {...register("name")}
               />
+              <span className="text-red-500 absolute left-0 -bottom-6">
+                {errors.name && "필수 입력 사항입니다."}
+              </span>
             </div>
-            <div className="flex">
-              <label htmlFor="nickname" className="block">
-                닉네임
-              </label>
+            <div className="relative">
               <input
                 type="text"
-                id="nickname"
-                value={nickname}
-                onChange={handleNicknameChange}
+                placeholder="닉네임 입력"
+                className="w-80"
+                {...register("nickname")}
               />
+              <span className="text-red-500 absolute left-0 -bottom-6">
+                {errors.nickname && "필수 입력 사항입니다."}
+              </span>
             </div>
-            <div className="flex">
-              <label htmlFor="email">이메일</label>
+            <div className="relative">
               <input
                 type="email"
-                id="email"
-                value={email}
-                onChange={handleEmailChange}
+                placeholder="영문,숫자,특수문자"
+                className="w-80"
+                {...register("email")}
               />
+              <span className="text-red-500 absolute left-0 -bottom-6">
+                {errors.email && "이메일 형식이 맞지 않습니다."}
+              </span>
             </div>
-            <div className="flex">
-              {" "}
-              <label htmlFor="password">비밀번호</label>
+            <div className="relative">
               <input
                 type="password"
-                id="password"
-                value={password}
-                onChange={handlePasswordChange}
+                className="w-80"
+                placeholder="비밀번호(문자, 숫자, 특수문자 포함 5~16자)"
+                autoComplete="off"
+                {...register("pw")}
               />
+              <span className="text-red-500 absolute left-0 -bottom-6">
+                {errors.pw && "사용할 수 없는 비밀번호 입니다."}
+              </span>
             </div>
-            <div className="flex">
-              {" "}
-              <label htmlFor="phone">전화번호</label>
+            <div className="relative">
+              <input
+                type="password"
+                className="w-80"
+                placeholder="비밀번호 재입력"
+                autoComplete="off"
+                {...register("checkPw")}
+              />
+              <span className="text-red-500 absolute left-0 -bottom-6">
+                {errors.checkPw && "비밀번호가 일치하지 않습니다."}
+              </span>
+            </div>
+            <div className="relative">
               <input
                 type="tel"
-                id="phone"
-                value={phone}
-                onChange={handlePhoneChange}
+                className="w-80"
+                placeholder="휴대폰 번호 입력(‘-’ 제외 11자리 입력)"
+                {...register("tel")}
               />
+              <span className="text-red-500 absolute left-0 -bottom-6">
+                {errors.tel && "형식에 맞지 않습니다."}
+              </span>
             </div>
-          </div>
-        </div>
-        <div className="flex justify-center mt-14 gap-5">
-          <button className="w-[100px] h-[50px] bg-main text-white rounded-lg py-2 ">
-            수정
-          </button>
-          <button
-            className="w-[100px] h-[50px] bg-gray-500 text-white py-2 rounded-lg"
-            type="button"
-          >
-            닫기
-          </button>
-        </div>
-      </div>
-    </div>
+            <div className="fixed bottom-12 left-1/2 -translate-x-1/2">
+              <button className="w-[100px] h-[50px] bg-main text-white rounded-lg py-2 mr-8 ">
+                수정
+              </button>
+              <button
+                className="w-[100px] h-[50px] bg-gray-500 text-white py-2 rounded-lg"
+                type="button"
+                onClick={closeModal}
+              >
+                닫기
+              </button>
+            </div>
+          </form>
+        </section>
+      </section>
+    </section>
   );
 };
 export default EditProfile;
