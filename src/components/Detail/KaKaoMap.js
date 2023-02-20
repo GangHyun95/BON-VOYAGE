@@ -45,16 +45,22 @@ const KaKaoMap = ({ place, lat, lng, setLat, setLng, mapData }) => {
           position={pos.center}
         >
           {" "}
-         {pos.title && <div className=" text-white  rounded-lg relative flex">
-            <img src={pos.imgPath} alt={pos.title} className="h-[100px]" />
-            <div className="bg-[#73a4ec] px-4 h-[100px]">
-              <h3 className="text-semibold my-3 text-xl">{pos.title}</h3>
-              <span>{pos.address}</span>
-            </div>
-          </div>}
-          <div className="text-xl text-main absolute left-[50%] bottom-[-20px]">
-            <FaMapPin />
-          </div>
+          {pos.title && (
+            <section className="text-white rounded-lg flex justify-center items-center overflow-hidden w-[280px] whitespace-pre-wrap border">
+              <img
+                src={pos.imgPath}
+                alt={pos.title}
+                className="w-[120px] h-[120px]"
+              />
+              <div className="bg-main p-3 w-40 h-[120px]">
+                <h3 className="text-semibold text-lg">{pos.title}</h3>
+                <span className="text-sm">{pos.address}</span>
+              </div>
+              <div className="text-xl text-main absolute left-1/2 -translate-x-1/2 bottom-[-20px]">
+                <FaMapPin />
+              </div>
+            </section>
+          )}
           {/* 커스텀 오버레이에 표시할 내용입니다 */}
         </CustomOverlayMap>
         <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
