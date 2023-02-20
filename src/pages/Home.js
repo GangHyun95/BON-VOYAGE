@@ -7,6 +7,7 @@ import Visual from "../components/Main/Visual";
 const Home = () => {
   const [sortText, setSortText] = useState("추천 순");
   const [placeList, setPlaceList] = useState([]);
+  const [keyword, setKeyword] = useState("");
   const fetchDate = async () => {
     try {
       const result = await instance.get("/api/zone/allcate");
@@ -43,6 +44,20 @@ const Home = () => {
     });
     setSortText("내림차순");
   };
+
+  const onSearch = async (e) => {
+    e.preventDefault();
+    if (keyword === null || keyword === "") {
+      alert("검색어를 입력하세요");
+    } else {
+      await instance
+        .get(`/api/zone/search?keyword=${keyword}`)
+        .then((res) => setPlaceList(res.data.list));
+    }
+    setKeyword("");
+  };
+  console.log(keyword);
+
   return (
     <>
       <Visual />
@@ -54,6 +69,9 @@ const Home = () => {
           setSortText={setSortText}
           assending={assending}
           descending={descending}
+          keyword={keyword}
+          setKeyword={setKeyword}
+          onSearch={onSearch}
         />
         <TravelLog />
       </div>

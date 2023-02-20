@@ -13,6 +13,9 @@ const PlaceList = ({
   setSortText,
   assending,
   descending,
+  keyword,
+  setKeyword,
+  onSearch,
 }) => {
   const [filter, setFilter] = useState(filters[0]);
 
@@ -39,7 +42,11 @@ const PlaceList = ({
       </p>
       {/* 검색폼 */}
       <div className="w-[600px] mx-auto mb-8">
-        <SearchForm />
+        <SearchForm
+          keyword={keyword}
+          setKeyword={setKeyword}
+          onSearch={onSearch}
+        />
         <CateList
           filters={filters}
           filter={filter}

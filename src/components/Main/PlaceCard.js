@@ -23,7 +23,6 @@ const PlaceCard = ({ place, type }) => {
 
   const isWishList = type === "wishList";
 
-  console.log(place?.child?.image?.iiFileName);
   return (
     <div
       className="flex  flex-col shadow rounded overflow-hidden"
