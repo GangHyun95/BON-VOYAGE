@@ -1,7 +1,6 @@
 import React from "react";
 
 const ButtonGroup = ({ filter, arr, setFilter }) => {
-  console.log(filter);
   return (
     <div className="flex items-center justify-center">
       {arr.map((item, index) => (

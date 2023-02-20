@@ -15,8 +15,12 @@ const KaKaoMap = ({ place, lat, lng, setLat, setLng, mapData }) => {
   const [pos, setPos] = useState({
     center: { lat, lng },
     isPanto: false,
+    title: "",
+    address: "",
+    imgPath: "",
   });
 
+  console.log(pos);
   return (
     <>
       <Recommendation
@@ -39,8 +43,15 @@ const KaKaoMap = ({ place, lat, lng, setLat, setLng, mapData }) => {
           // 커스텀 오버레이가 표시될 위치입니다
           position={pos.center}
         >
+          {" "}
+          <div className=" text-white rounded flex items-center">
+            <img src={pos.imgPath} alt={pos.title} />
+            <div className="bg-[#d95050]">
+              <h3>{pos.title}</h3>
+              <p>{pos.address}</p>
+            </div>
+          </div>
           {/* 커스텀 오버레이에 표시할 내용입니다 */}
-          <div className="bg-white rounded"></div>
         </CustomOverlayMap>
         <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
         <MapTypeControl position={kakao.maps.ControlPosition.TOPLEFT} />

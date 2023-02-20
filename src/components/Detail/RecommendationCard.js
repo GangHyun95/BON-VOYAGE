@@ -27,9 +27,11 @@ const RecommendationCard = ({
               lng: recommendation.tpIongitude,
             },
             isPanto: true,
+            title: recommendation.tpName,
+            address: recommendation.tpAdress,
+            imgPath: recommendation.tpImage,
           })
         }
- 
       >
         <div className="flex h-[130px] flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
           <img
