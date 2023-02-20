@@ -5,11 +5,15 @@ import * as yup from "yup";
 import { BsInfoCircleFill } from "react-icons/bs";
 const EditProfile = ({ closeModal }) => {
   const schema = yup.object().shape({
-    email: yup.string().email().required(),
-    name: yup.string().required(),
-    nickname: yup.string().required(),
-    pw: yup.string().min(8).max(16).required(),
-    tel: yup.string().min(10).required(),
+    email: yup.string().email().required("이메일을 입력해주세요"),
+    name: yup.string().required("이름을 입력해주세요"),
+    nickname: yup.string().required("닉네임을 입력해주세요"),
+    pw: yup
+      .string()
+      .min(8, "비밀번호는 8자리 이상이어야 합니다.")
+      .max(16, "비밀번호는 16자리 이하여야 합니다.")
+      .required(),
+    tel: yup.string().min(10, "에러문구").required("전화번호를 입력해주세요"),
     checkPw: yup
       .string()
       .oneOf([yup.ref("pw"), null])
@@ -113,9 +117,12 @@ const EditProfile = ({ closeModal }) => {
                 className="w-80"
                 {...register("name")}
               />
-              <span className="text-red-500 absolute left-0 -bottom-6">
-                {errors.name && "필수 입력 사항입니다."}
-              </span>
+
+              {errors.name && (
+                <span className="text-red-500 absolute left-0 -bottom-6">
+                  {errors.name.message}
+                </span>
+              )}
             </div>
             <div className="relative">
               <input
@@ -124,9 +131,11 @@ const EditProfile = ({ closeModal }) => {
                 className="w-80"
                 {...register("nickname")}
               />
-              <span className="text-red-500 absolute left-0 -bottom-6">
-                {errors.nickname && "필수 입력 사항입니다."}
-              </span>
+              {errors.nickname && (
+                <span className="text-red-500 absolute left-0 -bottom-6">
+                  {errors.nickname.message}
+                </span>
+              )}
             </div>
             <div className="relative">
               <input
@@ -135,9 +144,11 @@ const EditProfile = ({ closeModal }) => {
                 className="w-80"
                 {...register("email")}
               />
-              <span className="text-red-500 absolute left-0 -bottom-6">
-                {errors.email && "이메일 형식이 맞지 않습니다."}
-              </span>
+              {errors.email && (
+                <span className="text-red-500 absolute left-0 -bottom-6">
+                  {errors.email.message}
+                </span>
+              )}
             </div>
             <div className="relative">
               <input
@@ -147,9 +158,11 @@ const EditProfile = ({ closeModal }) => {
                 autoComplete="off"
                 {...register("pw")}
               />
-              <span className="text-red-500 absolute left-0 -bottom-6">
-                {errors.pw && "사용할 수 없는 비밀번호 입니다."}
-              </span>
+              {errors.pw && (
+                <span className="text-red-500 absolute left-0 -bottom-6">
+                  {errors.pw.message}
+                </span>
+              )}
             </div>
             <div className="relative">
               <input
@@ -170,9 +183,11 @@ const EditProfile = ({ closeModal }) => {
                 placeholder="휴대폰 번호 입력(‘-’ 제외 11자리 입력)"
                 {...register("tel")}
               />
-              <span className="text-red-500 absolute left-0 -bottom-6">
-                {errors.tel && "형식에 맞지 않습니다."}
-              </span>
+              {errors.tel && (
+                <span className="text-red-500 absolute left-0 -bottom-6">
+                  {errors.tel.message}
+                </span>
+              )}
             </div>
             <div className="fixed bottom-12 left-1/2 -translate-x-1/2">
               <button className="w-[100px] h-[50px] bg-main text-white rounded-lg py-2 mr-8 ">

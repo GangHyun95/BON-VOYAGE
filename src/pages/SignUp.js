@@ -9,11 +9,18 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
-    email: yup.string().email().required(),
-    name: yup.string().required(),
-    nickname: yup.string().required(),
-    pw: yup.string().min(8).max(16).required(),
-    tel: yup.string().min(10).required(),
+    email: yup.string().email().required("이메일을 입력해 주세요."),
+    name: yup.string().required("이름을 입력해 주세요."),
+    nickname: yup.string().required("닉네임을 입력해 주세요."),
+    pw: yup
+      .string()
+      .min(8, "비밀번호는 8자리 이상")
+      .max(16, "비밀번호는 16자리 이하")
+      .required("비밀번호를 입력해주세요."),
+    tel: yup
+      .string()
+      .min(10, "전화번호는 10자리 이상")
+      .required("전화번호를 입력해주세요."),
     checkPw: yup
       .string()
       .oneOf([yup.ref("pw"), null])
@@ -56,12 +63,11 @@ const SignUp = () => {
       <h1 className="my-[50px] text-xl">Sign Up</h1>
       <form className="text-xs" onSubmit={handleSubmit(submitForm)}>
         {/* 이메일 */}
-
         <label htmlFor="email" className="block font-bold text-slate-600">
           이메일
-          <span className="ml-4  text-red-500">
-            {errors.email && "이메일 형식이 맞지 않습니다."}
-          </span>
+          {errors.email && (
+            <span className="ml-4  text-red-500">{errors.email.message}</span>
+          )}
         </label>
         <input
           type="email"
@@ -76,9 +82,9 @@ const SignUp = () => {
         {/* 비밀번호 */}
         <label htmlFor="pw" className="block font-bold text-slate-600">
           비밀번호
-          <span className="ml-4  text-red-500">
-            {errors.pw && "사용할 수 없는 비밀번호 입니다."}
-          </span>
+          {errors.pw && (
+            <span className="ml-4  text-red-500">{errors.pw.message}</span>
+          )}
         </label>
         <input
           type="password"
@@ -88,12 +94,13 @@ const SignUp = () => {
         />
         <br />
         {/* 비밀번호 확인 */}
-
         <label htmlFor="checkPw" className="block font-bold text-slate-600">
           비밀번호 확인
-          <span className="ml-4  text-red-500">
-            {errors.checkPw && "비밀번호가 일치하지 않습니다."}
-          </span>
+          {errors.checkPw && (
+            <span className="ml-4  text-red-500">
+              비밀번호가 일치하지 않습니다.
+            </span>
+          )}
         </label>
         <input
           className="bg-gray-100  text-left px-[20px] w-[450px] py-3 my-3 rounded-lg"
@@ -103,12 +110,11 @@ const SignUp = () => {
         />
         <br />
         {/* 이름 */}
-
         <label htmlFor="name" className="block font-bold text-slate-600">
           이름
-          <span className="ml-4  text-red-500">
-            {errors.name && "필수 입력 사항입니다."}
-          </span>
+          {errors.name && (
+            <span className="ml-4  text-red-500">{errors.name.message}</span>
+          )}
         </label>
         <input
           type="text"
@@ -118,12 +124,13 @@ const SignUp = () => {
         />
         <br />
         {/* 닉네임 */}
-
         <label htmlFor="nickname" className="block font-bold text-slate-600">
           닉네임
-          <span className="ml-4  text-red-500">
-            {errors.nickname && "필수 입력 사항입니다."}
-          </span>
+          {errors.nickname && (
+            <span className="ml-4  text-red-500">
+              {errors.nickname.message}
+            </span>
+          )}
         </label>
         <input
           type="text"
@@ -135,9 +142,9 @@ const SignUp = () => {
         {/* 폰 */}
         <label htmlFor="tel" className="block font-bold text-slate-600">
           전화번호
-          <span className="ml-4  text-red-500">
-            {errors.tel && "11자리 입력."}
-          </span>
+          {errors.tel && (
+            <span className="ml-4  text-red-500">{errors.tel.message}</span>
+          )}
         </label>
         <input
           type="text"
@@ -146,7 +153,6 @@ const SignUp = () => {
           {...register("tel")}
         />
         <br />
-
         <div className="flex justify-center space-x-5 font-bold">
           <button
             type="submit"
