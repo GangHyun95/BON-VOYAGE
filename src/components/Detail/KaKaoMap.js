@@ -46,13 +46,9 @@ const KaKaoMap = ({ place, lat, lng, setLat, setLng, mapData }) => {
         >
           {" "}
           {pos.title && (
-            <section className="text-white rounded-lg flex justify-center items-center overflow-hidden w-[280px] whitespace-pre-wrap border">
-              <img
-                src={pos.imgPath}
-                alt={pos.title}
-                className="w-[120px] h-[120px]"
-              />
-              <div className="bg-main p-3 w-40 h-[120px]">
+            <section className="text-white rounded-lg flex justify-center items-center overflow-hidden w-[304px] whitespace-pre-wrap border">
+              <img src={pos.imgPath} alt={pos.title} className="w-32 h-32" />
+              <div className="bg-main p-3 w-44 h-32">
                 <h3 className="text-semibold text-lg">{pos.title}</h3>
                 <span className="text-sm">{pos.address}</span>
               </div>
