@@ -3,7 +3,6 @@ import { MdArrowDropDown } from "react-icons/md";
 import CateList from "./CateList";
 import SearchForm from "./SearchForm";
 import PlaceCard from "./PlaceCard";
-import { useEffect } from "react";
 
 const filters = ["전체", "서울/경기", "강원", "충청", "전라", "경상", "제주"];
 
@@ -15,7 +14,6 @@ const PlaceList = ({
   descending,
   keyword,
   setKeyword,
-  onSearch,
 }) => {
   const [filter, setFilter] = useState(filters[0]);
 
@@ -26,13 +24,6 @@ const PlaceList = ({
   };
 
   const filtered = getFilteredItems(placeList, filter);
-  // const [filtered, setFiltered] = useState([]);
-
-  // useEffect(() => {
-  //   setFiltered(getFilteredItems(placeList, filter));
-  // }, []);
-
-  console.log(filtered);
 
   return (
     <section className="text-center">
@@ -42,11 +33,7 @@ const PlaceList = ({
       </p>
       {/* 검색폼 */}
       <div className="w-[600px] mx-auto mb-8">
-        <SearchForm
-          keyword={keyword}
-          setKeyword={setKeyword}
-          onSearch={onSearch}
-        />
+        <SearchForm keyword={keyword} setKeyword={setKeyword} />
         <CateList
           filters={filters}
           filter={filter}
@@ -97,6 +84,6 @@ function getFilteredItems(placeList, filter) {
     return placeList;
   }
 
-  return placeList.filter((place) => place.parent.name === filter);
+  return placeList.filter((place) => place?.parent?.name === filter);
 }
 export default PlaceList;

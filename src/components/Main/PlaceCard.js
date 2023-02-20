@@ -25,7 +25,7 @@ const PlaceCard = ({ place, type }) => {
 
   return (
     <div
-      className="flex  flex-col shadow rounded overflow-hidden"
+      className="flex flex-col shadow rounded overflow-hidden"
       onClick={openModal}
     >
       <div className="overflow-hidden flex-1">
@@ -52,12 +52,13 @@ const PlaceCard = ({ place, type }) => {
               className="absolute top-12 right-10 text-2xl cursor-pointer"
               onClick={closeModal}
             />
-            <section className="relative basis-1/3 overflow-hidden rounded max-w-[352px] max-h-[352px] min-h-[352px] object-contain">
+            <section className="flex flex-col relative basis-1/3 overflow-hidden rounded max-w-[352px] max-h-[352px] min-h-[352px] object-contain">
               <img
                 src={`http://192.168.0.112:8888/api/images/download/local?imgname=${place?.child?.image?.iiFileName}`}
                 alt="ㅇㅇ"
-                className="w-full object-cover"
+                className="w-full object-cover flex-1"
               />
+
               <BsSuitHeartFill
                 onClick={handleClick}
                 className={`absolute top-4 left-4 text-2xl ${

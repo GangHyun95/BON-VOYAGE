@@ -8,9 +8,11 @@ const Home = () => {
   const [sortText, setSortText] = useState("추천 순");
   const [placeList, setPlaceList] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const fetchDate = async () => {
+  const fetchData = async () => {
     try {
-      const result = await instance.get("/api/zone/allcate");
+      const result = await instance.get(
+        keyword ? `/api/zone/search?keyword=${keyword}` : "/api/zone/allcate"
+      );
       setPlaceList(result.data.list);
     } catch (error) {
       console.log(error);
@@ -18,8 +20,9 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchDate();
-  }, []);
+    fetchData();
+  }, [keyword]);
+
   //
   const assending = () => {
     placeList.sort(function (a, b) {
@@ -45,19 +48,6 @@ const Home = () => {
     setSortText("내림차순");
   };
 
-  const onSearch = async (e) => {
-    e.preventDefault();
-    if (keyword === null || keyword === "") {
-      alert("검색어를 입력하세요");
-    } else {
-      await instance
-        .get(`/api/zone/search?keyword=${keyword}`)
-        .then((res) => setPlaceList(res.data.list));
-    }
-    setKeyword("");
-  };
-  console.log(keyword);
-
   return (
     <>
       <Visual />
@@ -71,7 +61,6 @@ const Home = () => {
           descending={descending}
           keyword={keyword}
           setKeyword={setKeyword}
-          onSearch={onSearch}
         />
         <TravelLog />
       </div>
