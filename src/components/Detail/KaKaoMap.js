@@ -9,6 +9,7 @@ import {
 } from "react-kakao-maps-sdk";
 // import MapOverlay from "../style/MapOverlay.css";
 import Recommendation from "./Recommendation";
+import { FaMapPin } from "react-icons/fa";
 
 const { kakao } = window;
 const KaKaoMap = ({ place, lat, lng, setLat, setLng, mapData }) => {
@@ -44,12 +45,15 @@ const KaKaoMap = ({ place, lat, lng, setLat, setLng, mapData }) => {
           position={pos.center}
         >
           {" "}
-          <div className=" text-white rounded flex items-center">
-            <img src={pos.imgPath} alt={pos.title} />
-            <div className="bg-[#d95050]">
-              <h3>{pos.title}</h3>
-              <p>{pos.address}</p>
+         {pos.title && <div className=" text-white  rounded-lg relative flex">
+            <img src={pos.imgPath} alt={pos.title} className="h-[100px]" />
+            <div className="bg-[#73a4ec] px-4 h-[100px]">
+              <h3 className="text-semibold my-3 text-xl">{pos.title}</h3>
+              <span>{pos.address}</span>
             </div>
+          </div>}
+          <div className="text-xl text-main absolute left-[50%] bottom-[-20px]">
+            <FaMapPin />
           </div>
           {/* 커스텀 오버레이에 표시할 내용입니다 */}
         </CustomOverlayMap>
