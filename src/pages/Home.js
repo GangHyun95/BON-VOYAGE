@@ -27,9 +27,9 @@ const Home = () => {
   const assending = () => {
     placeList.sort(function (a, b) {
       // 한글 오름차순
-      return a?.child?.name < b?.child?.name
+      return a.child.name < b.child.name
         ? -1
-        : a?.child?.name > b?.child?.name
+        : a.child.name > b.child.name
         ? 1
         : 0;
     });
@@ -39,9 +39,9 @@ const Home = () => {
   const descending = () => {
     placeList.sort(function (a, b) {
       // 한글 내림차순
-      return a?.child?.name > b?.child?.name
+      return a.child.name > b.child.name
         ? -1
-        : a?.child?.name < b?.child?.name
+        : a.child.name < b.child.name
         ? 1
         : 0;
     });
