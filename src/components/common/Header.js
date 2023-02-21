@@ -65,11 +65,12 @@ const Header = () => {
           {user.miNickname}
           {user.miSeq && (
             <div
-              className="cursor-pointer rounded-3xl  bg-gray-400 text-center w-[50px] h-[50px]"
+              className="relative cursor-pointer rounded-3xl  bg-gray-400 text-center w-[50px] h-[50px]"
               onClick={handleCircleClick}
             >
+              <img src="/photo/info.png" alt="profile" />
               {isClicked && (
-                <div className="mx-[-68px] my-[30px] text-black bg-white w-[100px] h-[96px]">
+                <div className="absolute top-8 left-5 text-black bg-white w-[100px] h-[96px]">
                   <ul className="text-center">
                     <li
                       className="py-3 hover:bg-gray-200"

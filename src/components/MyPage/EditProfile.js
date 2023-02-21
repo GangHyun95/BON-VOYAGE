@@ -70,7 +70,6 @@ const EditProfile = ({ closeModal }) => {
     }
   };
   return (
-
     <section className="w-[900px]">
       <header className="flex items-center py-5 px-10 text-xl bg-main text-white">
         <BsInfoCircleFill />
@@ -81,7 +80,7 @@ const EditProfile = ({ closeModal }) => {
         <div className="flex justify-center rounded-lg pb-4">
           <label htmlFor="filebutton">
             <img
-              src={imgFile || "/photo/good.png"}
+              src={imgFile || "/photo/info.png"}
               alt="profile"
               className="h-32 w-32 rounded-full border"
             />
