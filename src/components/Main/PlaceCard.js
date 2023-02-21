@@ -10,7 +10,6 @@ const PlaceCard = ({ place, type }) => {
   const openModal = () => {
     setModalVisible(true);
   };
-
   const closeModal = (e) => {
     e.stopPropagation();
     setModalVisible(false);
@@ -30,7 +29,7 @@ const PlaceCard = ({ place, type }) => {
     >
       <div className="overflow-hidden flex-1">
         <img
-          src={`http://192.168.0.112:8888/api/images/download/local?imgname=${place?.child?.image?.iiFileName}`}
+          src={`http://192.168.0.112:8888/api/images/download/local?imgname=${place.child.image.iiFileName}`}
           alt="임시"
           className="hover:scale-[115%] transition-transform duration-200 ease-in-out h-full"
         />
@@ -39,10 +38,10 @@ const PlaceCard = ({ place, type }) => {
         <p
           className={isWishList ? "font-Mont" : "font-Mont text-2xl font-bold"}
         >
-          {place?.child?.engname}
+          {place.child.engname}
         </p>
         <p className={isWishList ? "font-bold" : "text-sm my-2"}>
-          {place?.child?.name}
+          {place.child.name}
         </p>
       </div>
       {modalVisible && (
@@ -54,7 +53,7 @@ const PlaceCard = ({ place, type }) => {
             />
             <section className="flex flex-col relative basis-1/3 overflow-hidden rounded max-w-[352px] max-h-[352px] min-h-[352px] object-contain">
               <img
-                src={`http://192.168.0.112:8888/api/images/download/local?imgname=${place?.child?.image?.iiFileName}`}
+                src={`http://192.168.0.112:8888/api/images/download/local?imgname=${place.child.image.iiFileName}`}
                 alt="ㅇㅇ"
                 className="w-full object-cover flex-1"
               />

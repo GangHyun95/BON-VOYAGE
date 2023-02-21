@@ -8,8 +8,8 @@ const Detail = () => {
   const {
     state: { place },
   } = useLocation();
-  const [lat, setLat] = useState(place.latitude);
-  const [lng, setLng] = useState(place.longitude);
+  const [lat] = useState(place.latitude);
+  const [lng] = useState(place.longitude);
   // 데이터 넣기
   const [mapData, setMapData] = useState([]);
   const fetchDate = async () => {
@@ -28,14 +28,7 @@ const Detail = () => {
   return (
     <div className="flex pt-20 max-h-screen overflow-hidden">
       <TravelCalendar place={place} />
-      <KaKaoMap
-        place={place}
-        lat={lat}
-        lng={lng}
-        mapData={mapData}
-        setLat={setLat}
-        setLng={setLng}
-      />
+      <KaKaoMap lat={lat} lng={lng} mapData={mapData} />
     </div>
   );
 };

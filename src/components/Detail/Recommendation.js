@@ -5,14 +5,16 @@ import ButtonGroup from "./ButtonGroup";
 import RecommendationCard from "./RecommendationCard";
 import { CiSearch } from "react-icons/ci";
 
-const Recommendation = ({ mapData, setLat, setLng, pos, setPos, place }) => {
+const Recommendation = ({ mapData, setPos }) => {
   const [visible, setVisible] = useState(false);
-  const openNotice = () => {
+  const openNotice = (e) => {
+    e.stopPropagation();
     setVisible(true);
     setTimeout(() => {
       setVisible(false);
     }, 1000);
   };
+
   // 모달 만들기
   const [modalVisible, setModalVisible] = useState(false);
   const openModal = () => {
@@ -29,11 +31,11 @@ const Recommendation = ({ mapData, setLat, setLng, pos, setPos, place }) => {
     { title: "숙박시설", icon: <RiHotelLine />, tpType: 2 },
   ];
   const [filter, setFilter] = useState(arr[0]);
-// 버튼 타입 필터 정의
-function getFilteredItems(mapData, filter) {
-  return mapData.filter((place) => place.tpType === filter.tpType);
-}
-// 버튼 타입 필터 호출
+  // 버튼 타입 필터 정의
+  function getFilteredItems(mapData, filter) {
+    return mapData.filter((place) => place.tpType === filter.tpType);
+  }
+  // 버튼 타입 필터 호출
   const filtered = getFilteredItems(mapData, filter);
 
   return (
@@ -60,10 +62,7 @@ function getFilteredItems(mapData, filter) {
             closeModal={closeModal}
             visible={visible}
             recommendation={recommendation}
-            setLat={setLat}
-            setLng={setLng}
             setPos={setPos}
-            place={place}
             key={recommendation.tlSeq}
           />
         ))}

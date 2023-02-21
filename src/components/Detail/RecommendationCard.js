@@ -10,16 +10,12 @@ const RecommendationCard = ({
   closeModal,
   visible,
   recommendation,
-  setLat,
-  setLng,
-  pos,
   setPos,
-  place,
 }) => {
   return (
     <>
       <li
-        className="flex justify-center m-3"
+        className="flex w-11/12 mx-auto my-3 shadow-lg rounded-lg h-[130px]"
         onClick={() =>
           setPos({
             center: {
@@ -33,48 +29,46 @@ const RecommendationCard = ({
           })
         }
       >
-        <div className="flex h-[130px] flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
-          <img
-            className="w-20 md:h-auto object-cover md:w-36 rounded-t-lg md:rounded-none md:rounded-l-lg"
-            src={recommendation?.tpImage}
-            alt="이미지"
-          />
-          <div className="relative p-6 flex flex-col justify-start">
-            <p className="text-gray-900 text-sm font-medium mb-2">
-              {recommendation?.tpName}
-            </p>
-            <p className="text-xs text-gray-400">{recommendation?.tpAdress}</p>
-            <button className="absolute right-8 bottom-3">
-              <TbAlertCircle onClick={openModal} />
-            </button>
-            {modalVisible && (
-              <Modal
-                visible={modalVisible}
-                onClose={closeModal}
-                width={1000}
-                height={400}
-              >
+        <img
+          className="w-20 md:h-auto object-cover md:w-36 rounded-t-lg md:rounded-none md:rounded-l-lg"
+          src={recommendation?.tpImage}
+          alt="이미지"
+        />
+        <div className="relative p-6 flex flex-col flex-1">
+          <p className="text-gray-900 text-sm font-medium mb-2">
+            {recommendation?.tpName}
+          </p>
+          <p className="text-xs text-gray-400">{recommendation?.tpAdress}</p>
+          <button className="absolute right-8 bottom-3">
+            <TbAlertCircle onClick={openModal} />
+          </button>
+          {modalVisible && (
+            <Modal
+              visible={modalVisible}
+              onClose={closeModal}
+              width={1000}
+              height={400}
+            >
+              <div>
                 <div>
-                  <div>
-                    {" "}
-                    <h2 className="text-2xl">동문 재래시장</h2>
-                  </div>
-                  <div className="bg-white  ">
-                    <p>영업시간</p>
-                    <p>홈페이지</p>
-                    <p>주소</p>
-                    <p>전화</p>
-                  </div>
+                  {" "}
+                  <h2 className="text-2xl">동문 재래시장</h2>
                 </div>
-              </Modal>
-            )}
-            <button>
-              <AiOutlinePlus
-                onClick={openNotice}
-                className="absolute right-2 bottom-3"
-              />
-            </button>
-          </div>
+                <div className="bg-white">
+                  <p>영업시간</p>
+                  <p>홈페이지</p>
+                  <p>주소</p>
+                  <p>전화</p>
+                </div>
+              </div>
+            </Modal>
+          )}
+          <button>
+            <AiOutlinePlus
+              onClick={openNotice}
+              className="absolute right-2 bottom-3"
+            />
+          </button>
         </div>
       </li>
       {visible && (

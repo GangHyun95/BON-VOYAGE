@@ -84,6 +84,6 @@ function getFilteredItems(placeList, filter) {
     return placeList;
   }
 
-  return placeList.filter((place) => place?.parent?.name === filter);
+  return placeList.filter((place) => place.parent.name === filter);
 }
 export default PlaceList;
