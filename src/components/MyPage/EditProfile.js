@@ -86,14 +86,14 @@ const EditProfile = ({ closeModal }) => {
     }
   };
   return (
-    <div className="w-[900px] h-[700px]   ">
+    <div className="w-[900px]    ">
       <div className=" w-[900px]  h-[70px] flex text-xl justify-self-stretch bg-main text-white">
         <div className="flex items-center  ">
           <BsInfoCircleFill className="ml-10" />
           <span className=" ml-10"> 회원정보수정 </span>
         </div>
       </div>
-      <div className=" w-[900px] h-[630px]  px-[100px] py-12 ">
+      <div className=" w-[900px]  px-[100px] py-12  ">
         <div className="">
           <div className="border h-[150px] flex  ">
             <span className="">프로필 사진</span>{" "}
@@ -121,9 +121,9 @@ const EditProfile = ({ closeModal }) => {
             </div>
           </div>
           <div>
-            <div className="flex">
+            <div className="flex py-6">
               {" "}
-              <label htmlFor="name">이름</label>
+              <label  className="" htmlFor="name">이름</label>
               <input
                 type="text"
                 id="name"
@@ -131,7 +131,7 @@ const EditProfile = ({ closeModal }) => {
                 onChange={handleNameChange}
               />
             </div>
-            <div className="flex">
+            <div className="flex py-6">
               <label htmlFor="nickname" className="block">
                 닉네임
               </label>
@@ -142,7 +142,7 @@ const EditProfile = ({ closeModal }) => {
                 onChange={handleNicknameChange}
               />
             </div>
-            <div className="flex">
+            <div className="flex py-6">
               <label htmlFor="email">이메일</label>
               <input
                 type="email"
@@ -151,7 +151,7 @@ const EditProfile = ({ closeModal }) => {
                 onChange={handleEmailChange}
               />
             </div>
-            <div className="flex">
+            <div className="flex py-6">
               {" "}
               <label htmlFor="password">비밀번호</label>
               <input
@@ -161,7 +161,7 @@ const EditProfile = ({ closeModal }) => {
                 onChange={handlePasswordChange}
               />
             </div>
-            <div className="flex">
+            <div className="flex py-6">
               {" "}
               <label htmlFor="phone">전화번호</label>
               <input
@@ -178,6 +178,7 @@ const EditProfile = ({ closeModal }) => {
             수정
           </button>
           <button
+          onClick={closeModal}
             className="w-[100px] h-[50px] bg-gray-500 text-white py-2 rounded-lg"
             type="button"
           >
