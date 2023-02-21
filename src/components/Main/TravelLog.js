@@ -4,7 +4,7 @@ import { Navigation } from "swiper";
 import "swiper/css/navigation";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from 'swiper';
+import { Pagination } from "swiper";
 import styled from "styled-components";
 const TravelLog = () => {
   return (
@@ -29,15 +29,14 @@ const TravelLog = () => {
             spaceBetween: 50,
           },
         }}
-        modules={[Pagination,Navigation]}
+        modules={[Pagination, Navigation]}
         className="mySwiper"
         spaceBetween={40}
         slidesPerView={2}
         loop={true}
-        pagination={true} 
+        pagination={true}
       >
         <SwiperSlide>
-          {" "}
           <button
             onClick={() =>
               window.open(
@@ -47,14 +46,12 @@ const TravelLog = () => {
             }
           >
             <p className="right-3 left-3 text-white font-semibold leading-tight absolute top-20 text-3xl text-center font-NM">
-              {" "}
               영월 봄에 가볼 만한 곳 <br /> 모아 모아{" "}
             </p>
             <img className="" src="/photo/travellog1.jpg" alt="영월"></img>{" "}
           </button>
         </SwiperSlide>
         <SwiperSlide>
-          {" "}
           <button
             onClick={() =>
               window.open(
@@ -70,7 +67,6 @@ const TravelLog = () => {
           </button>
         </SwiperSlide>
         <SwiperSlide>
-          {" "}
           <button
             onClick={() =>
               window.open(
@@ -110,7 +106,6 @@ const TravelLog = () => {
               )
             }
           >
-            {" "}
             <img src="/photo/travellog5.jpg" alt="경주"></img>
           </button>
         </SwiperSlide>
