@@ -15,20 +15,6 @@ const TravelLog = () => {
       </p>
       <SwiperContainer
         navigation={true}
-        breakpoints={{
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 5,
-            spaceBetween: 50,
-          },
-        }}
         modules={[Pagination, Navigation]}
         className="mySwiper"
         spaceBetween={40}
@@ -117,7 +103,7 @@ const TravelLog = () => {
 const SwiperContainer = styled(Swiper)`
   padding: 0 0 40px 0;
   .swiper-button-prev {
-    left: 50px;
+    left: 10px;
   }
 
   .swiper-button-prev::after {
@@ -125,7 +111,7 @@ const SwiperContainer = styled(Swiper)`
     font-size: 30px;
   }
   .swiper-button-next {
-    right: 50px;
+    right: 10px;
   }
   .swiper-button-next::after {
     color: #fff;
