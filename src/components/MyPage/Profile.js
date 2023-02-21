@@ -2,6 +2,10 @@ import React, { useRef, useState } from "react";
 import Modal from "../../Layout/Modal";
 import EditProfile from "./EditProfile";
 import { FcOldTimeCamera } from "react-icons/fc";
+import instance from "../../api/axios";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/userSlice";
+import { useNavigate } from "react-router";
 
 const Profile = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -11,6 +15,9 @@ const Profile = () => {
   const closeModal = () => {
     setModalVisible(false);
   };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // 이미지 미리보기 기능
   // 이미지 업로드 및 미리보기
   const [imgFile, setImgFile] = useState("");
@@ -49,6 +56,30 @@ const Profile = () => {
       // });
     }
   };
+
+  const user = useSelector((state) => state.user);
+  console.log(user);
+  const byebye = async () => {
+    try {
+      if (window.confirm("진짜 갈거에요?")) {
+        await instance
+          .delete("/api/member/delete", {
+            params: {
+              miseq: user.miSeq,
+            },
+          })
+          .then((res) => {
+            if (!res.data.status) {
+              alert(res.data.message);
+            }
+          });
+      }
+      dispatch(logout());
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <section className="w-1/4  pt-52 my-8 border-r">
       <div className="flex flex-col items-center gap-4">
@@ -84,7 +115,9 @@ const Profile = () => {
         >
           회원정보수정
         </button>
-        <button className="border px-16 py-3 rounded-2xl">회원탈퇴</button>
+        <button className="border px-16 py-3 rounded-2xl" onClick={byebye}>
+          회원탈퇴
+        </button>
       </div>
       {modalVisible && (
         <Modal visible={modalVisible} onClose={closeModal}>
