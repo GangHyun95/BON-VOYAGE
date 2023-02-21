@@ -11,8 +11,15 @@ const userSlice = createSlice({
       state.miPhone = action.payload.miPhone;
       state.miStatus = action.payload.miStatus;
     },
+    logout: (state, action) => {
+      state.miSeq = "";
+      state.miEmail = "";
+      state.miNickname = "";
+      state.miPhone = "";
+      state.miStatus = "";
+    },
   },
 });
 
-export const { login } = userSlice.actions;
+export const { login, logout } = userSlice.actions;
 export default userSlice;

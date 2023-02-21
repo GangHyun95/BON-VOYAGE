@@ -18,7 +18,13 @@ const TravelLog = () => {
         modules={[Pagination, Navigation]}
         className="mySwiper"
         spaceBetween={40}
-        slidesPerView={2}
+        slidesPerView={1}
+        breakpoints={{
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 0,
+          },
+        }}
         loop={true}
         pagination={true}
       >
@@ -31,10 +37,10 @@ const TravelLog = () => {
               )
             }
           >
-            <p className="right-3 left-3 text-white font-semibold leading-tight absolute top-20 text-3xl text-center font-NM">
-              영월 봄에 가볼 만한 곳 <br /> 모아 모아{" "}
+            <p className="right-3 left-3 text-white font-semibold leading-tight absolute top-20 text-xl md:text-xl lg:text-3xl text-center font-NM">
+              영월 봄에 가볼 만한 곳 <br /> 모아 모아
             </p>
-            <img className="" src="/photo/travellog1.jpg" alt="영월"></img>{" "}
+            <img className="" src="/photo/travellog1.jpg" alt="영월"></img>
           </button>
         </SwiperSlide>
         <SwiperSlide>
@@ -46,7 +52,7 @@ const TravelLog = () => {
               )
             }
           >
-            <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-3xl text-center font-NM">
+            <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-xl md:text-xl lg:text-3xl text-center font-NM">
               강릉 아르떼뮤지엄 <br /> 1박2일
             </p>
             <img className="" src="/photo/travellog2.jpg" alt="강릉"></img>
@@ -61,7 +67,7 @@ const TravelLog = () => {
               )
             }
           >
-            <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-3xl text-center font-NM">
+            <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-xl md:text-xl lg:text-3xl text-center font-NM">
               남원 가볼 만한 곳
             </p>
             <img className="" src="/photo/travellog3.jpg" alt="남원"></img>
@@ -76,7 +82,7 @@ const TravelLog = () => {
               )
             }
           >
-            <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-3xl text-center font-NM">
+            <p className="right-3 left-3 text-white font-semibold  leading-tight absolute top-20 text-xl md:text-xl lg:text-3xl text-center font-NM">
               홍천&춘천 여행을 위한
               <br /> 애견동반 리조트
             </p>

@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Modal from "../../Layout/Modal";
+import { logout } from "../../store/userSlice";
 import Login from "./Login";
 
 const Header = () => {
   // 화면이동
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
   // user redux
   const user = useSelector((state) => state.user);
   console.log(user);
@@ -57,13 +59,17 @@ const Header = () => {
       className="fixed top-0 w-full z-50 text-white transition-all duration-500"
       ref={headerRef}
     >
-      <nav className="flex items-center justify-between h-20 max-w-[1400px] mx-auto">
+      <nav className="flex items-center justify-between h-20 max-w-[1440px] px-5 mx-auto">
         <Link to="/">로고</Link>
         <div className="flex items-center gap-4">
-          {user.miSeq ? "" : <button onClick={openModal}>Login</button>}
+          {user.miStatus === 0 ? (
+            ""
+          ) : (
+            <button onClick={openModal}>Login</button>
+          )}
           {/* 닉네임 */}
           {user.miNickname}
-          {user.miSeq && (
+          {user.miStatus === 0 && (
             <div
               className="relative cursor-pointer rounded-3xl  bg-gray-400 text-center w-[50px] h-[50px]"
               onClick={handleCircleClick}
@@ -78,7 +84,16 @@ const Header = () => {
                     >
                       마이페이지
                     </li>
-                    <li className="py-3 hover:bg-gray-200">로그아웃</li>
+                    <li
+                      className="py-3 hover:bg-gray-200"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsClicked(false);
+                        dispatch(logout());
+                      }}
+                    >
+                      로그아웃
+                    </li>
                   </ul>
                 </div>
               )}

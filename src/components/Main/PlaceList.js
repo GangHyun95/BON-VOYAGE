@@ -32,7 +32,7 @@ const PlaceList = ({
         여행지를 검색하거나 목록에서 직접 선택해주세요.
       </p>
       {/* 검색폼 */}
-      <div className="w-[600px] mx-auto mb-8">
+      <div className="max-w-[600px] mx-auto mb-8">
         <SearchForm keyword={keyword} setKeyword={setKeyword} />
         <CateList
           filters={filters}
@@ -43,7 +43,7 @@ const PlaceList = ({
       {/* select */}
       <div className="flex flex-col items-end text-sm mb-8">
         <div
-          className="flex items-center justify-center mr-14 cursor-pointer relative"
+          className="flex items-center justify-center  cursor-pointer relative"
           onClick={handleListClick}
         >
           <button>{sortText}</button>

@@ -2,7 +2,7 @@ import React from "react";
 
 const CateList = ({ filters, filter, onFilterChange }) => {
   return (
-    <ul className="flex justify-center mt-4 text-sm">
+    <ul className="flex flex-wrap justify-center mt-4 text-sm">
       {filters.map((value, index) => (
         <li
           key={index}

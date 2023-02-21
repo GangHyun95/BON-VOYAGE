@@ -69,15 +69,20 @@ const SignUp = () => {
             <span className="ml-4  text-red-500">{errors.email.message}</span>
           )}
         </label>
-        <input
-          type="email"
-          placeholder="영문,숫자,특수문자"
-          className="bg-gray-100 px-[20px] w-[450px] py-3 my-3 rounded-lg"
-          {...register("email")}
-        />
-        <button className="ml-4 rounded-md bg-[#4C7EFF] text-white p-2 ">
-          중복확인
-        </button>
+        <div className="relative">
+          <input
+            type="email"
+            placeholder="영문,숫자,특수문자"
+            className="bg-gray-100 px-[20px] w-[450px] py-3 my-3 rounded-lg"
+            {...register("email")}
+          />
+          <button
+            type="button"
+            className="absolute right-2 top-1/2 -translate-y-1/2 ml-4 rounded-md bg-[#4C7EFF] text-white p-2 "
+          >
+            중복확인
+          </button>
+        </div>
         <br />
         {/* 비밀번호 */}
         <label htmlFor="pw" className="block font-bold text-slate-600">

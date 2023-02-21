@@ -16,7 +16,7 @@ const Visual = () => {
       </video>
 
       <div className="absolute top-1/2 right-1/2 flex ">
-        <p className="text-white text-5xl inline-block font-NM font-bold ">
+        <p className="text-white text-5xl inline-block font-NM font-bold px-5 ">
           Make Your Best Trip Schedule
         </p>
       </div>
