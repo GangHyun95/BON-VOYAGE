@@ -115,8 +115,9 @@ const TravelLog = () => {
 };
 
 const SwiperContainer = styled(Swiper)`
+  padding: 0 0 40px 0;
   .swiper-button-prev {
-    left: 10px;
+    left: 50px;
   }
 
   .swiper-button-prev::after {
@@ -124,11 +125,18 @@ const SwiperContainer = styled(Swiper)`
     font-size: 30px;
   }
   .swiper-button-next {
-    right: 10px;
+    right: 50px;
   }
   .swiper-button-next::after {
     color: #fff;
     font-size: 30px;
+  }
+
+  .swiper-pagination {
+    position: absolute;
+  }
+  .swiper-pagination-bullet {
+    background: #4c7eef;
   }
 `;
 export default TravelLog;
