@@ -70,6 +70,7 @@ const EditProfile = ({ closeModal }) => {
     }
   };
   return (
+
     <section className="w-[900px]">
       <header className="flex items-center py-5 px-10 text-xl bg-main text-white">
         <BsInfoCircleFill />

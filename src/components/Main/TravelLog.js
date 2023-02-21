@@ -3,6 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css/navigation";
 import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from 'swiper';
 import styled from "styled-components";
 const TravelLog = () => {
   return (
@@ -13,10 +15,26 @@ const TravelLog = () => {
       </p>
       <SwiperContainer
         navigation={true}
-        modules={[Navigation]}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+          },
+        }}
+        modules={[Pagination,Navigation]}
         className="mySwiper"
         spaceBetween={40}
         slidesPerView={2}
+        loop={true}
+        pagination={true} 
       >
         <SwiperSlide>
           {" "}
