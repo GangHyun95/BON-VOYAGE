@@ -58,7 +58,7 @@ const Profile = () => {
             htmlFor="filebutton"
           >
             <img
-              src={imgFile || "/photo/good.png"}
+              src={imgFile || "/photo/info.png"}
               alt="profile"
               className="h-[100px] w-[100px] rounded-full border"
             />
