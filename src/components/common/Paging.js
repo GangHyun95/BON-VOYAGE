@@ -1,6 +1,7 @@
 import React from "react";
 import Pagination from "react-js-pagination";
 import "../style/Paging.css";
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 const Paging = ({ page, count, setPage }) => {
   return (
@@ -10,8 +11,8 @@ const Paging = ({ page, count, setPage }) => {
         itemsCountPerPage={5}
         totalItemsCount={count}
         pageRangeDisplayed={5}
-        prevPageText={"<"}
-        nextPageText={">"}
+        prevPageText={<MdArrowBackIos />}
+        nextPageText={<MdArrowForwardIos />}
         onChange={setPage}
       />
     </div>

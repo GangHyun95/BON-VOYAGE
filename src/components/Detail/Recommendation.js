@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { MdOutlinePlace, MdStorefront } from "react-icons/md";
 import { RiHotelLine } from "react-icons/ri";
 import ButtonGroup from "./ButtonGroup";
 import RecommendationCard from "./RecommendationCard";
 import { CiSearch } from "react-icons/ci";
+import Paging from "../common/Paging";
 
 const Recommendation = ({ mapData, setPos }) => {
   const [visible, setVisible] = useState(false);
@@ -38,6 +39,22 @@ const Recommendation = ({ mapData, setPos }) => {
   // 버튼 타입 필터 호출
   const filtered = getFilteredItems(mapData, filter);
 
+  // 페이지네이션
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지. default 값으로 1
+  const [postPerPage] = useState(5); // 한 페이지에 보여질 아이템 수
+  const [indexOfLastPost, setIndexOfLastPost] = useState(0); // 현재 페이지의 마지막 아이템 인덱스
+  const [indexOfFirstPost, setIndexOfFirstPost] = useState(0); // 현재 페이지의 첫번째 아이템 인덱스
+  const [currentPosts, setCurrentPosts] = useState([]); // 현재 페이지에서 보여지는 아이템들
+
+  useEffect(() => {
+    setIndexOfLastPost(currentPage * postPerPage);
+    setIndexOfFirstPost(indexOfLastPost - postPerPage);
+    setCurrentPosts(filtered.slice(indexOfFirstPost, indexOfLastPost));
+  }, [indexOfFirstPost, indexOfLastPost, currentPage, mapData]);
+  const setPage = (error) => {
+    setCurrentPage(error);
+  };
+
   return (
     <div className="w-[360px] border-l">
       {/* 검색폼 */}
@@ -54,19 +71,21 @@ const Recommendation = ({ mapData, setPos }) => {
 
       <h2 className="text-center my-2">추천장소</h2>
       <ul>
-        {filtered.map((recommendation) => (
-          <RecommendationCard
-            openNotice={openNotice}
-            modalVisible={modalVisible}
-            openModal={openModal}
-            closeModal={closeModal}
-            visible={visible}
-            recommendation={recommendation}
-            setPos={setPos}
-            key={recommendation.tlSeq}
-          />
-        ))}
+        {currentPosts.length > 0 &&
+          currentPosts.map((recommendation) => (
+            <RecommendationCard
+              openNotice={openNotice}
+              modalVisible={modalVisible}
+              openModal={openModal}
+              closeModal={closeModal}
+              visible={visible}
+              recommendation={recommendation}
+              setPos={setPos}
+              key={recommendation.tlSeq}
+            />
+          ))}
       </ul>
+      <Paging page={currentPage} count={filtered.length} setPage={setPage} />
     </div>
   );
 };
