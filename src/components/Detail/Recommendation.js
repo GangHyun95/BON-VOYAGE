@@ -50,7 +50,7 @@ const Recommendation = ({ mapData, setPos }) => {
     setIndexOfLastPost(currentPage * postPerPage);
     setIndexOfFirstPost(indexOfLastPost - postPerPage);
     setCurrentPosts(filtered.slice(indexOfFirstPost, indexOfLastPost));
-  }, [indexOfFirstPost, indexOfLastPost, currentPage, mapData]);
+  }, [indexOfFirstPost, indexOfLastPost, currentPage, mapData, filter]);
   const setPage = (error) => {
     setCurrentPage(error);
   };
