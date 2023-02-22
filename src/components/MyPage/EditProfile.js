@@ -20,6 +20,7 @@ const EditProfile = ({ closeModal }) => {
       .oneOf([yup.ref("pw"), null])
       .required(),
   });
+  const user = useSelector((state) => state.user);
 
   const {
     register,
@@ -27,12 +28,17 @@ const EditProfile = ({ closeModal }) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      name: user.miName,
+      nickname: user.miNickname,
+      email: user.miEmail,
+      tel: user.miPhone,
+    },
   });
 
   const submitForm = async (data) => {
     console.log(data);
   };
-  const user = useSelector((state) => state.user);
   console.log(user);
   // 이미지 미리보기 기능
   // 이미지 업로드 및 미리보기
@@ -157,7 +163,7 @@ const EditProfile = ({ closeModal }) => {
               <input
                 type="password"
                 className="w-80"
-                placeholder="비밀번호(문자, 숫자, 특수문자 포함 5~16자)"
+                placeholder="비밀번호(문자, 숫자, 특수문자 포함 8~16자)"
                 autoComplete="off"
                 {...register("pw")}
               />

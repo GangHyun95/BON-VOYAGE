@@ -94,7 +94,7 @@ const SignUp = () => {
         <input
           type="password"
           className="bg-gray-100 px-[20px] w-[450px] py-3 my-3 rounded-lg"
-          placeholder="비밀번호(문자, 숫자, 특수문자 포함 5~16자)"
+          placeholder="비밀번호(문자, 숫자, 특수문자 포함 8~16자)"
           {...register("pw")}
         />
         <br />

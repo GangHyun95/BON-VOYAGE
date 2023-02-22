@@ -20,7 +20,6 @@ const KaKaoMap = ({ lat, lng, mapData }) => {
     imgPath: "",
   });
 
-  console.log(pos);
   return (
     <>
       <Recommendation mapData={mapData} setPos={setPos} />

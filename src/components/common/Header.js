@@ -12,7 +12,6 @@ const Header = () => {
   const dispatch = useDispatch();
   // user redux
   const user = useSelector((state) => state.user);
-  console.log(user);
   // 모달 만들기
   const [modalVisible, setModalVisible] = useState(false);
   const openModal = () => {

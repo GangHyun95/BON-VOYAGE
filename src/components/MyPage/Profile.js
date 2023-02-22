@@ -57,9 +57,9 @@ const Profile = () => {
   };
 
   const user = useSelector((state) => state.user);
-  const byebye = async () => {
+  const withdrawel = async () => {
     try {
-      if (window.confirm("진짜 갈거에요?")) {
+      if (window.confirm("회원탈퇴하시겠습니까?")) {
         await instance
           .delete("/api/member/delete", {
             params: {
@@ -71,6 +71,8 @@ const Profile = () => {
               alert(res.data.message);
             }
           });
+      } else {
+        return;
       }
       dispatch(logout());
       navigate("/");
@@ -103,7 +105,7 @@ const Profile = () => {
         </div>
         <div className="text-center">
           <p className="font-bold">
-            {user.miNickname}
+            {user.miName}
             <span className="font-normal">님</span>
           </p>
           <span className="text-sm text-gray-400">개인회원</span>
@@ -114,7 +116,7 @@ const Profile = () => {
         >
           회원정보수정
         </button>
-        <button className="border px-16 py-3 rounded-2xl" onClick={byebye}>
+        <button className="border px-16 py-3 rounded-2xl" onClick={withdrawel}>
           회원탈퇴
         </button>
       </div>

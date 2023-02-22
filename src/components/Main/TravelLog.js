@@ -22,7 +22,7 @@ const TravelLog = () => {
         breakpoints={{
           768: {
             slidesPerView: 2,
-            spaceBetween: 0,
+            spaceBetween: 40,
           },
         }}
         loop={true}
