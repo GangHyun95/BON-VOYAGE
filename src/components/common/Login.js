@@ -36,7 +36,7 @@ const Login = ({ closeModal, setModalVisible }) => {
   return (
     <section className="mt-24 flex flex-col justify-center items-center text-black">
       <h3 className="mb-12 text-[25px] font-semibold text-center">
-        지금 //프로젝트명//과 <br />
+        지금 본 보야지와 <br />
         여행을 시작하세요!
       </h3>
       {/* 로그인 form */}
@@ -81,12 +81,12 @@ const Login = ({ closeModal, setModalVisible }) => {
         <div className="flex justify-center mt-4">
           <button>
             <img
-              className="h-20 w-20 mr-8"
+              className="h-16 w-16 mr-8"
               src="/photo/kakaoicon.png"
               alt="카카오톡"
             />
           </button>
-          <img className="h-20 w-20" src="/photo/googleicon.png" alt="구글" />
+          <img className="h-16 w-16" src="/photo/googleicon.png" alt="구글" />
         </div>
       </div>
     </section>

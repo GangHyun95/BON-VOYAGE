@@ -25,14 +25,14 @@ const Footer = () => {
         <div className=" text-center text-xs leading-normal  ">
           <div className="mb-1 ">이용약관 | 개인정보처리방침</div>
           <br />
-          주식회사 프로젝트명
+          주식회사 Bon Voyage
           <br />
           사업자등록번호 123-12-12345
           <br />
           대구시 중구 남일동 741-11 5F
           <br />
-          contact@project.co.kr
-          <div className=" mt-5">ⓒ PROJECT Co.,Ltd All Rights Reserved.</div>
+          contact@Bon-Voyage.co.kr
+          <div className=" mt-5">ⓒ Bon Voyage Co.,Ltd All Rights Reserved.</div>
         </div>
       </div>
     </footer>
