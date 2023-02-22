@@ -24,6 +24,17 @@ const Home = () => {
   }, [keyword]);
 
   //
+
+  console.log(placeList);
+  const popular = () => {
+    placeList.sort(function (a, b) {
+      if (a.seq > b.seq) return 1;
+      if (a.seq === b.seq) return 0;
+      if (a.seq < b.seq) return -1;
+    });
+    setSortText("추천순");
+  };
+
   const assending = () => {
     placeList.sort(function (a, b) {
       // 한글 오름차순
@@ -57,6 +68,7 @@ const Home = () => {
           setPlaceList={setPlaceList}
           sortText={sortText}
           setSortText={setSortText}
+          popular={popular}
           assending={assending}
           descending={descending}
           keyword={keyword}

@@ -14,6 +14,7 @@ const PlaceList = ({
   descending,
   keyword,
   setKeyword,
+  popular,
 }) => {
   const [filter, setFilter] = useState(filters[0]);
 
@@ -53,10 +54,7 @@ const PlaceList = ({
               className="shadow-lg absolute top-8 right-2 text-start w-52 p-6 text-gray-400 bg-white z-10 "
               onClick={(e) => e.stopPropagation()}
             >
-              <li
-                className="py-1.5 hover:text-gray-500 z-10"
-                onClick={() => setSortText("추천순")}
-              >
+              <li className="py-1.5 hover:text-gray-500 z-10" onClick={popular}>
                 추천순
               </li>
               <li className="py-1.5 hover:text-gray-500" onClick={assending}>
