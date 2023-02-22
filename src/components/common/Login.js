@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import instance from "../../api/axios";
 import { login } from "../../store/userSlice";
 
@@ -8,7 +8,6 @@ const Login = ({ closeModal, setModalVisible }) => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

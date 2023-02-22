@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import Modal from "../../Layout/Modal";
 import EditProfile from "./EditProfile";
-import { FcOldTimeCamera } from "react-icons/fc";
 import instance from "../../api/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/userSlice";
@@ -58,7 +57,6 @@ const Profile = () => {
   };
 
   const user = useSelector((state) => state.user);
-  console.log(user);
   const byebye = async () => {
     try {
       if (window.confirm("진짜 갈거에요?")) {
@@ -105,7 +103,8 @@ const Profile = () => {
         </div>
         <div className="text-center">
           <p className="font-bold">
-            허강현<span className="font-normal">님</span>
+            {user.miNickname}
+            <span className="font-normal">님</span>
           </p>
           <span className="text-sm text-gray-400">개인회원</span>
         </div>

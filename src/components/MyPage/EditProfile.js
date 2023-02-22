@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { BsInfoCircleFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 const EditProfile = ({ closeModal }) => {
   const schema = yup.object().shape({
     email: yup.string().email().required("이메일을 입력해주세요"),
@@ -31,6 +32,8 @@ const EditProfile = ({ closeModal }) => {
   const submitForm = async (data) => {
     console.log(data);
   };
+  const user = useSelector((state) => state.user);
+  console.log(user);
   // 이미지 미리보기 기능
   // 이미지 업로드 및 미리보기
   const [imgFile, setImgFile] = useState("");
