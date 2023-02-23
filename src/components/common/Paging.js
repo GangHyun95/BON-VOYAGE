@@ -5,7 +5,7 @@ import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 const Paging = ({ page, count, setPage }) => {
   return (
-    <div>
+    <>
       <Pagination
         activePage={page}
         itemsCountPerPage={5}
@@ -15,7 +15,7 @@ const Paging = ({ page, count, setPage }) => {
         nextPageText={<MdArrowForwardIos />}
         onChange={setPage}
       />
-    </div>
+    </>
   );
 };
 

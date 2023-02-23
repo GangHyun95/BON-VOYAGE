@@ -20,8 +20,14 @@ const userSlice = createSlice({
       state.miPhone = "";
       state.miStatus = "";
     },
+    correction: (state, action) => {
+      state.miEmail = action.payload.miEmail;
+      state.miName = action.payload.miName;
+      state.miNickname = action.payload.miNickname;
+      state.miPhone = action.payload.miPhone;
+    },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, correction } = userSlice.actions;
 export default userSlice;

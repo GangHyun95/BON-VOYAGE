@@ -14,7 +14,9 @@ const Detail = () => {
   const [mapData, setMapData] = useState([]);
   const fetchDate = async () => {
     try {
-      const result = await instance.get("/api/travle/place?size=10000");
+      const result = await instance.get("/api/travle/zone", {
+        params: { tpzcseq: place.seq },
+      });
       setMapData(result.data.list);
     } catch (error) {
       console.log(error);

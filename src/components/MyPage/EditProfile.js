@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { BsInfoCircleFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import instance from "../../api/axios";
+import { correction } from "../../store/userSlice";
 const EditProfile = ({ closeModal }) => {
   const schema = yup.object().shape({
     email: yup.string().email().required("이메일을 입력해주세요"),
@@ -21,7 +23,7 @@ const EditProfile = ({ closeModal }) => {
       .required(),
   });
   const user = useSelector((state) => state.user);
-
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -38,8 +40,22 @@ const EditProfile = ({ closeModal }) => {
 
   const submitForm = async (data) => {
     console.log(data);
+    let body = {
+      miEmail: data.email,
+      miPhone: data.tel,
+      miNickname: data.nickname,
+      miName: data.name,
+      miPwd: data.pw,
+    };
+    try {
+      await instance.post(`/api/member/update?miseq=${user.miSeq}`, body);
+      dispatch(correction(body));
+      alert("회원정보가 수정되었습니다.");
+      closeModal();
+    } catch (err) {
+      console.log(err);
+    }
   };
-  console.log(user);
   // 이미지 미리보기 기능
   // 이미지 업로드 및 미리보기
   const [imgFile, setImgFile] = useState("");

@@ -27,9 +27,9 @@ const Recommendation = ({ mapData, setPos }) => {
     setModalVisible(false);
   };
   const arr = [
-    { title: "음식점", icon: <MdStorefront />, tpType: 3 },
-    { title: "관광명소", icon: <MdOutlinePlace />, tpType: 1 },
-    { title: "숙박시설", icon: <RiHotelLine />, tpType: 2 },
+    { title: "음식점", icon: <MdStorefront />, tpType: 1 },
+    { title: "관광명소", icon: <MdOutlinePlace />, tpType: 2 },
+    { title: "숙박시설", icon: <RiHotelLine />, tpType: 3 },
   ];
   const [filter, setFilter] = useState(arr[0]);
   // 버튼 타입 필터 정의
