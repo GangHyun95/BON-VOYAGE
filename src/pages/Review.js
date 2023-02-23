@@ -88,7 +88,7 @@ const Review = () => {
  
     
     
-    setReviews([...reviews, checkItemContent, imgFile]);
+    setReviews([...reviews, checkItemContent]);
 
     setCheckItemContent("");
   };
