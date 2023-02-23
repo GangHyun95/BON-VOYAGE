@@ -1,9 +1,7 @@
-import axios from "axios";
 import React, { useRef, useState } from "react";
 import { BsFillCameraFill } from "react-icons/bs";
 import { BiCheckCircle } from "react-icons/bi";
 import MyPageLayOut from "../Layout/MyPageLayOut";
-import PlaceCard from "../components/Main/PlaceCard";
 // 02. form 요소의 항목별 에러 체크 정의
 const Review = () => {
   // 이미지 미리보기 기능
@@ -83,11 +81,8 @@ const Review = () => {
   // 리뷰 내용 저장하기
   const [reviews, setReviews] = useState([]);
   const handleSubmit = (event) => {
-   
     event.preventDefault();
- 
-    
-    
+
     setReviews([...reviews, checkItemContent]);
 
     setCheckItemContent("");
@@ -182,7 +177,6 @@ const Review = () => {
             <BsFillCameraFill className="inline-block mx-1" />
             <span className=""> +사진 추가</span>
             <input
-          
               id="filebutton"
               multiple="true"
               type="file"
@@ -252,7 +246,6 @@ const Review = () => {
             {reviews.map((review, index) => (
               <div className="">
                 <li className="w-full p-20 mt-3 bg-gray-200" key={index}>
-            
                   <div className="flex justify-start" key={index}>
                     <p>닉네임 | 허산현</p>
                     <p>
@@ -260,12 +253,7 @@ const Review = () => {
                     </p>
                     <p>날짜 | 2023.01.01</p>
                   </div>
-                  <div>
-                    {review   
-                    
-                  }{" "}
-                  
-                  </div>
+                  <div>{review} </div>
                 </li>
               </div>
             ))}

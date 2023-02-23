@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlinePlace, MdStorefront } from "react-icons/md";
 import { RiHotelLine } from "react-icons/ri";
 import ButtonGroup from "./ButtonGroup";
 import RecommendationCard from "./RecommendationCard";
 import { CiSearch } from "react-icons/ci";
 import Paging from "../common/Paging";
+import Modal from "../../Layout/Modal";
+import { AiOutlineCheck } from "react-icons/ai";
 
 const Recommendation = ({ mapData, setPos }) => {
   const [visible, setVisible] = useState(false);
@@ -90,6 +92,16 @@ const Recommendation = ({ mapData, setPos }) => {
           ))}
       </ul>
       <Paging page={currentPage} count={filtered.length} setPage={setPage} />
+      {visible && (
+        <Modal visible={visible}>
+          <div className="flex flex-col items-center justify-center p-12">
+            <div className="border text-2xl p-1 bg-black text-white rounded mb-4">
+              <AiOutlineCheck />
+            </div>
+            <p className="text-xl">선택 목록에 추가되었습니다.</p>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

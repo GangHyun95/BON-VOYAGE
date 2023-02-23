@@ -71,16 +71,6 @@ const RecommendationCard = ({
           </button>
         </div>
       </li>
-      {visible && (
-        <Modal visible={visible}>
-          <div className="flex flex-col items-center justify-center p-12">
-            <div className="border text-2xl p-1 bg-black text-white rounded mb-4">
-              <AiOutlineCheck />
-            </div>
-            <p className="text-xl">선택 목록에 추가되었습니다.</p>
-          </div>
-        </Modal>
-      )}
     </>
   );
 };
