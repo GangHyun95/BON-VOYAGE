@@ -9,6 +9,8 @@ import {
 // import MapOverlay from "../style/MapOverlay.css";
 import Recommendation from "./Recommendation";
 import { MdOutlineArrowDropDown } from "react-icons/md";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const { kakao } = window;
 const KaKaoMap = ({ lat, lng, mapData }) => {
@@ -19,7 +21,13 @@ const KaKaoMap = ({ lat, lng, mapData }) => {
     address: "",
     imgPath: "",
   });
-
+  const [temp, setTemp] = useState(0);
+  const placeRef = useRef();
+  useEffect(() => {
+    setTemp(placeRef?.current?.getBoundingClientRect().height / 2);
+  }, [pos]);
+  // placeRef.current?.classList.add(`translate-y-[${-temp}px]`);
+  // console.log(temp);
   return (
     <>
       <Recommendation mapData={mapData} setPos={setPos} />
@@ -34,7 +42,13 @@ const KaKaoMap = ({ lat, lng, mapData }) => {
           position={pos.center}
         >
           {pos.title && (
-            <section className="relative bg-main p-2 w-44 rounded-lg text-white whitespace-pre-wrap bottom-[104px] left-[5px]">
+            <section
+              className={`relative bg-main p-2 w-44 rounded-lg text-white whitespace-pre-wrap left-1`}
+              style={{
+                transform: `translateY(${-temp - 8}px)`,
+              }}
+              ref={placeRef}
+            >
               <img src={pos.imgPath} alt={pos.title} />
               <h3 className="text-semibold mt-2">{pos.title}</h3>
               <span className="text-xs">{pos.address}</span>
