@@ -51,6 +51,10 @@ const Recommendation = ({ mapData, setPos }) => {
     setIndexOfFirstPost(indexOfLastPost - postPerPage);
     setCurrentPosts(filtered.slice(indexOfFirstPost, indexOfLastPost));
   }, [indexOfFirstPost, indexOfLastPost, currentPage, mapData, filter]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter]);
   const setPage = (error) => {
     setCurrentPage(error);
   };
