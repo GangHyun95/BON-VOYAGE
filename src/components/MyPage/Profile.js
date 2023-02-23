@@ -57,7 +57,7 @@ const Profile = () => {
   };
 
   const user = useSelector((state) => state.user);
-  
+
   const withdrawel = async () => {
     try {
       if (window.confirm("회원탈퇴하시겠습니까?")) {
@@ -106,7 +106,7 @@ const Profile = () => {
         </div>
         <div className="text-center">
           <p className="font-bold">
-            {user.miName}
+            {user.miNickname}
             <span className="font-normal">님</span>
           </p>
           <span className="text-sm text-gray-400">개인회원</span>
@@ -123,7 +123,12 @@ const Profile = () => {
       </div>
       {modalVisible && (
         <Modal visible={modalVisible} onClose={closeModal}>
-          <EditProfile onChangeImg={onChangeImg} imgFile={imgFile} imgRef={imgRef} closeModal={closeModal} />
+          <EditProfile
+            onChangeImg={onChangeImg}
+            imgFile={imgFile}
+            imgRef={imgRef}
+            closeModal={closeModal}
+          />
         </Modal>
       )}
     </section>

@@ -48,15 +48,22 @@ const EditProfile = ({ closeModal, imgFile, onChangeImg, imgRef }) => {
       miPwd: data.pw,
     };
     try {
-      await instance.post(`/api/member/update?miseq=${user.miSeq}`, body);
-      dispatch(correction(body));
-      alert("회원정보가 수정되었습니다.");
-      closeModal();
+      await instance
+        .post(`/api/member/update?miseq=${user.miSeq}`, body)
+        .then((res) => {
+          if (res.data.status) {
+            dispatch(correction(body));
+            alert("회원정보가 수정되었습니다.");
+            closeModal();
+          } else {
+            alert(res.data.message);
+          }
+        });
     } catch (err) {
       console.log(err);
     }
   };
- 
+
   return (
     <section className="w-[900px]">
       <header className="flex items-center py-5 px-10 text-xl bg-main text-white">
