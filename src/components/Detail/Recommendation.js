@@ -85,7 +85,7 @@ const Recommendation = ({ mapData, setPos }) => {
               visible={visible}
               recommendation={recommendation}
               setPos={setPos}
-              key={recommendation.tlSeq}
+              key={recommendation.tpSeq}
             />
           ))}
       </ul>

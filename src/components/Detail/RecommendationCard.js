@@ -19,8 +19,8 @@ const RecommendationCard = ({
         onClick={() =>
           setPos({
             center: {
-              lat: recommendation.tpLatitude,
-              lng: recommendation.tpIongitude,
+              lat: recommendation.tpLatitude + 0.00002 ,
+              lng: recommendation.tpIongitude + 0.0000004 ,
             },
             isPanto: true,
             title: recommendation.tpName,
