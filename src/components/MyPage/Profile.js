@@ -123,7 +123,7 @@ const Profile = () => {
       </div>
       {modalVisible && (
         <Modal visible={modalVisible} onClose={closeModal}>
-          <EditProfile closeModal={closeModal} />
+          <EditProfile onChangeImg={onChangeImg} imgFile={imgFile} imgRef={imgRef} closeModal={closeModal} />
         </Modal>
       )}
     </section>
