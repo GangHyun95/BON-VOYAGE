@@ -10,13 +10,21 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
   const heart = useRef(null);
 
   const [wishList, setWishList] = useState([]);
+  const [alarm, setAlarm] = useState(false);
   const likeHandler = async (seq) => {
+    console.log(seq);
     try {
       await instance
         .put(`/api/travel/like?tpseq=${seq}&miseq=${user.miSeq}`)
         .then((res) => {
-          if (res.data.status) {
-          } else {
+          if (res.data.status === false) {
+            instance
+              .delete(
+                `/api/travel/like/cancel?tpseq=${seq}&miseq=${user.miSeq}`
+              )
+              .then((res) => {
+                setAlarm(!alarm);
+              });
           }
         });
     } catch (err) {
@@ -41,11 +49,8 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
         heart.current.classList.add("text-red-500");
       }
     });
-  }, [wishList]);
-  // console.log(heart);
-  console.log(wishList.map((item) => item));
+  }, []);
 
-  console.log(wishList);
   return (
     <>
       <li
