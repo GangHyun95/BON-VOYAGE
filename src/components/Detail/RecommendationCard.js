@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AiOutlinePlus, AiOutlineCheck } from "react-icons/ai";
 import { TbAlertCircle } from "react-icons/tb";
 import Modal from "../../Layout/Modal";
@@ -7,30 +7,16 @@ import instance from "../../api/axios";
 import { useSelector } from "react-redux";
 const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
   const user = useSelector((state) => state.user);
-
   const heart = useRef(null);
+
+  const [wishList, setWishList] = useState([]);
   const likeHandler = async (seq) => {
-    let body = {
-      tpseq: seq,
-      miseq: user.miSeq,
-    };
     try {
       await instance
         .put(`/api/travel/like?tpseq=${seq}&miseq=${user.miSeq}`)
         .then((res) => {
           if (res.data.status) {
-            console.log(res.data);
-            heart.current.classList.add("text-red-500");
           } else {
-            console.log(res.data);
-            // instance
-            //   .delete(
-            //     `/api/travel/like/cancel?tpseq=${seq}&miseq=${user.miSeq}`
-            //   )
-            //   .then((res) => {
-            //     heart.current.classList.remove("text-red-500");
-            //     console.log(res);
-            //   });
           }
         });
     } catch (err) {
@@ -38,7 +24,28 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
     }
   };
 
+  const getWishList = async () => {
+    await instance
+      .get("/api/travel/member/like", {
+        params: {
+          miseq: user.miSeq,
+        },
+      })
+      .then((res) => setWishList(res.data.map((item) => item.place.tpSeq)));
+  };
+
+  useEffect(() => {
+    getWishList();
+    wishList.map((item) => {
+      if (recommendation?.tpSeq === item) {
+        heart.current.classList.add("text-red-500");
+      }
+    });
+  }, [wishList]);
   // console.log(heart);
+  console.log(wishList.map((item) => item));
+
+  console.log(wishList);
   return (
     <>
       <li
@@ -68,7 +75,8 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
           <p className="text-xs text-gray-400">{recommendation?.tpAdress}</p>
           <button
             ref={heart}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               likeHandler(recommendation.tpSeq);
             }}
             className="absolute right-8 bottom-3"
