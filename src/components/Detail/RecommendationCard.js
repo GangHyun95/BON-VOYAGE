@@ -10,26 +10,11 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
   const heart = useRef(null);
 
   const [wishList, setWishList] = useState([]);
-  const [alarm, setAlarm] = useState(false);
   const likeHandler = async (seq) => {
-    console.log(seq);
-    try {
-      await instance
-        .put(`/api/travel/like?tpseq=${seq}&miseq=${user.miSeq}`)
-        .then((res) => {
-          if (res.data.status === false) {
-            instance
-              .delete(
-                `/api/travel/like/cancel?tpseq=${seq}&miseq=${user.miSeq}`
-              )
-              .then((res) => {
-                setAlarm(!alarm);
-              });
-          }
-        });
-    } catch (err) {
-      console.log(err);
-    }
+    await instance.put(`/api/travel/like?tpseq=${seq}&miseq=${user.miSeq}`);
+  };
+  const handleDelete = async (seq) => {
+    instance.delete(`/api/travel/like/cancel?tpseq=${seq}&miseq=${user.miSeq}`);
   };
 
   const getWishList = async () => {
@@ -46,7 +31,7 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
     getWishList();
     wishList.map((item) => {
       if (recommendation?.tpSeq === item) {
-        heart.current.classList.add("text-red-500");
+        heart.current?.classList.add("text-red-500");
       }
     });
   }, []);
@@ -84,15 +69,14 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
               e.stopPropagation();
               likeHandler(recommendation.tpSeq);
             }}
-            className="absolute right-8 bottom-3"
+            className="absolute right-8 bottom-2"
           >
-            {" "}
             <BsSuitHeartFill />
           </button>
           <button>
             <AiOutlinePlus
               onClick={openNotice}
-              className="absolute right-2 bottom-3"
+              className="absolute right-2 bottom-2"
             />
           </button>
         </div>
