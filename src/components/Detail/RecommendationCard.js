@@ -9,14 +9,19 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
   const user = useSelector((state) => state.user);
   const heart = useRef(null);
 
+  const [heartState, setHeartState] = useState(false);
   const [wishList, setWishList] = useState([]);
   const likeHandler = async (seq) => {
+    console.log(wishList);
+    setHeartState(true);
     await instance.put(`/api/travel/like?tpseq=${seq}&miseq=${user.miSeq}`);
   };
+
   const handleDelete = async (seq) => {
+    console.log(wishList);
+    setHeartState(false);
     instance.delete(`/api/travel/like/cancel?tpseq=${seq}&miseq=${user.miSeq}`);
   };
-
   const getWishList = async () => {
     await instance
       .get("/api/travel/member/like", {
@@ -32,8 +37,12 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
     wishList.map((item) => {
       if (recommendation?.tpSeq === item) {
         heart.current?.classList.add("text-red-500");
+        setHeartState(true);
       }
     });
+    return () => {
+      setHeartState(false);
+    };
   }, []);
 
   return (
@@ -63,16 +72,29 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
             {recommendation?.tpName}
           </p>
           <p className="text-xs text-gray-400">{recommendation?.tpAdress}</p>
-          <button
-            ref={heart}
-            onClick={(e) => {
-              e.stopPropagation();
-              likeHandler(recommendation.tpSeq);
-            }}
-            className="absolute right-8 bottom-2"
-          >
-            <BsSuitHeartFill />
-          </button>
+          {heartState ? (
+            <button
+              ref={heart}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDelete(recommendation.tpSeq);
+              }}
+              className="absolute right-8 bottom-2 text-red-500"
+            >
+              <BsSuitHeartFill />
+            </button>
+          ) : (
+            <button
+              ref={heart}
+              onClick={(e) => {
+                e.stopPropagation();
+                likeHandler(recommendation.tpSeq);
+              }}
+              className="absolute right-8 bottom-2"
+            >
+              <BsSuitHeartFill />
+            </button>
+          )}
           <button>
             <AiOutlinePlus
               onClick={openNotice}
