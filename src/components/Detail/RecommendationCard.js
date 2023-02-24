@@ -3,15 +3,7 @@ import { AiOutlinePlus, AiOutlineCheck } from "react-icons/ai";
 import { TbAlertCircle } from "react-icons/tb";
 import Modal from "../../Layout/Modal";
 
-const RecommendationCard = ({
-  modalVisible,
-  openNotice,
-  openModal,
-  closeModal,
-  visible,
-  recommendation,
-  setPos,
-}) => {
+const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
   return (
     <>
       <li
@@ -39,30 +31,7 @@ const RecommendationCard = ({
             {recommendation?.tpName}
           </p>
           <p className="text-xs text-gray-400">{recommendation?.tpAdress}</p>
-          <button className="absolute right-8 bottom-3">
-            <TbAlertCircle onClick={openModal} />
-          </button>
-          {modalVisible && (
-            <Modal
-              visible={modalVisible}
-              onClose={closeModal}
-              width={1000}
-              height={400}
-            >
-              <div>
-                <div>
-                  {" "}
-                  <h2 className="text-2xl">동문 재래시장</h2>
-                </div>
-                <div className="bg-white">
-                  <p>영업시간</p>
-                  <p>홈페이지</p>
-                  <p>주소</p>
-                  <p>전화</p>
-                </div>
-              </div>
-            </Modal>
-          )}
+          <button className="absolute right-8 bottom-3"></button>
           <button>
             <AiOutlinePlus
               onClick={openNotice}

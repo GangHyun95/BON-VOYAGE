@@ -61,6 +61,7 @@ const Recommendation = ({ mapData, setPos }) => {
     setCurrentPage(error);
   };
 
+  console.log(mapData);
   return (
     <div className="w-[360px] border-l">
       {/* 검색폼 */}
