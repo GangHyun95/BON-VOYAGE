@@ -1,9 +1,44 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { AiOutlinePlus, AiOutlineCheck } from "react-icons/ai";
 import { TbAlertCircle } from "react-icons/tb";
 import Modal from "../../Layout/Modal";
-
+import { BsSuitHeartFill } from "react-icons/bs";
+import instance from "../../api/axios";
+import { useSelector } from "react-redux";
 const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
+  const user = useSelector((state) => state.user);
+
+  const heart = useRef(null);
+  const likeHandler = async (seq) => {
+    let body = {
+      tpseq: seq,
+      miseq: user.miSeq,
+    };
+    try {
+      await instance
+        .put(`/api/travel/like?tpseq=${seq}&miseq=${user.miSeq}`)
+        .then((res) => {
+          if (res.data.status) {
+            console.log(res.data);
+            heart.current.classList.add("text-red-500");
+          } else {
+            console.log(res.data);
+            // instance
+            //   .delete(
+            //     `/api/travel/like/cancel?tpseq=${seq}&miseq=${user.miSeq}`
+            //   )
+            //   .then((res) => {
+            //     heart.current.classList.remove("text-red-500");
+            //     console.log(res);
+            //   });
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // console.log(heart);
   return (
     <>
       <li
@@ -31,7 +66,16 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
             {recommendation?.tpName}
           </p>
           <p className="text-xs text-gray-400">{recommendation?.tpAdress}</p>
-          <button className="absolute right-8 bottom-3"></button>
+          <button
+            ref={heart}
+            onClick={() => {
+              likeHandler(recommendation.tpSeq);
+            }}
+            className="absolute right-8 bottom-3"
+          >
+            {" "}
+            <BsSuitHeartFill />
+          </button>
           <button>
             <AiOutlinePlus
               onClick={openNotice}
