@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import ButtonGroup from "./ButtonGroup";
-import RecommendationCard from "./RecommendationCard";
 import Calendar from "react-calendar";
 import moment from "moment";
 import "../../Calendar.css";
-import { MdOutlinePlace, MdStorefront } from "react-icons/md";
-import { RiDeleteBin6Line, RiHotelLine } from "react-icons/ri";
-import { BiCalendarHeart } from "react-icons/bi";
+import { BiCalendarHeart, BiPlus } from "react-icons/bi";
 import { useEffect } from "react";
 function TravelCalendar({ place }) {
   const [startDate, setStartDate] = useState();
@@ -27,29 +23,29 @@ function TravelCalendar({ place }) {
     setEndDate(endDateFormat);
   };
 
+  const [selectDate, setSelectDate] = useState();
   const [betweenDate, setBetweenDate] = useState([]);
-  // 버튼
-  const arr = [
-    { title: "음식점", icon: <MdStorefront /> },
-    { title: "관광명소", icon: <MdOutlinePlace /> },
-    { title: "숙박시설", icon: <RiHotelLine /> },
-  ];
-  const [filters, setFilter] = useState(arr[0].title);
+
   // + 버튼을 x 로 바꾸기
   useEffect(() => {
     setBetweenDate(getDatesStartToLast(startDate, endDate));
   }, [startDate, endDate]);
-  console.log(betweenDate);
+  console.log(selectDate);
+
   return (
-    <div className="w-[360px]">
+    <div className="w-[360px] overflow-auto">
       <h2 className="text-center my-8 mt-12 text-4xl font-bold">
         {place.name}
       </h2>
       <p className="text-center mt-4 text-stone-400 text-lg font-Mont">
         {place.engname}
       </p>
-      {betweenDate?.length && <p>{betweenDate.length}DAY</p>}
-      <div className="mx-7 my-5">
+      {betweenDate?.length && (
+        <p className="text-center mt-4 font-bold text-2xl">
+          {betweenDate.length}DAY
+        </p>
+      )}
+      <div className="flex justify-center items-center">
         <button onClick={openCalendar} className="p-2">
           <BiCalendarHeart />
         </button>
@@ -80,18 +76,40 @@ function TravelCalendar({ place }) {
           ></Calendar>
         </div>
       )}
-      <p className="text-center  my-8 ">선택목록</p>
-      {betweenDate?.map((date, i) => (
-        <p>DAY {i + 1}</p>
-      ))}
+      <p className="text-center  my-8">선택목록</p>
+      <div className="flex flex-col gap-2 px-4">
+        {betweenDate?.map((date, i) => (
+          <div key={i}>
+            <p
+              className={`rounded-md text-center p-2 cursor-pointer ${
+                selectDate === date
+                  ? "bg-main text-white"
+                  : "bg-[#f1f1f1] text-[#767676]"
+              }`}
+              onClick={() => setSelectDate(date)}
+            >
+              DAY {i + 1}
+            </p>
+            <p className="text-[#aeaeae] text-lg flex flex-col items-center">
+              일자 버튼을 누르고 장소를 추가하세요
+              <BiPlus className="text-2xl" />
+            </p>
+          </div>
+        ))}
+      </div>
+      <div className="text-center mt-4">
+        <button className="border border-main text-main py-3 px-5 rounded-xl ">
+          일정 생성
+        </button>
+      </div>
     </div>
   );
 }
 function getDatesStartToLast(startDate, lastDate) {
-  var regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
+  let regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
   if (!(regex.test(startDate) && regex.test(lastDate))) return;
-  var result = [];
-  var curDate = new Date(startDate);
+  let result = [];
+  let curDate = new Date(startDate);
   while (curDate <= new Date(lastDate)) {
     result.push(curDate.toISOString().split("T")[0]);
     curDate.setDate(curDate.getDate() + 1);

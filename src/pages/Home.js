@@ -25,7 +25,6 @@ const Home = () => {
 
   //
 
-  console.log(placeList);
   const popular = () => {
     placeList.sort(function (a, b) {
       if (a.seq > b.seq) return 1;

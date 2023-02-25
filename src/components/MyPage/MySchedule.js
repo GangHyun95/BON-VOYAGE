@@ -142,7 +142,7 @@ const MySchedule = () => {
           >
             <img
               src={list.place.tpImage}
-              className="flex-1"
+              className="flex-1 max-h-[147px]"
               alt={list.place.tpName}
             />
             <p className="text-end p-2.5 truncate">{list.place.tpName}</p>

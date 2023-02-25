@@ -54,7 +54,6 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
     };
   }, [wishList]);
 
-  console.log(user);
   return (
     <>
       <li
