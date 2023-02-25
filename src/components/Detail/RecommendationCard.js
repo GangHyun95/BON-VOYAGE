@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { AiOutlinePlus, AiOutlineCheck } from "react-icons/ai";
-import { TbAlertCircle } from "react-icons/tb";
-import Modal from "../../Layout/Modal";
+import { AiOutlinePlus } from "react-icons/ai";
 import { BsSuitHeartFill } from "react-icons/bs";
 import instance from "../../api/axios";
 import { useSelector } from "react-redux";

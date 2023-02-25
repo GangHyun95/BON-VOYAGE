@@ -10,6 +10,7 @@ import { AiOutlineCheck } from "react-icons/ai";
 
 const Recommendation = ({ mapData, setPos }) => {
   const [visible, setVisible] = useState(false);
+
   const openNotice = (e) => {
     e.stopPropagation();
     setVisible(true);
@@ -18,21 +19,12 @@ const Recommendation = ({ mapData, setPos }) => {
     }, 1000);
   };
 
-  // 모달 만들기
-  const [modalVisible, setModalVisible] = useState(false);
-  const openModal = () => {
-    setModalVisible(true);
-  };
-
-  const closeModal = (e) => {
-    e.stopPropagation();
-    setModalVisible(false);
-  };
   const arr = [
     { title: "음식점", icon: <MdStorefront />, tpType: 1 },
     { title: "관광명소", icon: <MdOutlinePlace />, tpType: 2 },
     { title: "숙박시설", icon: <RiHotelLine />, tpType: 3 },
   ];
+
   const [filter, setFilter] = useState(arr[0]);
   // 버튼 타입 필터 정의
   function getFilteredItems(mapData, filter) {
@@ -81,10 +73,6 @@ const Recommendation = ({ mapData, setPos }) => {
           currentPosts.map((recommendation) => (
             <RecommendationCard
               openNotice={openNotice}
-              modalVisible={modalVisible}
-              openModal={openModal}
-              closeModal={closeModal}
-              visible={visible}
               recommendation={recommendation}
               setPos={setPos}
               key={recommendation.tpSeq}
