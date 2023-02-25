@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { BsSuitHeartFill } from "react-icons/bs";
 import Modal from "../../Layout/Modal";
 
-const PlaceCard = ({ place, type }) => {
+const PlaceCard = ({ place }) => {
   const navigate = useNavigate();
   const [modalVisible, setModalVisible] = useState(false);
   const openModal = () => {
@@ -20,8 +20,6 @@ const PlaceCard = ({ place, type }) => {
     setHeartClicked(!HeartClicked);
   };
 
-  const isWishList = type === "wishList";
-
   return (
     <div
       className="flex flex-col shadow rounded overflow-hidden"
@@ -34,15 +32,9 @@ const PlaceCard = ({ place, type }) => {
           className="hover:scale-[115%] transition-transform duration-200 ease-in-out h-full"
         />
       </div>
-      <div className={isWishList ? "text-end px-2 py-1" : "text-start p-6"}>
-        <p
-          className={isWishList ? "font-Mont" : "font-Mont text-2xl font-bold"}
-        >
-          {place.child.engname}
-        </p>
-        <p className={isWishList ? "font-bold" : "text-sm my-2"}>
-          {place.child.name}
-        </p>
+      <div className="text-start p-6">
+        <p className="font-Mont text-2xl font-bold">{place.child.engname}</p>
+        <p className="text-sm my-2">{place.child.name}</p>
       </div>
       {modalVisible && (
         <Modal visible={modalVisible} onClose={closeModal} width={1200}>
@@ -69,7 +61,6 @@ const PlaceCard = ({ place, type }) => {
               <h2 className="font-Mont">
                 <p className="text-4xl font-bold pb-2">{place.child.engname}</p>
                 <span className="text-gray-400 font-bold">
-                  {" "}
                   {place.child.name}
                 </span>
               </h2>

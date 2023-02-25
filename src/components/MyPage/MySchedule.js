@@ -8,6 +8,7 @@ import Modal from "../../Layout/Modal";
 import PlaceCard from "../Main/PlaceCard";
 import instance from "../../api/axios";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const MySchedule = () => {
   const navigate = useNavigate();
@@ -20,6 +21,8 @@ const MySchedule = () => {
     e.stopPropagation();
     setModalVisible(false);
   };
+  const [wishList, setWishList] = useState([]);
+  const user = useSelector((state) => state.user);
   const [items, setItems] = useState([
     { id: 1, name: "신분증", checked: false },
     { id: 2, name: "신용카드/현금", checked: false },
@@ -42,9 +45,22 @@ const MySchedule = () => {
     });
     setItems(newItems);
   };
-
+  const getWishList = async () => {
+    await instance
+      .get("/api/travel/member/like", {
+        params: {
+          miseq: user.miSeq,
+        },
+      })
+      .then((res) => setWishList(res.data));
+    // .then((res) => setWishList(res.data));
+  };
   const GoReview = () => navigate("review");
 
+  useEffect(() => {
+    getWishList();
+  }, []);
+  console.log(wishList);
   return (
     <MyPageLayOut title={"나의 일정"}>
       <section className="border rounded-xl p-9 accent-[#424242] flex-col">
@@ -118,41 +134,21 @@ const MySchedule = () => {
         <h3 className="font-bold">내가 좋아하는 여행지</h3>
       </div>
       {/* 카드리스트 */}
-      <div className="grid grid-cols-4 gap-4 mb-16">{/* 찜 카드 */}</div>
-      {modalVisible && (
-        <Modal
-          width={900}
-          height={900}
-          onClose={closeModal}
-          visible={modalVisible}
-        >
-          <button onClick={closeModal}>
-            <AiOutlineClose className="absolute right-2 top-2 text-xl" />
-          </button>
-          <div className="p-[100px]">
-            <MdCardTravel className="text-2xl absolute left-[40%] bottom-[80%]" />
-            <h2 className="text-2xl my-8 text-center ">여행 준비물</h2>
-            <h2 className="text-xl my-4 ">필수 준비물</h2>
-            <ul>
-              {items.map((item) => (
-                <li key={item.id}>
-                  <input
-                    className="m-3 "
-                    type="checkbox"
-                    id={`item-${item.id}`}
-                    checked={item.checked}
-                    onChange={() => handleItemChecked(item.id)}
-                  />
-                  <label htmlFor={`item-${item.id}`}>{item.name}</label>
-                </li>
-              ))}
-            </ul>
-            <button className="px-9 my-5 bg-blue-300 rounded-sm py-2">
-              아이템 추가하기
-            </button>
-          </div>
-        </Modal>
-      )}
+      <div className="grid grid-cols-4 gap-4 mb-16">
+        {wishList.map((list) => (
+          <section
+            className="shadow rounded-lg overflow-hidden flex flex-col"
+            key={list.tlSeq}
+          >
+            <img
+              src={list.place.tpImage}
+              className="flex-1"
+              alt={list.place.tpName}
+            />
+            <p className="text-end p-2.5 truncate">{list.place.tpName}</p>
+          </section>
+        ))}
+      </div>
     </MyPageLayOut>
   );
 };

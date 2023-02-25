@@ -14,6 +14,9 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
   const likeHandler = async (seq) => {
     console.log(wishList);
     setHeartState(true);
+    if (!user.miSeq) {
+      return alert("로그인 후 이용가능합니다.");
+    }
     await instance.put(`/api/travel/like?tpseq=${seq}&miseq=${user.miSeq}`);
   };
 
@@ -30,10 +33,16 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
         },
       })
       .then((res) => setWishList(res.data.map((item) => item.place.tpSeq)));
+    // .then((res) => setWishList(res.data));
   };
 
   useEffect(() => {
-    getWishList();
+    if (user.miSeq) {
+      getWishList();
+    }
+  }, [user]);
+
+  useEffect(() => {
     wishList.map((item) => {
       if (recommendation?.tpSeq === item) {
         heart.current?.classList.add("text-red-500");
@@ -43,8 +52,9 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
     return () => {
       setHeartState(false);
     };
-  }, []);
+  }, [wishList]);
 
+  console.log(user);
   return (
     <>
       <li
@@ -72,7 +82,7 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
             {recommendation?.tpName}
           </p>
           <p className="text-xs text-gray-400">{recommendation?.tpAdress}</p>
-          {heartState ? (
+          {heartState && user.miSeq ? (
             <button
               ref={heart}
               onClick={(e) => {
