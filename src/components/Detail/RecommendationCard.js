@@ -42,6 +42,7 @@ const RecommendationCard = ({
   };
 
   const addSchedule = async (tpSeq) => {
+    console.log(tpSeq);
     let body = {
       tsStartDate: startDate,
       tsEndDate: endDate,

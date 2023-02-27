@@ -48,14 +48,13 @@ const MySchedule = () => {
     getSchedule();
   }, [count]);
 
-  console.log(placeList);
-  console.log(schedule);
-
+  const subData = deleteDuplicate(schedule);
+  console.log(subData);
   return (
     <MyPageLayOut title={"나의 일정"}>
       <section className="border rounded-xl p-9 pt-0 accent-[#424242] flex-col">
         {/* 일정카드 */}
-        {schedule.map((list) => (
+        {subData.map((list) => (
           <ScheduleCard
             list={list}
             key={list.tsSeq}
@@ -89,4 +88,17 @@ const MySchedule = () => {
   );
 };
 
+const deleteDuplicate = (schedule) => {
+  return schedule.filter((ele1, i) => {
+    return (
+      schedule.findIndex((ele2) => {
+        return (
+          ele1.tsName === ele2.tsName &&
+          ele1.tsStartDate === ele2.tsStartDate &&
+          ele1.tsEndDate === ele2.tsEndDate
+        );
+      }) === i
+    );
+  });
+};
 export default MySchedule;
