@@ -2,11 +2,21 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import moment from "moment";
 import "../../Calendar.css";
-import { BiCalendarHeart, BiPlus } from "react-icons/bi";
+import { BiCalendarHeart } from "react-icons/bi";
 import { useEffect } from "react";
-function TravelCalendar({ place }) {
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
+import instance from "../../api/axios";
+import { useSelector } from "react-redux";
+function TravelCalendar({
+  place,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+  openNotice,
+}) {
+  const user = useSelector((state) => state.user);
+
+  const [schedule, setSchedule] = useState([]);
   // 달력 안보였다가 보이게
   const [visible, setVisible] = useState(false);
   const openCalendar = () => {
@@ -26,14 +36,23 @@ function TravelCalendar({ place }) {
   const [selectDate, setSelectDate] = useState();
   const [betweenDate, setBetweenDate] = useState([]);
 
-  // + 버튼을 x 로 바꾸기
   useEffect(() => {
     setBetweenDate(getDatesStartToLast(startDate, endDate));
   }, [startDate, endDate]);
-  console.log(selectDate);
+
+  const getSchedule = async () => {
+    await instance
+      .get("/api/schedule/list")
+      .then((res) => setSchedule(res.data));
+  };
+
+  useEffect(() => {
+    getSchedule();
+  }, [openNotice]);
+  const filtered = getFilteredList(schedule, user, place.name);
 
   return (
-    <div className="w-[360px] overflow-auto">
+    <div className="w-[360px] overflow-x-hidden overflow-y-auto">
       <h2 className="text-center my-8 mt-12 text-4xl font-bold">
         {place.name}
       </h2>
@@ -77,7 +96,7 @@ function TravelCalendar({ place }) {
         </div>
       )}
       <p className="text-center  my-8">선택목록</p>
-      <div className="flex flex-col gap-2 px-4">
+      {/* <div className="flex flex-col gap-2 px-4">
         {betweenDate?.map((date, i) => (
           <div key={i}>
             <p
@@ -96,12 +115,32 @@ function TravelCalendar({ place }) {
             </p>
           </div>
         ))}
-      </div>
-      <div className="text-center mt-4">
+      </div> */}
+
+      {filtered.map((list) => (
+        <article
+          className="flex w-11/12 mx-auto my-3 shadow-lg rounded-lg h-[130px] overflow-hidden"
+          key={list.ttcSeq}
+        >
+          <img
+            src={list.tpEntity.tpImage}
+            className="w-36"
+            alt={list.tpEntity.tpName}
+          />
+          <div className="relative p-6 flex flex-col flex-1">
+            <p className="text-gray-900 text-sm font-medium mb-2">
+              {list.tpEntity.tpName}
+            </p>
+            <p className="text-xs text-gray-400">{list.tpEntity.tpAdress}</p>
+          </div>
+        </article>
+      ))}
+
+      {/* <div className="text-center mt-4 ">
         <button className="border border-main text-main py-3 px-5 rounded-xl ">
           일정 생성
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -115,5 +154,13 @@ function getDatesStartToLast(startDate, lastDate) {
     curDate.setDate(curDate.getDate() + 1);
   }
   return result;
+}
+
+function getFilteredList(schedule, user, place) {
+  return schedule.filter(
+    (list) =>
+      list.tsEntity.memberEntity.miSeq === user.miSeq &&
+      list.tsEntity.tsName === place
+  );
 }
 export default TravelCalendar;

@@ -13,7 +13,15 @@ import { useRef } from "react";
 import { useEffect } from "react";
 
 const { kakao } = window;
-const KaKaoMap = ({ lat, lng, mapData }) => {
+const KaKaoMap = ({
+  lat,
+  lng,
+  mapData,
+  startDate,
+  endDate,
+  place,
+  openNotice,
+}) => {
   const [pos, setPos] = useState({
     center: { lat, lng },
     isPanto: false,
@@ -21,6 +29,7 @@ const KaKaoMap = ({ lat, lng, mapData }) => {
     address: "",
     imgPath: "",
   });
+
   const [temp, setTemp] = useState(0);
   const placeRef = useRef();
   useEffect(() => {
@@ -30,7 +39,14 @@ const KaKaoMap = ({ lat, lng, mapData }) => {
   // console.log(temp);
   return (
     <>
-      <Recommendation mapData={mapData} setPos={setPos} />
+      <Recommendation
+        mapData={mapData}
+        setPos={setPos}
+        startDate={startDate}
+        endDate={endDate}
+        place={place}
+        openNotice={openNotice}
+      />
       <Map // 지도를 표시할 Container
         center={pos.center}
         isPanto={pos.isPanto}

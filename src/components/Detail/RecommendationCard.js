@@ -3,7 +3,14 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { BsSuitHeartFill } from "react-icons/bs";
 import instance from "../../api/axios";
 import { useSelector } from "react-redux";
-const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
+const RecommendationCard = ({
+  openNotice,
+  recommendation,
+  setPos,
+  startDate,
+  endDate,
+  place,
+}) => {
   const user = useSelector((state) => state.user);
   const heart = useRef(null);
 
@@ -34,6 +41,25 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
     // .then((res) => setWishList(res.data));
   };
 
+  const addSchedule = async (tpSeq) => {
+    console.log(startDate);
+    console.log(endDate);
+    console.log(place.name);
+    console.log(user.miSeq);
+    console.log(tpSeq);
+    let body = {
+      tsStartDate: startDate,
+      tsEndDate: endDate,
+      tsName: place.name,
+      miSeq: user.miSeq,
+      tpSeq: tpSeq,
+    };
+    await instance.put("/api/schedule/basic", body).then((res) => {
+      if (res.status) {
+        openNotice();
+      }
+    });
+  };
   useEffect(() => {
     if (user.miSeq) {
       getWishList();
@@ -104,7 +130,14 @@ const RecommendationCard = ({ openNotice, recommendation, setPos }) => {
           )}
           <button>
             <AiOutlinePlus
-              onClick={openNotice}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (startDate && endDate) {
+                  addSchedule(recommendation.tpSeq);
+                } else {
+                  return alert("날짜를 지정해주세요");
+                }
+              }}
               className="absolute right-2 bottom-2"
             />
           </button>

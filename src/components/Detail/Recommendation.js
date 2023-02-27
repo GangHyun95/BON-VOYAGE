@@ -5,20 +5,15 @@ import ButtonGroup from "./ButtonGroup";
 import RecommendationCard from "./RecommendationCard";
 import { CiSearch } from "react-icons/ci";
 import Paging from "../common/Paging";
-import Modal from "../../Layout/Modal";
-import { AiOutlineCheck } from "react-icons/ai";
 
-const Recommendation = ({ mapData, setPos }) => {
-  const [visible, setVisible] = useState(false);
-
-  const openNotice = (e) => {
-    e.stopPropagation();
-    setVisible(true);
-    setTimeout(() => {
-      setVisible(false);
-    }, 1000);
-  };
-
+const Recommendation = ({
+  mapData,
+  setPos,
+  startDate,
+  endDate,
+  place,
+  openNotice,
+}) => {
   const arr = [
     { title: "음식점", icon: <MdStorefront />, tpType: 1 },
     { title: "관광명소", icon: <MdOutlinePlace />, tpType: 2 },
@@ -75,21 +70,14 @@ const Recommendation = ({ mapData, setPos }) => {
               openNotice={openNotice}
               recommendation={recommendation}
               setPos={setPos}
+              startDate={startDate}
+              endDate={endDate}
+              place={place}
               key={recommendation.tpSeq}
             />
           ))}
       </ul>
       <Paging page={currentPage} count={filtered.length} setPage={setPage} />
-      {visible && (
-        <Modal visible={visible}>
-          <div className="flex flex-col items-center justify-center p-12">
-            <div className="border text-2xl p-1 bg-black text-white rounded mb-4">
-              <AiOutlineCheck />
-            </div>
-            <p className="text-xl">선택 목록에 추가되었습니다.</p>
-          </div>
-        </Modal>
-      )}
     </div>
   );
 };
