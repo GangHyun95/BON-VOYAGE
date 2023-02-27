@@ -9,6 +9,7 @@ import ScheduleCard from "./ScheduleCard";
 const MySchedule = () => {
   const [schedule, setSchedule] = useState([]);
   const [wishList, setWishList] = useState([]);
+  const [placeList, setPlaceList] = useState([]);
   const user = useSelector((state) => state.user);
 
   const getWishList = async () => {
@@ -26,10 +27,18 @@ const MySchedule = () => {
       setSchedule(res.data);
     });
   };
+
+  const getPlaceList = async () => {
+    await instance
+      .get("/api/zone/allcate")
+      .then((res) => setPlaceList(res.data.list));
+  };
   useEffect(() => {
     getWishList();
     getSchedule();
+    getPlaceList();
   }, []);
+
   const filtered = getFilteredList(schedule, user);
   const filteredItems = Deleteduplicate(filtered);
   return (
