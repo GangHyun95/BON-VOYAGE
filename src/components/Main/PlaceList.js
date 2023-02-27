@@ -26,6 +26,7 @@ const PlaceList = ({
 
   const filtered = getFilteredItems(placeList, filter);
 
+  console.log(placeList);
   return (
     <section className="text-center">
       <p className="text-3xl font-bold font-Mont">어디로 여행을 떠나시나요?</p>

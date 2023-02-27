@@ -1,21 +1,42 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { AiOutlineClose } from "react-icons/ai";
+import instance from "../../api/axios";
+import { useEffect } from "react";
 
-const ScheduleCard = ({ item }) => {
+const ScheduleCard = ({ list, placeList, setCount }) => {
   const navigate = useNavigate();
   const GoReview = () => navigate("review");
 
+  const place = getFilteredItems(placeList, list);
+  const deletePlace = async () => {
+    await instance.delete(`/api/schedule/delete?tsseq=${list.tsSeq}`);
+  };
+  console.log(place);
+
+  useEffect(() => {}, []);
   return (
-    <div className="py-8 flex items-center gap-6 border-b">
+    <div className="relative py-8 flex items-center gap-6 border-b">
+      <AiOutlineClose
+        className="absolute right-0 top-5 text-2xl cursor-pointer"
+        onClick={() => {
+          setCount((prev) => prev + 1);
+          deletePlace();
+        }}
+      />
       <div className="relative w-40 h-40">
-        <img src="/photo/jeju.jpg" alt="d" className="w-[150px] h-[150px]" />
+        <img
+          src={`http://192.168.0.112:8888/api/images/download/local?imgname=${place?.child.image.iiFileName}`}
+          alt="d"
+          className="w-[150px] h-[150px]"
+        />
         <span className="w-12 h-8 bg-main text-white absolute top-0 leading-8 text-center text-xs tracking-wide">
           D-5
         </span>
       </div>
       <div className=" px-12 flex flex-col justify-center items-center">
-        <p className="font-Mont font-bold text-2xl">YEOSU</p>
-        <p>{item.tsEntity.tsName}</p>
+        <p className="font-Mont font-bold text-2xl">{place?.child.engname}</p>
+        <p>{list.tsName}</p>
       </div>
       <div className="flex-1 flex flex-col relative justify-center gap-2">
         {/* <p className="font-bold">
@@ -27,13 +48,20 @@ const ScheduleCard = ({ item }) => {
         <p className="font-bold">
           여행일자
           <span className="font-normal ml-4 text-sm">
-            {item.tsEntity.tsStartDate} ~ {item.tsEntity.tsEndDate}
+            {list.tsStartDate} ~ {list.tsEndDate}
           </span>
         </p>
         {/* 모달 */}
         <div className="flex gap-3 mt-4 text-xs">
           {/* 체크박스 */}
-          <button className="border w-24 py-2.5 rounded-2xl border-[#dadada]">
+          <button
+            className="border w-24 py-2.5 rounded-2xl border-[#dadada]"
+            onClick={() => {
+              navigate(`/detail/${place.child.seq}`, {
+                state: { place: place.child },
+              });
+            }}
+          >
             일정확인
           </button>
 
@@ -50,6 +78,10 @@ const ScheduleCard = ({ item }) => {
       </div>
     </div>
   );
+};
+
+const getFilteredItems = (placeList, item) => {
+  return placeList.find((list) => list.child.name === item.tsName);
 };
 
 export default ScheduleCard;

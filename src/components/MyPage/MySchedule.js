@@ -10,6 +10,7 @@ const MySchedule = () => {
   const [schedule, setSchedule] = useState([]);
   const [wishList, setWishList] = useState([]);
   const [placeList, setPlaceList] = useState([]);
+  const [count, setCount] = useState(0);
   const user = useSelector((state) => state.user);
 
   const getWishList = async () => {
@@ -23,9 +24,15 @@ const MySchedule = () => {
   };
 
   const getSchedule = async () => {
-    await instance.get("/api/schedule/list").then((res) => {
-      setSchedule(res.data);
-    });
+    await instance
+      .get("/api/schedule/member/list", {
+        params: {
+          miseq: user.miSeq,
+        },
+      })
+      .then((res) => {
+        setSchedule(res.data);
+      });
   };
 
   const getPlaceList = async () => {
@@ -35,18 +42,26 @@ const MySchedule = () => {
   };
   useEffect(() => {
     getWishList();
-    getSchedule();
     getPlaceList();
   }, []);
+  useEffect(() => {
+    getSchedule();
+  }, [count]);
 
-  const filtered = getFilteredList(schedule, user);
-  const filteredItems = Deleteduplicate(filtered);
+  console.log(placeList);
+  console.log(schedule);
+
   return (
     <MyPageLayOut title={"나의 일정"}>
-      <section className="border rounded-xl p-9 accent-[#424242] flex-col">
+      <section className="border rounded-xl p-9 pt-0 accent-[#424242] flex-col">
         {/* 일정카드 */}
-        {filteredItems.map((item) => (
-          <ScheduleCard item={item} key={item.ttcSeq} />
+        {schedule.map((list) => (
+          <ScheduleCard
+            list={list}
+            key={list.tsSeq}
+            placeList={placeList}
+            setCount={setCount}
+          />
         ))}
       </section>
       {/* 찜목록 */}
@@ -74,19 +89,4 @@ const MySchedule = () => {
   );
 };
 
-function getFilteredList(schedule, user, place) {
-  return schedule.filter(
-    (list) => list.tsEntity.memberEntity.miSeq === user.miSeq
-  );
-}
-
-function Deleteduplicate(filtered) {
-  return filtered.filter((ele, i) => {
-    return (
-      filtered.findIndex((ele2) => {
-        return ele.tsEntity.tsName === ele2.tsEntity.tsName;
-      }) === i
-    );
-  });
-}
 export default MySchedule;
