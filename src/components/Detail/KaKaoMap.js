@@ -21,6 +21,8 @@ const KaKaoMap = ({
   endDate,
   place,
   openNotice,
+  keyword,
+  setKeyword,
 }) => {
   const [pos, setPos] = useState({
     center: { lat, lng },
@@ -46,6 +48,8 @@ const KaKaoMap = ({
         endDate={endDate}
         place={place}
         openNotice={openNotice}
+        keyword={keyword}
+        setKeyword={setKeyword}
       />
       <Map // 지도를 표시할 Container
         center={pos.center}

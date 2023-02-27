@@ -33,7 +33,7 @@ function TravelCalendar({
     setEndDate(endDateFormat);
   };
 
-  const [selectDate, setSelectDate] = useState();
+  // const [selectDate, setSelectDate] = useState();
   const [betweenDate, setBetweenDate] = useState([]);
 
   useEffect(() => {
@@ -49,6 +49,7 @@ function TravelCalendar({
   useEffect(() => {
     getSchedule();
   }, [openNotice]);
+
   const filtered = getFilteredList(schedule, user, place.name);
 
   return (

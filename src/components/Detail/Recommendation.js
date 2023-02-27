@@ -13,6 +13,8 @@ const Recommendation = ({
   endDate,
   place,
   openNotice,
+  keyword,
+  setKeyword,
 }) => {
   const arr = [
     { title: "음식점", icon: <MdStorefront />, tpType: 1 },
@@ -52,9 +54,14 @@ const Recommendation = ({
     <div className="w-[360px] border-l">
       {/* 검색폼 */}
       <div className="m-3">
-        <form className="relative text-lg text-gray-400">
+        <form
+          className="relative text-lg text-gray-400"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <input
             type="text"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
             className="w-full h-12 outline-none border rounded-3xl py-4 px-6"
           />
           <CiSearch className="text-2xl absolute top-1/2 right-3 translate-y-[-50%] text-main" />

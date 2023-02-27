@@ -8,6 +8,7 @@ import Modal from "../Layout/Modal";
 
 const Detail = () => {
   const [visible, setVisible] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
   const openNotice = () => {
     setVisible(true);
@@ -28,9 +29,11 @@ const Detail = () => {
 
   const fetchDate = async () => {
     try {
-      const result = await instance.get("/api/travle/zone", {
-        params: { tpzcseq: place.seq },
-      });
+      const result = await instance.get(
+        keyword
+          ? `/api/travle/place?keyword=${keyword}`
+          : `/api/travle/zone?tpzcseq=${place.seq}`
+      );
       setMapData(result.data.list);
     } catch (error) {
       console.log(error);
@@ -39,7 +42,7 @@ const Detail = () => {
 
   useEffect(() => {
     fetchDate();
-  }, []);
+  }, [keyword]);
 
   return (
     <div className="flex pt-20 max-h-screen overflow-hidden">
@@ -59,6 +62,8 @@ const Detail = () => {
         startDate={startDate}
         endDate={endDate}
         openNotice={openNotice}
+        keyword={keyword}
+        setKeyword={setKeyword}
       />
       {visible && (
         <Modal visible={visible}>
