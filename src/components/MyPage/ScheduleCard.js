@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { AiOutlineClose } from "react-icons/ai";
 import instance from "../../api/axios";
-import { useEffect } from "react";
 
 const ScheduleCard = ({ list, placeList, setCount }) => {
   const navigate = useNavigate();
@@ -13,9 +12,7 @@ const ScheduleCard = ({ list, placeList, setCount }) => {
     await instance.delete(`/api/schedule/delete?tsseq=${list.tsSeq}`);
   };
 
-  console.log(list);
-
-  useEffect(() => {}, []);
+  console.log(getDDay(list.tsStartDate));
   return (
     <div className="relative py-8 flex items-center gap-6 border-b">
       <AiOutlineClose
@@ -32,7 +29,7 @@ const ScheduleCard = ({ list, placeList, setCount }) => {
           className="w-[150px] h-[150px]"
         />
         <span className="w-12 h-8 bg-main text-white absolute top-0 leading-8 text-center text-xs tracking-wide">
-          D-5
+          D-{getDDay(list.tsStartDate)}
         </span>
       </div>
       <div className=" px-12 flex flex-col basis-4/12 justify-center items-center">
@@ -83,6 +80,13 @@ const ScheduleCard = ({ list, placeList, setCount }) => {
 
 const getFilteredItems = (placeList, item) => {
   return placeList.find((list) => list.child.name === item.tsName);
+};
+
+const getDDay = (startDate) => {
+  const now = new Date();
+  const dday = new Date(startDate);
+  const gap = dday.getTime() - now.getTime();
+  return Math.ceil(gap / (1000 * 60 * 60 * 24));
 };
 
 export default ScheduleCard;

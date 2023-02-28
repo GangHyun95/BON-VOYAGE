@@ -42,19 +42,18 @@ const MySchedule = () => {
   };
   useEffect(() => {
     getWishList();
-    getPlaceList();
   }, []);
   useEffect(() => {
+    getPlaceList();
     getSchedule();
-  }, [count]);
+  }, [count, placeList]);
 
   const subData = deleteDuplicate(schedule);
-  console.log(subData);
   return (
     <MyPageLayOut title={"나의 일정"}>
       <section className="border rounded-xl p-9 pt-0 accent-[#424242] flex-col">
         {/* 일정카드 */}
-        {subData.map((list) => (
+        {schedule.map((list) => (
           <ScheduleCard
             list={list}
             key={list.tsSeq}
