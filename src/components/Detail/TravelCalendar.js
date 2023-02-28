@@ -98,16 +98,23 @@ function TravelCalendar({
           ></Calendar>
         </div>
       )}
-      <p className="text-center my-8">선택목록</p>
-      {filtered.map((list) => (
-        <SelectionCard
-          list={list}
-          place={place}
-          key={list.tsSeq}
-          alarm={alarm}
-          setAlarm={setAlarm}
-        />
-      ))}
+      <p className="text-center text-2xl mt-8 mb-6">선택목록</p>
+      {filtered.length === 0 ? (
+        <div className="text-center text-lg">
+          <p>아직 일정이 없습니다.</p>
+          <p>일정을 추가해주세요.</p>
+        </div>
+      ) : (
+        filtered.map((list) => (
+          <SelectionCard
+            list={list}
+            place={place}
+            key={list.tsSeq}
+            alarm={alarm}
+            setAlarm={setAlarm}
+          />
+        ))
+      )}
     </div>
   );
 }

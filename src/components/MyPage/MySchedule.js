@@ -58,9 +58,9 @@ const MySchedule = () => {
         {/* 일정카드 */}
 
         {schedule.length === 0 ? (
-          <p className="text-center text-xl py-11">
-            아직 일정이 없습니다 일정을 추가해 주세요.
-          </p>
+          <div className="text-center text-xl py-11 ">
+            <p>아직 일정이 없습니다 일정을 추가해 주세요.</p>
+          </div>
         ) : (
           subData.map((list) => (
             <ScheduleCard
