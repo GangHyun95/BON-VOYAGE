@@ -65,18 +65,14 @@ const RecommendationCard = ({
 
   useEffect(() => {
     wishList.map((item) => {
-      
-      
       if (recommendation?.tpSeq === item) {
-
         setHeartState(true);
-      
+      }
+      return () => {
+        setHeartState(false);
+      };
     });
-    return () => {
-      setHeartState(false);
-    };
   }, [wishList]);
-
   return (
     <>
       <li
