@@ -64,10 +64,10 @@ const RecommendationCard = ({
 
   useEffect(() => {
     wishList.map((item) => {
-      if (recommendation?.tpSeq === item) {
-        heart.current?.classList.add("text-red-500");
+      
+      
         setHeartState(true);
-      }
+      
     });
     return () => {
       setHeartState(false);
