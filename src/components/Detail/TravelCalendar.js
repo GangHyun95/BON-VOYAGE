@@ -6,6 +6,8 @@ import { BiCalendarHeart } from "react-icons/bi";
 import { useEffect } from "react";
 import instance from "../../api/axios";
 import { useSelector } from "react-redux";
+import SelectionCard from "./SelectionCard";
+
 function TravelCalendar({
   place,
   startDate,
@@ -48,9 +50,8 @@ function TravelCalendar({
 
   useEffect(() => {
     getSchedule();
-  }, [openNotice]);
+  }, [openNotice, user]);
 
-  console.log(schedule);
   return (
     <div className="w-[360px] overflow-x-hidden overflow-y-auto">
       <h2 className="text-center my-8 mt-12 text-4xl font-bold">
@@ -70,7 +71,7 @@ function TravelCalendar({
         </button>
         <input
           type="text"
-          className="w-[120px]  p-2 text-xl border-green1 border-b-4 bg-transparent outline-none opacity-70 my-5 rounded-xl"
+          className="w-[120px] p-2 text-xl border-green1 border-b-4 bg-transparent outline-none opacity-70 my-5 rounded-xl"
           placeholder="출발하는 날"
           value={startDate || ""}
           disabled
@@ -95,33 +96,10 @@ function TravelCalendar({
           ></Calendar>
         </div>
       )}
-      <p className="text-center  my-8">선택목록</p>
-      {/* <div className="flex flex-col gap-2 px-4">
-        {betweenDate?.map((date, i) => (
-          <div key={i}>
-            <p
-              className={`rounded-md text-center p-2 cursor-pointer ${
-                selectDate === date
-                  ? "bg-main text-white"
-                  : "bg-[#f1f1f1] text-[#767676]"
-              }`}
-              onClick={() => setSelectDate(date)}
-            >
-              DAY {i + 1}
-            </p>
-            <p className="text-[#aeaeae] text-lg flex flex-col items-center">
-              일자 버튼을 누르고 장소를 추가하세요
-              <BiPlus className="text-2xl" />
-            </p>
-          </div>
-        ))}
-      </div> */}
-
-      {/* <div className="text-center mt-4 ">
-        <button className="border border-main text-main py-3 px-5 rounded-xl ">
-          일정 생성
-        </button>
-      </div> */}
+      <p className="text-center my-8">선택목록</p>
+      {schedule.map((list) => (
+        <SelectionCard list={list} key={list.tsSeq} />
+      ))}
     </div>
   );
 }
