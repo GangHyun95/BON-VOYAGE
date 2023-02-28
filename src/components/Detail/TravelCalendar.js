@@ -118,6 +118,7 @@ function TravelCalendar({
     </div>
   );
 }
+
 function getDatesStartToLast(startDate, lastDate) {
   let regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
   if (!(regex.test(startDate) && regex.test(lastDate))) return;
@@ -131,6 +132,6 @@ function getDatesStartToLast(startDate, lastDate) {
 }
 
 const getfilteredList = (schedule, place) =>
-  schedule.filter((list) => list.tsName === place.name);
+  schedule.filter((list) => list.czName === place.name);
 
 export default TravelCalendar;

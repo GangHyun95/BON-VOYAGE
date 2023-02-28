@@ -16,6 +16,7 @@ const RecommendationCard = ({
 
   const [heartState, setHeartState] = useState(false);
   const [wishList, setWishList] = useState([]);
+  const [schedule, setSchedule] = useState([]);
 
   const likeHandler = async (seq) => {
     console.log(wishList);
@@ -42,6 +43,11 @@ const RecommendationCard = ({
     // .then((res) => setWishList(res.data));
   };
 
+  const getSchedule = async () => {
+    await instance
+      .get(`/api/schedule/member/list?miseq=${user.miSeq}`)
+      .then((res) => setSchedule(res.data));
+  };
   const addSchedule = async (tpSeq) => {
     console.log(tpSeq);
     let body = {
@@ -60,6 +66,7 @@ const RecommendationCard = ({
   useEffect(() => {
     if (user.miSeq) {
       getWishList();
+      getSchedule();
     }
   }, [user]);
 
@@ -73,6 +80,10 @@ const RecommendationCard = ({
       };
     });
   }, [wishList]);
+
+  console.log(schedule);
+
+  console.log(schedule);
   return (
     <>
       <li

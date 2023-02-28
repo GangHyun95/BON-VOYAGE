@@ -104,7 +104,7 @@ const deleteDuplicate = (schedule) => {
     return (
       schedule.findIndex((ele2) => {
         return (
-          ele1.tsName === ele2.tsName &&
+          ele1.czName === ele2.czName &&
           ele1.tsStartDate === ele2.tsStartDate &&
           ele1.tsEndDate === ele2.tsEndDate
         );

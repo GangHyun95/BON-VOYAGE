@@ -8,12 +8,12 @@ const ScheduleCard = ({ list, placeList, schedule, alarm, setAlarm }) => {
   const GoReview = () => navigate("review");
 
   const getFilteredItems = (placeList, item) => {
-    return placeList.find((list) => list.child.name === item.tsName);
+    return placeList.find((list) => list.child.name === item.czName);
   };
 
   const filtered = schedule.filter(
     (item) =>
-      item.tsName === list.tsName &&
+      item.czName === list.czName &&
       item.tsStartDate === list.tsStartDate &&
       item.tsEndDate === list.tsEndDate
   );
@@ -46,7 +46,7 @@ const ScheduleCard = ({ list, placeList, schedule, alarm, setAlarm }) => {
       </div>
       <div className=" px-12 flex flex-col basis-4/12 justify-center items-center">
         <p className="font-Mont font-bold text-2xl">{place?.child.engname}</p>
-        <p>{list.tsName}</p>
+        <p>{list.czName}</p>
       </div>
       <div className="flex-1 flex flex-col relative justify-center gap-2">
         {/* <p className="font-bold">
