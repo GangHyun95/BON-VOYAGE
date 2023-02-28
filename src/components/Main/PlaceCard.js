@@ -27,7 +27,7 @@ const PlaceCard = ({ place }) => {
     >
       <div className="overflow-hidden flex-1">
         <img
-          src={`http://192.168.0.112:8888/api/images/download/local?imgname=${place.child.image.iiFileName}`}
+          src={`http://192.168.0.112:8888/api/images/download/local?imgname=${place.child.image?.iiFileName}`}
           alt="임시"
           className="hover:scale-[115%] transition-transform duration-200 ease-in-out h-full"
         />

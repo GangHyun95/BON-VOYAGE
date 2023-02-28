@@ -42,7 +42,7 @@ function TravelCalendar({
 
   const getSchedule = async () => {
     await instance
-      .get("/api/schedule/list")
+      .get("/api/schedule/member/list", { params: { miseq: user.miSeq } })
       .then((res) => setSchedule(res.data));
   };
 
@@ -50,8 +50,7 @@ function TravelCalendar({
     getSchedule();
   }, [openNotice]);
 
-  const filtered = getFilteredList(schedule, user, place.name);
-
+  console.log(schedule);
   return (
     <div className="w-[360px] overflow-x-hidden overflow-y-auto">
       <h2 className="text-center my-8 mt-12 text-4xl font-bold">
@@ -118,25 +117,6 @@ function TravelCalendar({
         ))}
       </div> */}
 
-      {filtered.map((list) => (
-        <article
-          className="flex w-11/12 mx-auto my-3 shadow-lg rounded-lg h-[130px] overflow-hidden"
-          key={list.ttcSeq}
-        >
-          <img
-            src={list.tpEntity.tpImage}
-            className="w-36"
-            alt={list.tpEntity.tpName}
-          />
-          <div className="relative p-6 flex flex-col flex-1">
-            <p className="text-gray-900 text-sm font-medium mb-2">
-              {list.tpEntity.tpName}
-            </p>
-            <p className="text-xs text-gray-400">{list.tpEntity.tpAdress}</p>
-          </div>
-        </article>
-      ))}
-
       {/* <div className="text-center mt-4 ">
         <button className="border border-main text-main py-3 px-5 rounded-xl ">
           일정 생성
@@ -157,11 +137,4 @@ function getDatesStartToLast(startDate, lastDate) {
   return result;
 }
 
-function getFilteredList(schedule, user, place) {
-  return schedule.filter(
-    (list) =>
-      list.tsEntity.memberEntity.miSeq === user.miSeq &&
-      list.tsEntity.tsName === place
-  );
-}
 export default TravelCalendar;
