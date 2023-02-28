@@ -17,7 +17,8 @@ const ScheduleCard = ({ list, placeList, setCount }) => {
   const deletePlace = async () => {
     await instance.delete(`/api/schedule/delete?tsseq=${list.tsSeq}`);
   };
-  console.log(place);
+
+  console.log(list);
 
   useEffect(() => {}, []);
   return (
@@ -39,7 +40,7 @@ const ScheduleCard = ({ list, placeList, setCount }) => {
           D-5
         </span>
       </div>
-      <div className=" px-12 flex flex-col justify-center items-center">
+      <div className=" px-12 flex flex-col basis-4/12 justify-center items-center">
         <p className="font-Mont font-bold text-2xl">{place?.child.engname}</p>
         <p>{list.tsName}</p>
       </div>
