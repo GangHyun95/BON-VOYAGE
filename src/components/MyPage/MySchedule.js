@@ -55,14 +55,23 @@ const MySchedule = () => {
     <MyPageLayOut title={"나의 일정"}>
       <section className="border rounded-xl p-9 pt-0 accent-[#424242] flex-col">
         {/* 일정카드 */}
-        {schedule.map((list) => (
-          <ScheduleCard
-            list={list}
-            key={list.tsSeq}
-            placeList={placeList}
-            setCount={setCount}
-          />
-        ))}
+        {schedule.length === 0 ? (
+          <p
+            className="text-center text-xl py-11
+     "
+          >
+            아직 일정이 없습니다 일정을 추가해 주세요.
+          </p>
+        ) : (
+          schedule.map((list) => (
+            <ScheduleCard
+              list={list}
+              key={list.tsSeq}
+              placeList={placeList}
+              setCount={setCount}
+            />
+          ))
+        )}
       </section>
       {/* 찜목록 */}
       <div className="flex items-center gap-1 text-xl mt-20 mb-8">
