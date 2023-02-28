@@ -17,6 +17,7 @@
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-alice-carousel": "^2.7.0",
+    "react-bootstrap-4-pagination": "^1.0.4",
     "react-calendar": "^4.0.0",
     "react-chartjs-2": "^5.2.0",
     "react-date-range": "^1.4.0",
