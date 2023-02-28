@@ -48,7 +48,7 @@ const MySchedule = () => {
   useEffect(() => {
     getPlaceList();
     getSchedule();
-  }, [count]);
+  }, [placeList]);
 
   const subData = deleteDuplicate(schedule);
 
