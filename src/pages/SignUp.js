@@ -61,7 +61,7 @@ const SignUp = () => {
   return (
     <div className="relative m-[200px] flex items-center flex-col ">
       <h1 className="my-[50px] text-xl">Sign Up</h1>
-      <form className="text-xs" onSubmit={handleSubmit(submitForm)}>
+      <form className="text-xs" onSubmit={handleSubmit(submitForm) }>
         {/* 이메일 */}
         <label htmlFor="email" className="block font-bold text-slate-600">
           이메일
