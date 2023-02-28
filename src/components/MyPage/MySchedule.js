@@ -10,7 +10,7 @@ const MySchedule = () => {
   const [schedule, setSchedule] = useState([]);
   const [wishList, setWishList] = useState([]);
   const [placeList, setPlaceList] = useState([]);
-  const [count, setCount] = useState(0);
+  const [alarm, setAlarm] = useState(false);
   const user = useSelector((state) => state.user);
 
   const getWishList = async () => {
@@ -48,7 +48,7 @@ const MySchedule = () => {
   useEffect(() => {
     getPlaceList();
     getSchedule();
-  }, [placeList]);
+  }, [alarm]);
 
   const subData = deleteDuplicate(schedule);
 
@@ -68,7 +68,8 @@ const MySchedule = () => {
               key={list.tsSeq}
               placeList={placeList}
               schedule={schedule}
-              setCount={setCount}
+              alarm={alarm}
+              setAlarm={setAlarm}
             />
           ))
         )}

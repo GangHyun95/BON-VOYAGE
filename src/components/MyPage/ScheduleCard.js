@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { AiOutlineClose } from "react-icons/ai";
 import instance from "../../api/axios";
 
-const ScheduleCard = ({ list, placeList, setCount, schedule }) => {
+const ScheduleCard = ({ list, placeList, schedule, alarm, setAlarm }) => {
   const navigate = useNavigate();
   const GoReview = () => navigate("review");
 
@@ -22,7 +22,9 @@ const ScheduleCard = ({ list, placeList, setCount, schedule }) => {
   // 일정삭제
   const deletePlace = () => {
     filtered.map((item) =>
-      instance.delete(`/api/schedule/delete?tsseq=${item.tsSeq}`)
+      instance
+        .delete(`/api/schedule/delete?tsseq=${item.tsSeq}`)
+        .then((res) => setAlarm(!alarm))
     );
   };
 
@@ -30,10 +32,7 @@ const ScheduleCard = ({ list, placeList, setCount, schedule }) => {
     <div className="relative py-8 flex items-center gap-6 border-b">
       <AiOutlineClose
         className="absolute right-0 top-5 text-2xl cursor-pointer"
-        onClick={() => {
-          setCount((prev) => prev + 1);
-          deletePlace();
-        }}
+        onClick={deletePlace}
       />
       <div className="relative w-40 h-40">
         <img

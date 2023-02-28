@@ -17,7 +17,6 @@ function TravelCalendar({
   openNotice,
 }) {
   const user = useSelector((state) => state.user);
-
   const [schedule, setSchedule] = useState([]);
   // 달력 안보였다가 보이게
   const [visible, setVisible] = useState(false);
@@ -48,9 +47,12 @@ function TravelCalendar({
       .then((res) => setSchedule(res.data));
   };
 
+  const filtered = getfilteredList(schedule, place);
+
+  const [alarm, setAlarm] = useState(false);
   useEffect(() => {
     getSchedule();
-  }, [openNotice, user]);
+  }, [openNotice, user, alarm]);
 
   return (
     <div className="w-[360px] overflow-x-hidden overflow-y-auto">
@@ -97,8 +99,14 @@ function TravelCalendar({
         </div>
       )}
       <p className="text-center my-8">선택목록</p>
-      {schedule.map((list) => (
-        <SelectionCard list={list} key={list.tsSeq} />
+      {filtered.map((list) => (
+        <SelectionCard
+          list={list}
+          place={place}
+          key={list.tsSeq}
+          alarm={alarm}
+          setAlarm={setAlarm}
+        />
       ))}
     </div>
   );
@@ -114,5 +122,8 @@ function getDatesStartToLast(startDate, lastDate) {
   }
   return result;
 }
+
+const getfilteredList = (schedule, place) =>
+  schedule.filter((list) => list.tsName === place.name);
 
 export default TravelCalendar;

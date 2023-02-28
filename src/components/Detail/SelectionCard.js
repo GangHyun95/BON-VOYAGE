@@ -1,22 +1,22 @@
 import React from "react";
+import { useEffect } from "react";
 import { GrClose } from "react-icons/gr";
 import instance from "../../api/axios";
 
-const SelectionCard = ({ list }) => {
-  console.log(list.tsSeq);
+const SelectionCard = ({ list, setAlarm, alarm }) => {
   const handleDelete = async () => {
-    await instance.delete(`/api/schedule/delete?tsseq=${list.tsSeq}`);
+    await instance
+      .delete(`/api/schedule/delete?tsseq=${list.tsSeq}`)
+      .then((res) => setAlarm(!alarm));
   };
-  return (
-    <li
-      className="flex relative w-10/12 mx-auto my-6 border border-gray-200 rounded-lg h-28 cursor-pointer"
-      onClick={handleDelete}
-    >
-      <button className="absolute top-1.5 right-2">
-        {" "}
-        <GrClose />
-      </button>
 
+  useEffect(() => {}, []);
+  return (
+    <article className="flex relative w-10/12 mx-auto my-6 border border-gray-200 rounded-lg h-28">
+      <GrClose
+        className="absolute top-1.5 right-2 cursor-pointer z-10"
+        onClick={handleDelete}
+      />
       <img
         className="w-20 md:h-auto object-cover md:w-28 rounded-t-lg md:rounded-none md:rounded-l-lg"
         src={list.tpImage}
@@ -28,7 +28,7 @@ const SelectionCard = ({ list }) => {
         </p>
         <p className=" text-gray-400 text-[11px]">{list.tpAdress}</p>
       </div>
-    </li>
+    </article>
   );
 };
 
