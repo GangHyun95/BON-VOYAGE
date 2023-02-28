@@ -7,8 +7,13 @@ import { useEffect } from "react";
 const ScheduleCard = ({ list, placeList, setCount }) => {
   const navigate = useNavigate();
   const GoReview = () => navigate("review");
-
+  
+  const getFilteredItems = (placeList, item) => {
+    return placeList.find((list) => list.child.name === item.tsName);
+  };
+  
   const place = getFilteredItems(placeList, list);
+  // 일정삭제 
   const deletePlace = async () => {
     await instance.delete(`/api/schedule/delete?tsseq=${list.tsSeq}`);
   };
@@ -81,8 +86,5 @@ const ScheduleCard = ({ list, placeList, setCount }) => {
   );
 };
 
-const getFilteredItems = (placeList, item) => {
-  return placeList.find((list) => list.child.name === item.tsName);
-};
 
 export default ScheduleCard;

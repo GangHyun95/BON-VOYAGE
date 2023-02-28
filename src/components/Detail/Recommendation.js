@@ -84,7 +84,7 @@ const Recommendation = ({
             />
           ))}
       </ul>
-      <Paging page={currentPage} count={filtered.length} setPage={setPage} />
+      {currentPosts.length === 0 ? "":<Paging page={currentPage} count={filtered.length} setPage={setPage} /> }
     </div>
   );
 };
