@@ -58,7 +58,6 @@ const Profile = () => {
 
   const user = useSelector((state) => state.user);
 
-  console.log(user);
   const withdrawel = async () => {
     try {
       if (window.confirm("회원탈퇴하시겠습니까?")) {

@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsSuitHeartFill } from "react-icons/bs";
 import instance from "../../api/axios";
 import { useSelector } from "react-redux";
+
 const RecommendationCard = ({
   openNotice,
   recommendation,
@@ -12,10 +13,10 @@ const RecommendationCard = ({
   place,
 }) => {
   const user = useSelector((state) => state.user);
-  const heart = useRef(null);
 
   const [heartState, setHeartState] = useState(false);
   const [wishList, setWishList] = useState([]);
+
   const likeHandler = async (seq) => {
     console.log(wishList);
     setHeartState(true);
@@ -65,7 +66,6 @@ const RecommendationCard = ({
   useEffect(() => {
     wishList.map((item) => {
       if (recommendation?.tpSeq === item) {
-        heart.current?.classList.add("text-red-500");
         setHeartState(true);
       }
     });
@@ -77,7 +77,7 @@ const RecommendationCard = ({
   return (
     <>
       <li
-        className="flex w-11/12 mx-auto my-3 shadow-lg rounded-lg h-[130px]"
+        className="flex w-10/12 mx-auto my-6 border border-gray-200 rounded-lg h-28"
         onClick={() =>
           setPos({
             center: {
@@ -92,34 +92,34 @@ const RecommendationCard = ({
         }
       >
         <img
-          className="w-20 md:h-auto object-cover md:w-36 rounded-t-lg md:rounded-none md:rounded-l-lg"
+          className="w-20 md:h-auto object-cover md:w-28 rounded-t-lg md:rounded-none md:rounded-l-lg"
           src={recommendation?.tpImage}
           alt="이미지"
         />
-        <div className="relative p-6 flex flex-col flex-1">
-          <p className="text-gray-900 text-sm font-medium mb-2">
+        <div className="relative p-4 flex flex-col flex-1">
+          <p className="text-gray-700 text-[13px] font-bold mb-2 line-clamp-2 ">
             {recommendation?.tpName}
           </p>
-          <p className="text-xs text-gray-400">{recommendation?.tpAdress}</p>
+          <p className=" text-gray-400 text-[11px]">
+            {recommendation?.tpAdress}
+          </p>
           {heartState && user.miSeq ? (
             <button
-              ref={heart}
               onClick={(e) => {
                 e.stopPropagation();
                 handleDelete(recommendation.tpSeq);
               }}
-              className="absolute right-8 bottom-2 text-red-500"
+              className="absolute right-10 bottom-3 text-red-500 text-xs"
             >
               <BsSuitHeartFill />
             </button>
           ) : (
             <button
-              ref={heart}
               onClick={(e) => {
                 e.stopPropagation();
                 likeHandler(recommendation.tpSeq);
               }}
-              className="absolute right-8 bottom-2"
+              className="absolute right-10 bottom-3 text-xs"
             >
               <BsSuitHeartFill />
             </button>
@@ -134,7 +134,7 @@ const RecommendationCard = ({
                   return alert("날짜를 지정해주세요");
                 }
               }}
-              className="absolute right-2 bottom-2"
+              className="absolute right-4 bottom-3 text-xs"
             />
           </button>
         </div>

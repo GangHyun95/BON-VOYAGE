@@ -3,21 +3,29 @@ import { useNavigate } from "react-router";
 import { AiOutlineClose } from "react-icons/ai";
 import instance from "../../api/axios";
 
-const ScheduleCard = ({ list, placeList, setCount }) => {
+const ScheduleCard = ({ list, placeList, setCount, schedule }) => {
   const navigate = useNavigate();
   const GoReview = () => navigate("review");
-  
+
   const getFilteredItems = (placeList, item) => {
     return placeList.find((list) => list.child.name === item.tsName);
   };
-  
+
+  const filtered = schedule.filter(
+    (item) =>
+      item.tsName === list.tsName &&
+      item.tsStartDate === list.tsStartDate &&
+      item.tsEndDate === list.tsEndDate
+  );
+
   const place = getFilteredItems(placeList, list);
-  // 일정삭제 
-  const deletePlace = async () => {
-    await instance.delete(`/api/schedule/delete?tsseq=${list.tsSeq}`);
+  // 일정삭제
+  const deletePlace = () => {
+    filtered.map((item) =>
+      instance.delete(`/api/schedule/delete?tsseq=${item.tsSeq}`)
+    );
   };
 
-  console.log(getDDay(list.tsStartDate));
   return (
     <div className="relative py-8 flex items-center gap-6 border-b">
       <AiOutlineClose
@@ -82,7 +90,6 @@ const ScheduleCard = ({ list, placeList, setCount }) => {
     </div>
   );
 };
-
 
 const getDDay = (startDate) => {
   const now = new Date();

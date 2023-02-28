@@ -40,15 +40,18 @@ const MySchedule = () => {
       .get("/api/zone/allcate")
       .then((res) => setPlaceList(res.data.list));
   };
+
   useEffect(() => {
     getWishList();
   }, []);
+
   useEffect(() => {
     getPlaceList();
     getSchedule();
-  }, [count, placeList]);
+  }, [count]);
 
   const subData = deleteDuplicate(schedule);
+
   return (
     <MyPageLayOut title={"나의 일정"}>
       <section className="border rounded-xl p-9 pt-0 accent-[#424242] flex-col">
@@ -59,11 +62,12 @@ const MySchedule = () => {
             아직 일정이 없습니다 일정을 추가해 주세요.
           </p>
         ) : (
-          schedule.map((list) => (
+          subData.map((list) => (
             <ScheduleCard
               list={list}
               key={list.tsSeq}
               placeList={placeList}
+              schedule={schedule}
               setCount={setCount}
             />
           ))

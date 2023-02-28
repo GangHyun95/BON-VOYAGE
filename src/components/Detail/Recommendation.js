@@ -53,7 +53,7 @@ const Recommendation = ({
   return (
     <div className="w-[360px] border-l">
       {/* 검색폼 */}
-      <div className="m-3">
+      <div className="m-3 w-10/12 mx-auto">
         <form
           className="relative text-lg text-gray-400"
           onSubmit={(e) => e.preventDefault()}
@@ -62,14 +62,14 @@ const Recommendation = ({
             type="text"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            className="w-full h-12 outline-none border rounded-3xl py-4 px-6"
+            className="w-full h-12 outline-none border rounded-3xl py-4 px-6 mt-5"
           />
-          <CiSearch className="text-2xl absolute top-1/2 right-3 translate-y-[-50%] text-main" />
+          <CiSearch className="text-2xl absolute top-1/2 right-3 translate-y-[-50%] text-main mt-2" />
         </form>
       </div>
       <ButtonGroup filter={filter} arr={arr} setFilter={setFilter} />
 
-      <h2 className="text-center my-2">추천장소</h2>
+      <h2 className="text-center mt-2 mb-4">추천장소</h2>
       <ul>
         {currentPosts.length > 0 &&
           currentPosts.map((recommendation) => (
@@ -84,7 +84,11 @@ const Recommendation = ({
             />
           ))}
       </ul>
-      {currentPosts.length === 0 ? "":<Paging page={currentPage} count={filtered.length} setPage={setPage} /> }
+      {currentPosts.length === 0 ? (
+        ""
+      ) : (
+        <Paging page={currentPage} count={filtered.length} setPage={setPage} />
+      )}
     </div>
   );
 };
