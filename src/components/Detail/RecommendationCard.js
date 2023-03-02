@@ -81,9 +81,6 @@ const RecommendationCard = ({
     });
   }, [wishList]);
 
-  console.log(schedule);
-
-  console.log(schedule);
   return (
     <>
       <li
@@ -139,6 +136,11 @@ const RecommendationCard = ({
               onClick={(e) => {
                 e.stopPropagation();
                 if (startDate && endDate) {
+                  {
+                    if (!user.miSeq) {
+                      return alert("로그인 후 이용 가능합니다.");
+                    }
+                  }
                   addSchedule(recommendation.tpSeq);
                 } else {
                   return alert("날짜를 지정해주세요");
