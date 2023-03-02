@@ -56,15 +56,13 @@ function TravelCalendar({
 
   return (
     <div className="w-[360px] overflow-x-hidden overflow-y-auto">
-      <h2 className="text-center my-8 mt-12 text-4xl font-bold">
-        {place.name}
-      </h2>
+      <h2 className="text-center  mt-12 text-4xl font-bold">{place.name}</h2>
       <p className="text-center mt-4 text-stone-400 text-lg font-Mont">
         {place.engname}
       </p>
       {betweenDate?.length && (
-        <p className="text-center mt-4 font-bold text-2xl">
-          {betweenDate.length}DAY
+        <p className="text-center mt-8 font-bold text-2xl">
+          {betweenDate.length} DAY
         </p>
       )}
       <div className="flex justify-center items-center">
@@ -73,15 +71,15 @@ function TravelCalendar({
         </button>
         <input
           type="text"
-          className="w-[120px] p-2 text-xl border-green1 border-b-4 bg-transparent outline-none opacity-70 my-5 rounded-xl"
+          className="w-[120px] p-2 text-xl  bg-transparent outline-none opacity-70 my-5 rounded-xl"
           placeholder="출발하는 날"
           value={startDate || ""}
           disabled
         />
-        <span className="text-xl my-auto px-2">~</span>
+        <span className="text-xl my-auto ">~</span>
         <input
           type="text"
-          className="w-[120px]  p-2 text-xl border-green1 outline-none bg-transparent opacity-70 border-b-4 rounded-xl"
+          className="w-[120px]  p-2 text-xl outline-none bg-transparent opacity-70  rounded-xl"
           placeholder="돌아오는 날"
           value={endDate || ""}
           disabled
@@ -98,9 +96,9 @@ function TravelCalendar({
           ></Calendar>
         </div>
       )}
-      <p className="text-center text-2xl mt-8 mb-6">선택목록</p>
+      <p className="text-center font-bold text-2xl mt-8 mb-6">선택목록</p>
       {filtered.length === 0 ? (
-        <div className="text-center text-lg">
+        <div className="text-center text-gray-500">
           <p>아직 일정이 없습니다.</p>
           <p>일정을 추가해주세요.</p>
         </div>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { useNavigate } from "react-router";
-import { BsSuitHeartFill } from "react-icons/bs";
 import Modal from "../../Layout/Modal";
 
 const PlaceCard = ({ place }) => {
@@ -13,11 +12,6 @@ const PlaceCard = ({ place }) => {
   const closeModal = (e) => {
     e.stopPropagation();
     setModalVisible(false);
-  };
-  // 하트 누르면 빨간색
-  const [HeartClicked, setHeartClicked] = useState(false);
-  const handleClick = () => {
-    setHeartClicked(!HeartClicked);
   };
 
   return (
@@ -48,13 +42,6 @@ const PlaceCard = ({ place }) => {
                 src={`http://192.168.0.112:8888/api/images/download/local?imgname=${place.child.image.iiFileName}`}
                 alt="ㅇㅇ"
                 className="w-full object-cover flex-1"
-              />
-
-              <BsSuitHeartFill
-                onClick={handleClick}
-                className={`absolute top-4 left-4 text-2xl ${
-                  HeartClicked ? "text-red-500" : "text-white"
-                }`}
               />
             </section>
             <section className="basis-2/3 flex flex-col gap-10 items-start text-start">

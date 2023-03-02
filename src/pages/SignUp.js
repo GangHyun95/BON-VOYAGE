@@ -61,7 +61,7 @@ const SignUp = () => {
   return (
     <div className="relative m-[200px] flex items-center flex-col ">
       <h1 className="my-[50px] text-xl">Sign Up</h1>
-      <form className="text-xs" onSubmit={handleSubmit(submitForm) }>
+      <form className="text-xs" onSubmit={handleSubmit(submitForm)}>
         {/* 이메일 */}
         <label htmlFor="email" className="block font-bold text-slate-600">
           이메일
@@ -76,12 +76,6 @@ const SignUp = () => {
             className="bg-gray-100 px-[20px] w-[450px] py-3 my-3 rounded-lg"
             {...register("email")}
           />
-          <button
-            type="button"
-            className="absolute right-2 top-1/2 -translate-y-1/2 ml-4 rounded-md bg-[#4C7EFF] text-white p-2 "
-          >
-            중복확인
-          </button>
         </div>
         <br />
         {/* 비밀번호 */}

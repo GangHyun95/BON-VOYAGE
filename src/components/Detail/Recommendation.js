@@ -69,7 +69,7 @@ const Recommendation = ({
       </div>
       <ButtonGroup filter={filter} arr={arr} setFilter={setFilter} />
 
-      <h2 className="text-center mt-2 mb-4">추천장소</h2>
+      <h2 className="text-center mt-2 mb-6 text-lg font-bold">추천장소</h2>
       <ul>
         {currentPosts.length > 0 &&
           currentPosts.map((recommendation) => (

@@ -143,7 +143,7 @@ const RecommendationCard = ({
                   }
                   addSchedule(recommendation.tpSeq);
                 } else {
-                  return alert("날짜를 지정해주세요");
+                  return alert("날짜를 지정해 주세요.");
                 }
               }}
               className="absolute right-4 bottom-3 text-xs"
