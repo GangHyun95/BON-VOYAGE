@@ -69,7 +69,11 @@ const KaKaoMap = ({
               }}
               ref={placeRef}
             >
-              <img src={pos.imgPath} alt={pos.title} />
+              <img
+                src={pos.imgPath}
+                alt={pos.title}
+                className="max-h-[120px] w-full"
+              />
               <h3 className="text-semibold mt-2">{pos.title}</h3>
               <span className="text-xs">{pos.address}</span>
               <MdOutlineArrowDropDown
