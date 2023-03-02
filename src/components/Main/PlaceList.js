@@ -68,7 +68,7 @@ const PlaceList = ({
           )}
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-16 mt-4">
+      <div className="grid grid-cols-2 gap-16 mt-4 md:grid-cols-3 lg:grid-cols-4">
         {/* 카드 */}
         {filtered.map((place) => (
           <PlaceCard key={place.seq} place={place} />

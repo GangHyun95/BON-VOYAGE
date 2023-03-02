@@ -55,7 +55,7 @@ function TravelCalendar({
   }, [openNotice, user, alarm]);
 
   return (
-    <div className="w-[360px] overflow-x-hidden overflow-y-auto">
+    <div className="basis-[18.75%] overflow-x-hidden overflow-y-auto">
       <h2 className="text-center  mt-12 text-4xl font-bold">{place.name}</h2>
       <p className="text-center mt-4 text-stone-400 text-lg font-Mont">
         {place.engname}

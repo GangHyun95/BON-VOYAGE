@@ -51,7 +51,7 @@ const Recommendation = ({
   };
 
   return (
-    <div className="w-[360px] border-l">
+    <div className="basis-[18.75%] border-l">
       {/* 검색폼 */}
       <div className="m-3 w-10/12 mx-auto">
         <form
