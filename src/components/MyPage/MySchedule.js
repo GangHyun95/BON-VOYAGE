@@ -83,14 +83,16 @@ const MySchedule = () => {
       <div className="grid grid-cols-4 gap-4 mb-16">
         {wishList.map((list) => (
           <section
-            className="shadow rounded-lg overflow-hidden flex flex-col"
+            className="rounded-md overflow-hidden border flex flex-col"
             key={list.tlSeq}
           >
-            <img
-              src={list.place.tpImage}
-              className="flex-1 max-h-[147px]"
-              alt={list.place.tpName}
-            />
+            <div className="flex-1">
+              <img
+                src={list.place.tpImage}
+                alt={list.place.tpName}
+                className="h-[180px]"
+              />
+            </div>
             <p className="text-end p-2.5 truncate">{list.place.tpName}</p>
           </section>
         ))}
