@@ -48,5 +48,33 @@
    <img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=flat&logo=Tailwind CSS&logoColor=white" />
 	<img src="https://img.shields.io/badge/styled-components-DB7093?style=flat&logo=styledcomponents&logoColor=white" />
    
+   ## 📌 주요 기능
    
+#### 로그인
+- Redux-persist를 이용한 로그인 유지
+
+#### 메인페이지
+
+- 장소 검색기능
+- 장소 필터기능(오름차순,내림차순,인기순)
+
+#### 디테일페이지
+- 장소 및 숙박리스트 클릭 시 지도 이동 및 마커 생성
+- 일정 추가 및 삭제 기능
+- 하트버튼을 이용한 관심장소 추가/삭제 기능
+- 음식점,숙박 ,관광명소 검색기능
+- 페이지네이션
+
+#### 마이페이지
+
+- 디테일페이지에서 추가한 관심장소 확인 가능
+- 생성된 일정 확인 및 삭제 기능
+- 한개 삭제 및 전체 삭제 기능
+- 회원정보 수정기능
+- 회원탈퇴기능
+
+
+<br/>
+
+** 본 readme는 프론트엔드의 입장에서만 작성되었습니다. 
 </div>
